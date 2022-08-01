@@ -1,8 +1,12 @@
 const ZipPlugin = require('zip-webpack-plugin');
 
 module.exports = {
+  entry: {
+    index: './src/index.js',
+    central: './src/central-package.js',
+  },
   output: {
-    filename: 'custom.js'
+    filename: '[name].custom.js'
   },
   plugins: [
     new ZipPlugin({
