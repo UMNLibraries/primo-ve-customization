@@ -1,17 +1,32 @@
 const ZipPlugin = require('zip-webpack-plugin');
 
-module.exports = {
+const baseConfig = {
   entry: {
-    index: './src/index.js',
-    central: './src/central-package.js',
+    TWINCITIES: './src/index.js',
+    CENTRAL_PACKAGE: './src/central-package.js',
   },
   output: {
-    filename: '[name].custom.js'
+    filename: '[name]/js/custom.js',
+    clean: true,
   },
-  plugins: [
-    new ZipPlugin({
-      filename: 'TWINCITIES.zip'
-    })
-  ]
+};
+
+const zipPlugins = Object.keys(baseConfig.entry).map(name => 
+  new ZipPlugin({
+    path: 'packages',
+    filename: name,
+    include: [new RegExp(`^${name}`)]
+//    pathPrefix: `${name}/js`,
+  })
+);
+
+const pluginsConfig  = {
+  plugins: zipPlugins,
+}
+
+
+module.exports = {
+  ...baseConfig,
+  ...pluginsConfig
 };
 
