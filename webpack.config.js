@@ -1,4 +1,4 @@
-const ZipPlugin = require('zip-webpack-plugin');
+import ZipPlugin from 'zip-webpack-plugin';
 
 const baseConfig = {
   entry: {
@@ -11,21 +11,21 @@ const baseConfig = {
   },
 };
 
-const zipPlugins = Object.keys(baseConfig.entry).map(name => 
+const zipPluginConfig = Object.keys(baseConfig.entry).map(entryName => 
   new ZipPlugin({
     path: 'packages',
-    filename: name,
-    include: [new RegExp(`^${name}`)]
-//    pathPrefix: `${name}/js`,
+    filename: entryName,
+    include: [new RegExp(`^${entryName}`)]
   })
 );
 
 const pluginsConfig  = {
-  plugins: zipPlugins,
+  plugins: [
+    ...zipPluginConfig
+  ],
 }
 
-
-module.exports = {
+export default {
   ...baseConfig,
   ...pluginsConfig
 };
