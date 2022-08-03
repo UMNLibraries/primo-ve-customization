@@ -2,13 +2,13 @@ import ZipPlugin from 'zip-webpack-plugin';
 
 const baseConfig = {
   entry: {
-    '01UMN_INST-TWINCITIES': './src/index.js',
-    '01UMN_INST-CENTRAL_PACKAGE': './src/central-package.js',
+    '01UMN_INST-TWINCITIES': './src/TWINCITIES/js/index.js',
+    '01UMN_INST-CENTRAL_PACKAGE': './src/CENTRAL_PACKAGE/js/index.js',
   },
   output: {
     filename: '[name]/js/custom.js',
+    publicPath: '/discovery/custom',
     clean: true,
-    publicPath: '/discovery/custom'
   },
   devServer: {
 //    proxy: [

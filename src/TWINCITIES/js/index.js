@@ -23,7 +23,7 @@ const loadScript = () => {
 };
 
 loadScript().then(() => 
-  angular.module('viewCustom', ['centralCustom']));
+  angular.module('viewCustom', ['centralCustom']).run(() => console.log('LOCAL')));
 
 /*
 // this might not work without bootstrapping...
