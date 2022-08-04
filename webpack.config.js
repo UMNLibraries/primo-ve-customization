@@ -1,4 +1,5 @@
 import ZipPlugin from 'zip-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const CUST_PATH = '/discovery/custom';
 //const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
@@ -32,6 +33,14 @@ const baseConfig = {
       }
     ]
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
+  },
 };
 
 const zipPluginConfig = Object.keys(baseConfig.entry).map(entryName => 
@@ -44,7 +53,10 @@ const zipPluginConfig = Object.keys(baseConfig.entry).map(entryName =>
 
 const pluginsConfig  = {
   plugins: [
-    ...zipPluginConfig
+    ...zipPluginConfig,
+    new MiniCssExtractPlugin({
+      filename: '[name]/css/custom1.css'
+    }),
   ],
 }
 
