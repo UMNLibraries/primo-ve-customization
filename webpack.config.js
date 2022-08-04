@@ -1,5 +1,6 @@
 import ZipPlugin from 'zip-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 const CUST_PATH = '/discovery/custom';
 //const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
@@ -39,6 +40,11 @@ const baseConfig = {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
     ],
   },
 };
