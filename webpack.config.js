@@ -28,6 +28,23 @@ const baseConfig = {
         },
       },
       {
+        context: ['/primaws/rest/pub/configuration/vid/**'],
+        target: PROXY_TARGET, 
+        changeOrigin: true, 
+        selfHandleResponse : true,
+        onProxyRes(proxyRes, req, res) {
+          const view = req.url.split('/').pop().replace(':', '-');
+          let chunks = [];
+          proxyRes.on('data', data => chunks.push(data));
+          proxyRes.on('end', () => {
+            const body = Buffer.concat(chunks);
+            const appConfig = JSON.parse(body);
+            appConfig.customization.viewCss = `custom/${view}/css/custom1.css`
+            res.end(JSON.stringify(appConfig));
+          });
+        },
+      },
+      {
         context: (path) => !path.startsWith(CUST_PATH),
         target: PROXY_TARGET,
         changeOrigin: true,
