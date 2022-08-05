@@ -28,7 +28,7 @@ const baseConfig = {
         },
       },
       {
-        context: ['/primaws/rest/pub/configuration/vid/**'],
+        context: ['/primaws/rest/pub/configuration/vid/*'],
         target: PROXY_TARGET, 
         changeOrigin: true, 
         selfHandleResponse : true,
@@ -39,8 +39,12 @@ const baseConfig = {
           proxyRes.on('end', () => {
             const body = Buffer.concat(chunks);
             const appConfig = JSON.parse(body);
-            appConfig.customization.viewCss = `custom/${view}/css/custom1.css`
-            res.end(JSON.stringify(appConfig));
+            const customOverwites = {
+              viewCss: `custom/${view}/css/custom1.css`,
+              viewJs: `custom/${view}/js/custom.js`,
+            };
+            Object.assign(appConfig.customization, customOverwites);
+            res.send(JSON.stringify(appConfig));
           });
         },
       },
