@@ -1,6 +1,7 @@
 import ZipPlugin from 'zip-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import { responseInterceptor } from 'http-proxy-middleware';
 
 const CUST_PATH = '/discovery/custom';
 //const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
@@ -21,7 +22,7 @@ const baseConfig = {
       {
         context: ['/primaws/suprimaLogin', '/primaws/suprimaExtLogin'],
         target: PROXY_TARGET,
-        changeOrigin: true, 
+        changeOrigin: true,
         followRedirects: true,
         onProxyReq(proxyReq, req, res) {
           res.writeHead(302, { location: PROXY_TARGET + req.url });
@@ -29,24 +30,21 @@ const baseConfig = {
       },
       {
         context: ['/primaws/rest/pub/configuration/vid/*'],
-        target: PROXY_TARGET, 
-        changeOrigin: true, 
-        selfHandleResponse : true,
-        onProxyRes(proxyRes, req, res) {
-          const view = req.url.split('/').pop().replace(':', '-');
-          let chunks = [];
-          proxyRes.on('data', data => chunks.push(data));
-          proxyRes.on('end', () => {
-            const body = Buffer.concat(chunks);
-            const appConfig = JSON.parse(body);
+        target: PROXY_TARGET,
+        changeOrigin: true,
+        selfHandleResponse: true,
+        onProxyRes: responseInterceptor(
+          async (responseBuffer, proxyRes, req, res) => {
+            const view = req.url.split('/').pop().replace(':', '-');
+            const appConfig = JSON.parse(responseBuffer.toString('utf8'));
             const customOverwites = {
               viewCss: `custom/${view}/css/custom1.css`,
               viewJs: `custom/${view}/js/custom.js`,
             };
             Object.assign(appConfig.customization, customOverwites);
-            res.send(JSON.stringify(appConfig));
-          });
-        },
+            return JSON.stringify(appConfig);
+          }
+        ),
       },
       {
         context: (path) => !path.startsWith(CUST_PATH),
@@ -70,7 +68,7 @@ const baseConfig = {
   },
 };
 
-const zipPluginConfig = Object.keys(baseConfig.entry).map(entryName => 
+const zipPluginConfig = Object.keys(baseConfig.entry).map(entryName =>
   new ZipPlugin({
     path: 'packages',
     filename: entryName,
@@ -78,7 +76,7 @@ const zipPluginConfig = Object.keys(baseConfig.entry).map(entryName =>
   })
 );
 
-const pluginsConfig  = {
+const pluginsConfig = {
   plugins: [
     ...zipPluginConfig,
     new MiniCssExtractPlugin({
