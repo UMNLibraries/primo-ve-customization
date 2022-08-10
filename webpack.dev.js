@@ -1,5 +1,4 @@
 import baseConfig from './webpack.common.js';
-import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import { responseInterceptor } from 'http-proxy-middleware';
 
