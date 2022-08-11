@@ -1,8 +1,7 @@
 
 if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
-  location.replace(
-    location.toString().replace('vid=01UMN_INST:CENTRAL_PACKAGE', 
-                                'vid=01UMN_INST:TWINCITIES'));
+  location.href = location.toString().replace('vid=01UMN_INST:CENTRAL_PACKAGE', 
+                                              'vid=01UMN_INST:TWINCITIES');
 }
 
 class GreeterService {
