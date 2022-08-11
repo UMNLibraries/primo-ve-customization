@@ -1,7 +1,7 @@
 // NOTE for future: lodash (_) may be available globally 
 //
-import '../css/foo.css';
-import '../css/bar.css';
+import './css/foo.css';
+import './css/bar.css';
 
 //TODO: maybe use SystemJS for this?
 // (might need to polyfill Promise or just use a onload callback instead) 
