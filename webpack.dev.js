@@ -3,8 +3,8 @@ import { merge } from 'webpack-merge';
 import { responseInterceptor } from 'http-proxy-middleware';
 
 //const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
-//const PROXY_TARGET = 'https://umn-psb.alma.exlibrisgroup.com';
-const PROXY_TARGET = 'https://umn.primo.exlibrisgroup.com';
+const PROXY_TARGET = 'https://umn-psb.alma.exlibrisgroup.com';
+//const PROXY_TARGET = 'https://umn.primo.exlibrisgroup.com';
 
 const devConfig = {
   mode: 'development',
@@ -33,6 +33,7 @@ const devConfig = {
         onProxyRes: responseInterceptor(
           async (responseBuffer, proxyRes, req, res) => {
             if (responseBuffer.length === 0) return responseBuffer;
+
             const view = req.url.split('/').pop().replace(':', '-');
             try {
               const appConfig = JSON.parse(responseBuffer.toString('utf8'));

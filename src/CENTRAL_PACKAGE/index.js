@@ -4,6 +4,8 @@ if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
                                               'vid=01UMN_INST:TWINCITIES');
 }
 
+import './foo.css';
+
 class GreeterService {
   constructor($log) {
     this.$log = $log;
