@@ -7,7 +7,7 @@ if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
 import './foo.css';
 
 class GreeterService {
-  constructor($log) {
+  constructor(private $log: ng.ILogService) {
     this.$log = $log;
   }
 
@@ -20,5 +20,5 @@ GreeterService.$inject = ['$log'];
 
 angular.module('centralCustom', [])
   .service('greeterService', GreeterService)
-  .run(['greeterService', greeterService => greeterService.init()]);
+  .run(['greeterService', (greeterService: GreeterService) => greeterService.init()]);
 
