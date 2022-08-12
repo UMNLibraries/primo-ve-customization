@@ -18,6 +18,7 @@ const prodConfig = {
   optimization: {
     minimizer: [
       new CssMinimizerPlugin(),
+      '...',
     ],
   },
 };
