@@ -7,6 +7,8 @@ if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
 import './foo.css';
 
 class GreeterService {
+  public static $inject = ['$log'];
+
   constructor(private $log: ng.ILogService) {
     this.$log = $log;
   }
@@ -15,8 +17,6 @@ class GreeterService {
     this.$log.info('HELLO from central package!');
   }
 }
-
-GreeterService.$inject = ['$log'];
 
 angular.module('centralCustom', [])
   .service('greeterService', GreeterService)
