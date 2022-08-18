@@ -1,6 +1,6 @@
 // NOTE for future: lodash (_) may be available globally 
 //
-//import './css/foo.css';
+import './css/foo.css';
 import './css/bar.css';
 
 const CENTRAL_PACKAGE_BASE_URL = '/discovery/custom/01UMN_INST-CENTRAL_PACKAGE';
@@ -14,19 +14,24 @@ function loadCentralJs() {
     script.onload = resolve;
     script.onerror = reject;
     script.async = true;
-    document.head.appendChild(script);
+    document.body.appendChild(script);
   });
 }
 
+/**
+ * append the central CSS file before the view-level CSS so that view-level
+ * can override the central package
+ */
 function loadCentralCss() {
   return new Promise((resolve, reject) => {
-    const style = document.createElement('link');
-    style.href = `${CENTRAL_PACKAGE_BASE_URL}/css/custom1.css`
-    style.rel = 'stylesheet';
-    style.type = 'text/css';
-    style.onload = resolve;
-    style.onerror = reject;
-    document.head.appendChild(style);
+    const viewStyle = document.querySelector('link[href$="custom1.css"]');
+    const centralStyle = document.createElement('link');
+    centralStyle.href = `${CENTRAL_PACKAGE_BASE_URL}/css/custom1.css`
+    centralStyle.rel = 'stylesheet';
+    centralStyle.type = 'text/css';
+    centralStyle.onload = resolve;
+    centralStyle.onerror = reject;
+    document.head.insertBefore(centralStyle, viewStyle);
   });
 }
 
