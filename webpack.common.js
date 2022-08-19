@@ -2,13 +2,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 
 const removeLeadingPath = (filename) => 
-  filename.replace(/^.*src\/(.*)$/, '$1');
+  filename.replace(/^.*packages\/(.*)$/, '$1');
 
 const baseConfig = {
   // TODO: dynamic entry points (https://dev.to/bbenefield89/webpack-how-to-create-dynamic-entry-output-paths-1oc9)
   entry: {
-    '01UMN_INST-TWINCITIES': './src/01UMN_INST-TWINCITIES/index.ts',
-    '01UMN_INST-CENTRAL_PACKAGE': './src/01UMN_INST-CENTRAL_PACKAGE/index.ts',
+    '01UMN_INST-TWINCITIES': './src/packages/01UMN_INST-TWINCITIES/index.ts',
+    '01UMN_INST-CENTRAL_PACKAGE': './src/packages/01UMN_INST-CENTRAL_PACKAGE/index.ts',
   },
   output: {
     filename: '[name]/js/custom.js',
@@ -22,7 +22,7 @@ const baseConfig = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/*/{img,html}/*', 
+        { from: 'src/packages/*/{img,html}/*', 
           to({ context, absoluteFilename }) {
             return removeLeadingPath(absoluteFilename);
           }
