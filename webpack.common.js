@@ -19,9 +19,12 @@ const baseConfig = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: `${viewsDir}/*/{img,html}/*`, 
+        {
+          from: `${viewsDir}/*/static/{img,html}/*`,
           to({ context, absoluteFilename }) {
-            return absoluteFilename.replace(/^.*views\/(.*)$/, '$1');
+            const [_, view, targetPath] = 
+              absoluteFilename.match(/^.*views\/(.+)\/static\/(.+)$/);
+            return `${view}/${targetPath}`;
           }
         },
       ]
