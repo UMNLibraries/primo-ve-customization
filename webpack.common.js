@@ -1,23 +1,12 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-import { readdirSync } from 'node:fs';
+import { readdir } from 'node:fs/promises';
 
-/*
-const packages = await readdir('src/packages/');
-const entries = packages.reduce((accumulator, current) => {
-  accumulator[current] = `src/packages/${current}/index.ts`;
-  return accumulator;
-}, {});
-*/
-
-const removeLeadingPath = (filename) => 
-  filename.replace(/^.*views\/(.*)$/, '$1');
+const viewsDir = './src/views';
 
 const baseConfig = {
-  entry: readdirSync('./src/views/').reduce((acc, view) => {
-    acc[view] = `./src/views/${view}/index.ts`;
-    return acc;
-  }, {}),
+  entry: (await readdir(viewsDir)).reduce((entries, view) =>
+    Object.assign(entries, { [view]: `${viewsDir}/${view}/index.ts` }), {}),
   output: {
     filename: '[name]/js/custom.js',
     publicPath: '/discovery/custom',
@@ -30,9 +19,9 @@ const baseConfig = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/views/*/{img,html}/*', 
+        { from: `${viewsDir}/*/{img,html}/*`, 
           to({ context, absoluteFilename }) {
-            return removeLeadingPath(absoluteFilename);
+            return absoluteFilename.replace(/^.*views\/(.*)$/, '$1');
           }
         },
       ]
