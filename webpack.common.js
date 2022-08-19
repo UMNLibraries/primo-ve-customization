@@ -1,15 +1,23 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import { readdirSync } from 'node:fs';
+
+/*
+const packages = await readdir('src/packages/');
+const entries = packages.reduce((accumulator, current) => {
+  accumulator[current] = `src/packages/${current}/index.ts`;
+  return accumulator;
+}, {});
+*/
 
 const removeLeadingPath = (filename) => 
-  filename.replace(/^.*packages\/(.*)$/, '$1');
+  filename.replace(/^.*views\/(.*)$/, '$1');
 
 const baseConfig = {
-  // TODO: dynamic entry points (https://dev.to/bbenefield89/webpack-how-to-create-dynamic-entry-output-paths-1oc9)
-  entry: {
-    '01UMN_INST-TWINCITIES': './src/packages/01UMN_INST-TWINCITIES/index.ts',
-    '01UMN_INST-CENTRAL_PACKAGE': './src/packages/01UMN_INST-CENTRAL_PACKAGE/index.ts',
-  },
+  entry: readdirSync('./src/views/').reduce((acc, view) => {
+    acc[view] = `./src/views/${view}/index.ts`;
+    return acc;
+  }, {}),
   output: {
     filename: '[name]/js/custom.js',
     publicPath: '/discovery/custom',
@@ -22,7 +30,7 @@ const baseConfig = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/packages/*/{img,html}/*', 
+        { from: 'src/views/*/{img,html}/*', 
           to({ context, absoluteFilename }) {
             return removeLeadingPath(absoluteFilename);
           }
