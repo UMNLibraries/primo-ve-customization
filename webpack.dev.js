@@ -1,10 +1,33 @@
 import baseConfig from './webpack.common.js';
 import { merge } from 'webpack-merge';
 import { responseInterceptor } from 'http-proxy-middleware';
+import { access } from 'node:fs/promises';
 
 //const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
-//const PROXY_TARGET = 'https://umn-psb.alma.exlibrisgroup.com';
-const PROXY_TARGET = 'https://umn.primo.exlibrisgroup.com';
+const PROXY_TARGET = 'https://umn-psb.alma.exlibrisgroup.com';
+//const PROXY_TARGET = 'https://umn.primo.exlibrisgroup.com';
+
+function fileExists(filename) {
+  return access(filename)
+    .then(() => true)
+    .catch(() => false);
+}
+
+async function overrideAppConfig(appConfig, view) {
+  //const view = appConfig.vid.replace(':', '-');
+  const customOverwites = {};
+
+  if (await fileExists(`./dist/${view}/css/custom1.css`)) 
+    customOverwites.viewCss = `custom/${view}/css/custom1.css`;
+
+  if (await fileExists(`./dist/${view}/js/custom.js`)) 
+    customOverwites.viewJs = `custom/${view}/js/custom.js`;
+
+  Object.assign(appConfig.customization, customOverwites);
+
+
+  return appConfig;
+}
 
 const devConfig = {
   mode: 'development',
@@ -36,12 +59,8 @@ const devConfig = {
 
             const view = req.url.split('/').pop().replace(':', '-');
             try {
-              const appConfig = JSON.parse(responseBuffer.toString('utf8'));
-              const customOverwites = {
-                viewCss: `custom/${view}/css/custom1.css`,
-                viewJs: `custom/${view}/js/custom.js`,
-              };
-              Object.assign(appConfig.customization, customOverwites);
+              let appConfig = JSON.parse(responseBuffer.toString('utf8'));
+              appConfig = await overrideAppConfig(appConfig, view);
               return JSON.stringify(appConfig);
             } catch (e) {
               console.error(e);
