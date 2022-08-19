@@ -22,7 +22,7 @@ const baseConfig = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/**/img/*', 
+        { from: 'src/*/{img,html}/*', 
           to({ context, absoluteFilename }) {
             return removeLeadingPath(absoluteFilename);
           }
@@ -50,6 +50,3 @@ const baseConfig = {
 
 export default baseConfig;
 
-
-// TODO: copy image assets
-// TODO: copy html assets
