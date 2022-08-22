@@ -2,11 +2,11 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { readdir } from 'node:fs/promises';
 
-const viewsDir = './src/views';
+const pkgsDir = './src/packages';
 
 const baseConfig = {
-  entry: (await readdir(viewsDir)).reduce((entries, view) =>
-    Object.assign(entries, { [view]: `${viewsDir}/${view}/index.ts` }), {}),
+  entry: (await readdir(pkgsDir)).reduce((entries, pkg) =>
+    Object.assign(entries, { [pkg]: `${pkgsDir}/${pkg}/index.ts` }), {}),
   output: {
     filename: '[name]/js/custom.js',
     publicPath: '/discovery/custom',
@@ -20,11 +20,11 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: `${viewsDir}/*/static/{img,html}/*`,
+          from: `${pkgsDir}/*/static/{img,html}/*`,
           to({ context, absoluteFilename }) {
-            const [_, view, targetPath] = 
-              absoluteFilename.match(/^.*views\/(.+)\/static\/(.+)$/);
-            return `${view}/${targetPath}`;
+            const [_, pkg, targetPath] = 
+              absoluteFilename.match(/^.*packages\/(.+)\/static\/(.+)$/);
+            return `${pkg}/${targetPath}`;
           }
         },
       ]

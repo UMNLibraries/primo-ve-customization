@@ -13,19 +13,13 @@ function fileExists(filename) {
     .catch(() => false);
 }
 
-async function overrideAppConfig(appConfig, view) {
-  //const view = appConfig.vid.replace(':', '-');
+async function injectCustomizations(appConfig, view) {
   const customOverwites = {};
-
   if (await fileExists(`./dist/${view}/css/custom1.css`)) 
     customOverwites.viewCss = `custom/${view}/css/custom1.css`;
-
   if (await fileExists(`./dist/${view}/js/custom.js`)) 
     customOverwites.viewJs = `custom/${view}/js/custom.js`;
-
   Object.assign(appConfig.customization, customOverwites);
-
-
   return appConfig;
 }
 
@@ -55,13 +49,12 @@ const devConfig = {
         selfHandleResponse: true,
         onProxyRes: responseInterceptor(
           async (responseBuffer, proxyRes, req, res) => {
-            if (responseBuffer.length === 0) return responseBuffer;
-
+            if (responseBuffer.length === 0)
+              return responseBuffer;
             const view = req.url.split('/').pop().replace(':', '-');
             try {
               let appConfig = JSON.parse(responseBuffer.toString('utf8'));
-              appConfig = await overrideAppConfig(appConfig, view);
-              return JSON.stringify(appConfig);
+              return JSON.stringify(await injectCustomizations(appConfig, view));
             } catch (e) {
               console.error(e);
             }
