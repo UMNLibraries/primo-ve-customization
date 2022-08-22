@@ -2,6 +2,10 @@ import baseConfig from './webpack.common.js';
 import { merge } from 'webpack-merge';
 import { responseInterceptor } from 'http-proxy-middleware';
 import { access } from 'node:fs/promises';
+import { promisify } from 'node:util';
+import _glob from 'glob';
+
+const glob = promisify(_glob);
 
 //const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
 const PROXY_TARGET = 'https://umn-psb.alma.exlibrisgroup.com';
@@ -13,13 +17,22 @@ function fileExists(filename) {
     .catch(() => false);
 }
 
-async function injectCustomizations(appConfig, view) {
-  const customOverwites = {};
-  if (await fileExists(`./dist/${view}/css/custom1.css`)) 
-    customOverwites.viewCss = `custom/${view}/css/custom1.css`;
-  if (await fileExists(`./dist/${view}/js/custom.js`)) 
-    customOverwites.viewJs = `custom/${view}/js/custom.js`;
-  Object.assign(appConfig.customization, customOverwites);
+/**
+ * Overwrite the appConfig object with local customizations.
+ */
+async function injectCustomizations(appConfig, pkg) {
+  if (await fileExists(`./dist/${pkg}/css/custom1.css`))
+    appConfig.customization.viewCss = `custom/${pkg}/css/custom1.css`;
+  if (await fileExists(`./dist/${pkg}/js/custom.js`))
+    appConfig.customization.viewJs = `custom/${pkg}/js/custom.js`;
+  if (await fileExists(`./dist/${pkg}/img/favicon.ico`))
+    appConfig.customization.favIcon = `custom/${pkg}/img/favicon.ico`
+
+  for (let icon of await glob(`./dist/${pkg}/img/icon_**.png`)) {
+    const [_, resouce] = icon.match(/^.*icon_(.*).png$/);
+    appConfig.customization.resourceIcons[resouce] = 
+      icon.replace(/^\.?\/dist/, 'custom');
+  }
   return appConfig;
 }
 
@@ -51,10 +64,10 @@ const devConfig = {
           async (responseBuffer, proxyRes, req, res) => {
             if (responseBuffer.length === 0)
               return responseBuffer;
-            const view = req.url.split('/').pop().replace(':', '-');
+            const pkg = req.url.split('/').pop().replace(':', '-');
             try {
               let appConfig = JSON.parse(responseBuffer.toString('utf8'));
-              return JSON.stringify(await injectCustomizations(appConfig, view));
+              return JSON.stringify(await injectCustomizations(appConfig, pkg));
             } catch (e) {
               console.error(e);
             }
