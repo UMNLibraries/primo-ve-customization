@@ -28,6 +28,8 @@ async function injectCustomizations(appConfig, pkg) {
   if (await fileExists(`./dist/${pkg}/img/favicon.ico`))
     appConfig.customization.favIcon = `custom/${pkg}/img/favicon.ico`
 
+  //TODO: add html file(s)
+
   for (let icon of await glob(`./dist/${pkg}/img/icon_**.png`)) {
     const [_, resouce] = icon.match(/^.*icon_(.*).png$/);
     appConfig.customization.resourceIcons[resouce] = 

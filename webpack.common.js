@@ -4,6 +4,13 @@ import { readdir } from 'node:fs/promises';
 
 const pkgsDir = './src/packages';
 
+/**
+ * Extracts the package name from a file path.
+ */
+const filePackage = (filename) => 
+  filename.match(/^.*packages\/([0-9A-Z_-]+)\/.*$/)[1];
+
+
 const baseConfig = {
   entry: (await readdir(pkgsDir)).reduce((entries, pkg) =>
     Object.assign(entries, { [pkg]: `${pkgsDir}/${pkg}/index.ts` }), {}),
@@ -20,7 +27,8 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: `${pkgsDir}/*/static/{img,html}/*`,
+          //from: `${pkgsDir}/*/static/{img,html}/*`,
+          from: `${pkgsDir}/*/static/html/*`,
           to({ context, absoluteFilename }) {
             const [_, pkg, targetPath] = 
               absoluteFilename.match(/^.*packages\/(.+)\/static\/(.+)$/);
@@ -40,6 +48,14 @@ const baseConfig = {
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
+        test: /\.png$/,
+        type: 'asset/resource',
+        generator: {
+          filename: (pathData) => 
+            `${filePackage(pathData.filename)}/img/[base]`
+        },
       },
     ],
   },

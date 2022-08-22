@@ -3,6 +3,8 @@
 import './css/foo.css';
 import './css/bar.css';
 
+import './static/img/icon_archival_material_manuscript.png';
+
 const CENTRAL_PACKAGE_BASE_URL = 'custom/01UMN_INST-CENTRAL_PACKAGE';
 
 // (might need to polyfill Promise or just use a onload callback instead) 
