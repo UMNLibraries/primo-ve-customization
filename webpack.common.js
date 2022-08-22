@@ -3,16 +3,13 @@ import CopyPlugin from 'copy-webpack-plugin';
 import { readdir } from 'node:fs/promises';
 
 const pkgsDir = './src/packages';
+const pkgs = (await readdir(pkgsDir));
 
-/**
- * Extracts the package name from a file path.
- */
-const filePackage = (filename) => 
+const extractPkgName = (filename) => 
   filename.match(/^.*packages\/([0-9A-Z_-]+)\/.*$/)[1];
 
-
 const baseConfig = {
-  entry: (await readdir(pkgsDir)).reduce((entries, pkg) =>
+  entry: pkgs.reduce((entries, pkg) =>
     Object.assign(entries, { [pkg]: `${pkgsDir}/${pkg}/index.ts` }), {}),
   output: {
     filename: '[name]/js/custom.js',
@@ -27,14 +24,17 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          //from: `${pkgsDir}/*/static/{img,html}/*`,
-          from: `${pkgsDir}/*/static/html/*`,
+          from: `${pkgsDir}/*/static/{img,html}/*`,
           to({ context, absoluteFilename }) {
             const [_, pkg, targetPath] = 
               absoluteFilename.match(/^.*packages\/(.+)\/static\/(.+)$/);
             return `${pkg}/${targetPath}`;
           }
         },
+        ...pkgs.map(pkg => ({
+          from: './src/common-assets/img/*',
+          to: `${pkg}/img/[name][ext]`
+        })),
       ]
     })
   ],
@@ -54,7 +54,7 @@ const baseConfig = {
         type: 'asset/resource',
         generator: {
           filename: (pathData) => 
-            `${filePackage(pathData.filename)}/img/[base]`
+            `${extractPkgName(pathData.filename)}/img/[base]`
         },
       },
     ],
