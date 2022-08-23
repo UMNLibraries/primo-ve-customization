@@ -1,8 +1,11 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { readdir } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import * as path from 'node:path';
 
-const pkgsDir = './src/packages';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const pkgsDir = path.resolve(__dirname, 'src', 'packages');
 const pkgs = (await readdir(pkgsDir));
 
 const extractPkgName = (filename) => 
@@ -24,16 +27,16 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: `${pkgsDir}/*/static/{img,html}/*`,
-          to({ context, absoluteFilename }) {
-            const [_, pkg, targetPath] = 
-              absoluteFilename.match(/^.*packages\/(.+)\/static\/(.+)$/);
-            return `${pkg}/${targetPath}`;
-          }
+          from: `*/{img,html}/*`,
+          context: pkgsDir,
         },
         ...pkgs.map(pkg => ({
-          from: './src/common-assets/img/*',
-          to: `${pkg}/img/[name][ext]`
+          from: path.resolve(__dirname, 'src', 'common-assets', 'img'),
+          to: `${pkg}/img/[name][ext]`,
+        })),
+        ...pkgs.map(pkg => ({
+          from: path.resolve(__dirname, 'src', 'common-assets', 'html'),
+          to: `${pkg}/html/[name][ext]`,
         })),
       ]
     })
