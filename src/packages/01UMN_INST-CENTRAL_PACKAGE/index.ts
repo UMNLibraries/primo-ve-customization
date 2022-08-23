@@ -5,6 +5,7 @@ if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
 }
 
 import './foo.css';
+import './something.html';
 
 class GreeterService {
   public static $inject = ['$log'];

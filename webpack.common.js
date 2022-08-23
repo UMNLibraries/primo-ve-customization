@@ -27,8 +27,8 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: `*/{img,html}/*`,
           context: pkgsDir,
+          from: `*/{img,html}/*`,
         },
         ...pkgs.map(pkg => ({
           from: path.resolve(__dirname, 'src', 'common-assets', 'img'),
@@ -49,6 +49,11 @@ const baseConfig = {
         exclude: /node_modules/,
       },
       {
+        test: /\.html$/,
+        use: 'html-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
@@ -56,8 +61,9 @@ const baseConfig = {
         test: /\.png$/,
         type: 'asset/resource',
         generator: {
+          publicPath: 'custom/',
           filename: (pathData) => 
-            `${extractPkgName(pathData.filename)}/img/[base]`
+            `${extractPkgName(pathData.filename)}/img/[base]`,
         },
       },
     ],
