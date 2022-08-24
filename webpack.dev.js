@@ -7,36 +7,8 @@ import _glob from 'glob';
 
 const glob = promisify(_glob);
 
-//const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
-const PROXY_TARGET = 'https://umn-psb.alma.exlibrisgroup.com';
+const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
 //const PROXY_TARGET = 'https://umn.primo.exlibrisgroup.com';
-
-function fileExists(filename) {
-  return access(filename)
-    .then(() => true)
-    .catch(() => false);
-}
-
-/**
- * Overwrite the appConfig object with local customizations.
- */
-async function injectCustomizations(appConfig, pkg) {
-  if (await fileExists(`./dist/${pkg}/css/custom1.css`))
-    appConfig.customization.viewCss = `custom/${pkg}/css/custom1.css`;
-  if (await fileExists(`./dist/${pkg}/js/custom.js`))
-    appConfig.customization.viewJs = `custom/${pkg}/js/custom.js`;
-  if (await fileExists(`./dist/${pkg}/img/favicon.ico`))
-    appConfig.customization.favIcon = `custom/${pkg}/img/favicon.ico`
-
-  //TODO: add html file(s)
-
-  for (let icon of await glob(`./dist/${pkg}/img/icon_**.png`)) {
-    const [_, resouce] = icon.match(/^.*icon_(.*).png$/);
-    appConfig.customization.resourceIcons[resouce] = 
-      icon.replace(/^\.?\/dist/, 'custom');
-  }
-  return appConfig;
-}
 
 const devConfig = {
   mode: 'development',
@@ -49,6 +21,7 @@ const devConfig = {
     },
     proxy: [
       {
+        // redirect authentication requests to the SAML SP
         context: ['/primaws/suprimaLogin', '/primaws/suprimaExtLogin'],
         target: PROXY_TARGET,
         changeOrigin: true,
@@ -58,6 +31,7 @@ const devConfig = {
         },
       },
       {
+        // intercept configuration data requests and modify responses
         context: ['/primaws/rest/pub/configuration/vid/*'],
         target: PROXY_TARGET,
         changeOrigin: true,
@@ -66,7 +40,8 @@ const devConfig = {
           async (responseBuffer, proxyRes, req, res) => {
             if (responseBuffer.length === 0)
               return responseBuffer;
-            const pkg = req.url.split('/').pop().replace(':', '-');
+            const vid = req.url.split('/').pop();
+            const pkg = vid.replace(':', '-');
             try {
               let appConfig = JSON.parse(responseBuffer.toString('utf8'));
               return JSON.stringify(await injectCustomizations(appConfig, pkg));
@@ -77,6 +52,7 @@ const devConfig = {
         ),
       },
       {
+        // forward all other requests to Primo VE (except local custom resources)
         context: (path) => !path.startsWith(baseConfig.output.publicPath),
         target: PROXY_TARGET,
         changeOrigin: true,
@@ -84,6 +60,53 @@ const devConfig = {
     ]
   },
 };
+
+async function fileExists(filename) {
+  return access(filename)
+    .then(() => true)
+    .catch(() => false);
+}
+
+/**
+ * Overwrite the appConfig object with local customizations (js/css/html/images).
+ */
+async function injectCustomizations(appConfig, pkg) {
+  // css
+  if (await fileExists(`./dist/${pkg}/css/custom1.css`))
+    appConfig.customization.viewCss = `custom/${pkg}/css/custom1.css`;
+
+  // js
+  if (await fileExists(`./dist/${pkg}/js/custom.js`))
+    appConfig.customization.viewJs = `custom/${pkg}/js/custom.js`;
+
+  // html
+  if (await fileExists(`./dist/${pkg}/html/home_en_US.html`))
+    appConfig.customization.staticHtml.homepage = {
+      'en_US': `custom/${pkg}/html/home_en_US.html`
+    };
+  if (await fileExists(`./dist/${pkg}/html/email_en_US.html`))
+    appConfig.customization.staticHtml.email = {
+      'en_US': `custom/${pkg}/html/email_en_US.html`
+    };
+  if (await fileExists(`./dist/${pkg}/html/help_en_US.html`))
+    appConfig.customization.staticHtml.help = {
+      'en_US': `custom/${pkg}/html/help_en_US.html`
+    };
+  
+  // images
+  if (await fileExists(`./dist/${pkg}/img/favicon.ico`))
+    appConfig.customization.favIcon = `custom/${pkg}/img/favicon.ico`;
+  if (await fileExists(`./dist/${pkg}/img/library-logo.png`))
+    appConfig.customization.libraryLogo = `custom/${pkg}/img/library-logo.png`;
+  if (await fileExists(`./dist/${pkg}/img/home-screen-icon.png`))
+    appConfig.customization.homeScreenIcon = `custom/${pkg}/img/home-screen-icon.png`;
+  for (let icon of await glob(`./dist/${pkg}/img/icon_**.png`)) {
+    const [_, resouce] = icon.match(/^.*icon_(.*).png$/);
+    appConfig.customization.resourceIcons[resouce] = 
+      icon.replace(/^\.?\/dist/, 'custom');
+  }
+  return appConfig;
+}
 
 export default merge(baseConfig, devConfig);
 
