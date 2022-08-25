@@ -7,7 +7,6 @@ import * as path from 'node:path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkgsDir = path.resolve(__dirname, 'src', 'packages');
 const pkgs = (await readdir(pkgsDir));
-
 const extractPkgName = (filename) => 
   filename.match(/^.*packages\/([0-9A-Z_-]+)\/.*$/)[1];
 
@@ -30,11 +29,11 @@ const baseConfig = {
           context: pkgsDir,
           from: `*/{img,html}/*`,
         },
-        ...pkgs.map(pkg => ({
+        ...pkgs.filter(pkg => !pkg.endsWith('CENTRAL_PACKAGE')).map(pkg => ({
           from: path.resolve(__dirname, 'src', 'common-assets', 'img'),
           to: `${pkg}/img/[name][ext]`,
         })),
-        ...pkgs.map(pkg => ({
+        ...pkgs.filter(pkg => !pkg.endsWith('CENTRAL_PACKAGE')).map(pkg => ({
           from: path.resolve(__dirname, 'src', 'common-assets', 'html'),
           to: `${pkg}/html/[name][ext]`,
         })),
