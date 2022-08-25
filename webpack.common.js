@@ -13,7 +13,7 @@ const extractPkgName = (filename) =>
 
 const baseConfig = {
   entry: pkgs.reduce((entries, pkg) =>
-    Object.assign(entries, { [pkg]: `${pkgsDir}/${pkg}/index.ts` }), {}),
+    Object.assign(entries, { [pkg]: `${pkgsDir}/${pkg}` }), {}),
   output: {
     filename: '[name]/js/custom.js',
     publicPath: '/discovery/custom',
