@@ -7,14 +7,21 @@ import * as path from 'node:path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkgsDir = path.resolve(__dirname, 'src', 'packages');
 const pkgs = (await readdir(pkgsDir));
-const extractPkgName = (filename) => 
+const extractPkgName = (filename) =>
   filename.match(/^.*packages\/([0-9A-Z_-]+)\/.*$/)[1];
 
-
-// TODO: add autoprefixer plugin for css 
-// (https://webpack.js.org/loaders/postcss-loader/#autoprefixer)
-
-
+const postcssLoader = {
+  loader: "postcss-loader",
+  options: {
+    postcssOptions: {
+      plugins: [
+        "autoprefixer", {
+            cascade: false,
+        }
+      ]
+    }
+  }
+}
 
 const baseConfig = {
   entry: pkgs.reduce((entries, pkg) =>
@@ -61,13 +68,19 @@ const baseConfig = {
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+//          { loader: "css-loader", options: { importLoaders: 1 } },
+          "css-loader",
+          postcssLoader
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
         use: [
-          MiniCssExtractPlugin.loader, 
+          MiniCssExtractPlugin.loader,
           "css-loader",
+          postcssLoader,
           "sass-loader",
         ],
       },
@@ -76,7 +89,7 @@ const baseConfig = {
         type: 'asset/resource',
         generator: {
           publicPath: 'custom/',
-          filename: (pathData) => 
+          filename: (pathData) =>
             `${extractPkgName(pathData.filename)}/img/[base]`,
         },
       },
