@@ -6,13 +6,15 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --config webpack.dev.js --open-target=/discovery/search?vid=01UMN_INST:TWINCITIES",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "color-theme": "cd src/packages/01UMN_INST-CENTRAL_PACKAGE/color-theme && primo-color-theme -s umn.primo.exlibrisgroup.com -f colors.json > colors.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/angular": "^1.8.4",
+    "@umn-libraries/primo-color-theme": "^1.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",

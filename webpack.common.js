@@ -10,6 +10,12 @@ const pkgs = (await readdir(pkgsDir));
 const extractPkgName = (filename) => 
   filename.match(/^.*packages\/([0-9A-Z_-]+)\/.*$/)[1];
 
+
+// TODO: add autoprefixer plugin for css 
+// (https://webpack.js.org/loaders/postcss-loader/#autoprefixer)
+
+
+
 const baseConfig = {
   entry: pkgs.reduce((entries, pkg) =>
     Object.assign(entries, { [pkg]: `${pkgsDir}/${pkg}` }), {}),
