@@ -10,18 +10,22 @@ const pkgs = (await readdir(pkgsDir));
 const extractPkgName = (filename) =>
   filename.match(/^.*packages\/([0-9A-Z_-]+)\/.*$/)[1];
 
-const postcssLoader = {
-  loader: "postcss-loader",
-  options: {
-    postcssOptions: {
-      plugins: [
-        "autoprefixer", {
+const cssLoaders = [
+  MiniCssExtractPlugin.loader,
+  "css-loader",
+  {
+    loader: "postcss-loader",
+    options: {
+      postcssOptions: {
+        plugins: [
+          "autoprefixer", {
             cascade: false,
-        }
-      ]
+          }
+        ]
+      }
     }
   }
-}
+]
 
 const baseConfig = {
   entry: pkgs.reduce((entries, pkg) =>
@@ -68,19 +72,12 @@ const baseConfig = {
       },
       {
         test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-//          { loader: "css-loader", options: { importLoaders: 1 } },
-          "css-loader",
-          postcssLoader
-        ],
+        use: cssLoaders,
       },
       {
         test: /\.s[ac]ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          postcssLoader,
+          ...cssLoaders,
           "sass-loader",
         ],
       },
