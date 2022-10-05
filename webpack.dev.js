@@ -7,7 +7,8 @@ import _glob from 'glob';
 
 const glob = promisify(_glob);
 
-const PROXY_TARGET = 'https://umn-psb.primo.exlibrisgroup.com';
+const PROXY_TARGET = process.env.PROXY_TARGET || 
+  'https://umn-psb.primo.exlibrisgroup.com';
 //const PROXY_TARGET = 'https://umn.primo.exlibrisgroup.com';
 
 const devConfig = {
