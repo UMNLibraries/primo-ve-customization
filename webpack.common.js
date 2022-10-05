@@ -58,7 +58,6 @@ const baseConfig = {
     })
   ],
   module: {
-    // TODO: add svg as asset/inline
     rules: [
       {
         test: /\.tsx?$/,
@@ -80,6 +79,10 @@ const baseConfig = {
           ...cssLoaders,
           "sass-loader",
         ],
+      },
+      {
+        test: /\.svg/,
+        type: 'asset/inline',
       },
       {
         test: /\.png$/,
