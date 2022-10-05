@@ -18,9 +18,7 @@ const cssLoaders = [
     options: {
       postcssOptions: {
         plugins: [
-          "autoprefixer", {
-            cascade: false,
-          }
+          ["autoprefixer", { cascade: false }]
         ]
       }
     }
