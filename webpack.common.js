@@ -47,10 +47,12 @@ const baseConfig = {
         ...pkgs.filter(pkg => !pkg.endsWith('CENTRAL_PACKAGE')).map(pkg => ({
           from: path.resolve(__dirname, 'src', 'common-assets', 'img'),
           to: `${pkg}/img/[name][ext]`,
+          noErrorOnMissing: true,
         })),
         ...pkgs.filter(pkg => !pkg.endsWith('CENTRAL_PACKAGE')).map(pkg => ({
           from: path.resolve(__dirname, 'src', 'common-assets', 'html'),
           to: `${pkg}/html/[name][ext]`,
+          noErrorOnMissing: true,
         })),
       ]
     })
