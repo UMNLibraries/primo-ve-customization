@@ -7,7 +7,6 @@ const entryNames = Object.keys(baseConfig.entry);
 
 const prodConfig = {
   mode: 'production',
-  devtool: 'source-map', // TODO: not yet sure if this will work with the cust pkg...
   plugins: entryNames.map(entryName =>
     new ZipPlugin({
       path: 'packages',
