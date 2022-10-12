@@ -4,10 +4,6 @@ if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
                                               'vid=01UMN_INST:TWINCITIES');
 }
 
-//import './foo.css';
-import './something.html';
-import './bar';
-
 import './color-theme/colors.css';
 
 class GreeterService {
