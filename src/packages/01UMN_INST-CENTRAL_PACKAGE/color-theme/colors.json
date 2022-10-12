@@ -1,13 +1,13 @@
 {
-  "primary": "#53738C",
-  "secondary" : "#A9CDD6",
-  "backgroundColor" : "pink",
-  "links": "#3D6E94",
+  "primary": "#7a0019",
+  "secondary" : "#809fa6",
+  "backgroundColor" : "#fff",
+  "links": "#3f729b",
   "warning": "tomato",
   "positive": "#0f7d00",
   "negative": "gray",
   "notice": "#B84D00",
-  "linkTitle": "#33FFFF",
+  "linkTitle": "#33ffff",
   "citation": "tomato",
   "citationTitles": "rgb(68, 112, 123)",
   "personalization": "#7d1538" 
