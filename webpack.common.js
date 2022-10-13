@@ -81,11 +81,7 @@ const baseConfig = {
         ],
       },
       {
-        test: /\.svg/,
-        type: 'asset/inline',
-      },
-      {
-        test: /\.png$/,
+        test: /\.(svg|png)$/,
         type: 'asset/resource',
         generator: {
           publicPath: 'custom/',
