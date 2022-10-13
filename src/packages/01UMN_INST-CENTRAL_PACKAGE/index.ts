@@ -5,6 +5,7 @@ if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
 }
 
 import './color-theme/colors.css';
+import Components from './components/components.module';
 
 class GreeterService {
   public static $inject = ['$log'];
@@ -18,7 +19,7 @@ class GreeterService {
   }
 }
 
-angular.module('centralCustom', [])
+angular.module('centralCustom', [Components])
   .service('greeterService', GreeterService)
   .run(['greeterService', (greeterService: GreeterService) => greeterService.init()]);
 

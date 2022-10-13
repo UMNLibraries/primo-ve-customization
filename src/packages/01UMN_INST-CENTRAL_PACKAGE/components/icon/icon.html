@@ -1,0 +1,2 @@
+<md-icon ng-if="::(!$ctrl.parentCtrl.isCustom && !$ctrl.parentCtrl.isEmailMode())" md-svg-icon="{{::$ctrl.svgIconSet}}:{{::$ctrl.iconDefinition}}" alt=""></md-icon>
+<md-icon ng-if="::($ctrl.parentCtrl.isCustom && !$ctrl.parentCtrl.isEmailMode())" md-svg-icon="custom-ui:{{::$ctrl.iconDefinition}}" alt=""></md-icon>
