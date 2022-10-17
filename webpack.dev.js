@@ -81,17 +81,17 @@ async function injectCustomizations(appConfig, pkg) {
     appConfig.customization.viewJs = `custom/${pkg}/js/custom.js`;
 
   // html
-  if (await fileExists(`./dist/${pkg}/html/home_en_US.html`))
+  if (await fileExists(`./dist/${pkg}/html/home_en.html`))
     appConfig.customization.staticHtml.homepage = {
-      'en_US': `custom/${pkg}/html/home_en_US.html`
+      'en': `custom/${pkg}/html/home_en.html`
     };
-  if (await fileExists(`./dist/${pkg}/html/email_en_US.html`))
+  if (await fileExists(`./dist/${pkg}/html/email_en.html`))
     appConfig.customization.staticHtml.email = {
-      'en_US': `custom/${pkg}/html/email_en_US.html`
+      'en': `custom/${pkg}/html/email_en.html`
     };
-  if (await fileExists(`./dist/${pkg}/html/help_en_US.html`))
+  if (await fileExists(`./dist/${pkg}/html/help_en.html`))
     appConfig.customization.staticHtml.help = {
-      'en_US': `custom/${pkg}/html/help_en_US.html`
+      'en': `custom/${pkg}/html/help_en.html`
     };
   
   // images
