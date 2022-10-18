@@ -3,6 +3,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 import { readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import * as path from 'node:path';
+import colors from './src/colors.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkgsDir = path.resolve(__dirname, 'src', 'packages');
@@ -77,7 +78,11 @@ const baseConfig = {
         test: /\.s[ac]ss$/i,
         use: [
           ...cssLoaders,
-          "sass-loader",
+          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: { additionalData: colors.toScss() }
+          },
         ],
       },
       {
