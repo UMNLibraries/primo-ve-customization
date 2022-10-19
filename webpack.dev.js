@@ -81,9 +81,9 @@ async function injectCustomizations(appConfig, pkg) {
     appConfig.customization.viewJs = `custom/${pkg}/js/custom.js`;
 
   // html
-  if (await fileExists(`./dist/${pkg}/html/home_en.html`))
+  if (await fileExists(`./dist/${pkg}/html/homepage/homepage_en.html`))
     appConfig.customization.staticHtml.homepage = {
-      'en': `custom/${pkg}/html/home_en.html`
+      'en': `custom/${pkg}/html/homepage/homepage_en.html`
     };
   if (await fileExists(`./dist/${pkg}/html/email_en.html`))
     appConfig.customization.staticHtml.email = {

@@ -43,7 +43,7 @@ const baseConfig = {
       patterns: [
         {
           context: pkgsDir,
-          from: `*/{img,html}/*`,
+          from: `*/{img,html}/**`,
         },
         ...pkgs.filter(pkg => !pkg.endsWith('CENTRAL_PACKAGE')).map(pkg => ({
           from: path.resolve(__dirname, 'src', 'common-assets', 'img'),
@@ -78,7 +78,6 @@ const baseConfig = {
         test: /\.s[ac]ss$/i,
         use: [
           ...cssLoaders,
-          'sass-loader',
           {
             loader: 'sass-loader',
             options: { additionalData: colors.toScss() }
