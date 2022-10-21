@@ -11,7 +11,7 @@ const convertable = {
 
 const colorTheme = await readFile(
   new URL(
-    './packages/01UMN_INST-CENTRAL_PACKAGE/color-theme/colors.json', 
+    './shared/color-theme/colors.json', 
     import.meta.url)
 ).then(JSON.parse);
 

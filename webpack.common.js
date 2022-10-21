@@ -8,9 +8,6 @@ import colors from './src/colors.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkgsDir = path.resolve(__dirname, 'src', 'packages');
 const pkgs = (await readdir(pkgsDir));
-const extractPkgName = (filename) =>
-  filename.match(/^.*packages\/([0-9A-Z_-]+)\/.*$/)[1];
-
 const cssLoaders = [
   MiniCssExtractPlugin.loader,
   "css-loader",
@@ -33,8 +30,12 @@ const baseConfig = {
     filename: '[name]/js/custom.js',
     publicPath: '/discovery/custom',
     clean: true,
+//    assetModuleFilename: '[runtime]/img/[base]',
   },
   target: ['web', 'es5'],
+  optimization: {
+    mergeDuplicateChunks: false,
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name]/css/custom1.css'
@@ -85,12 +86,11 @@ const baseConfig = {
         ],
       },
       {
-        test: /\.(svg|png)$/,
+        test: /\.svg$/,
         type: 'asset/resource',
         generator: {
-          publicPath: 'custom/',
-          filename: (pathData) =>
-            `${extractPkgName(pathData.filename)}/img/[base]`,
+          emit: false,
+          filename: '[runtime]/img/[base]'
         },
       },
     ],

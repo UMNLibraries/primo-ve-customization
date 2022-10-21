@@ -1,6 +1,6 @@
 if (location.search.includes('vid=01UMN_INST:CENTRAL_PACKAGE')) {
-  location.href = location.toString().replace('vid=01UMN_INST:CENTRAL_PACKAGE', 
-                                              'vid=01UMN_INST:TWINCITIES');
+  location.href = location.toString().replace('vid=01UMN_INST:CENTRAL_PACKAGE',
+    'vid=01UMN_INST:TWINCITIES');
 }
 
 import './color-theme/colors.css';
@@ -9,9 +9,9 @@ import Services from './services/services.module';
 import Filters from './filters/filters.module';
 
 
-angular.module('centralCustom', [
+export default angular.module('centralCustom', [
   Services,
   Filters,
-  Components, 
-]);
+  Components,
+]).name;
 
