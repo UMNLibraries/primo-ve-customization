@@ -9,11 +9,8 @@ const convertable = {
   }
 }
 
-const colorTheme = await readFile(
-  new URL(
-    './shared/color-theme/colors.json', 
-    import.meta.url)
-).then(JSON.parse);
+const colorTheme = await readFile(new URL('./colors.json', import.meta.url))
+  .then(JSON.parse);
 
 /**
  * Defines a common set of color variables that can be shared between

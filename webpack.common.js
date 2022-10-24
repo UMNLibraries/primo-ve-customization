@@ -3,7 +3,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 import { readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import * as path from 'node:path';
-import colors from './src/colors.js';
+import colors from './src/shared/color-theme/colors.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkgsDir = path.resolve(__dirname, 'src', 'packages');
