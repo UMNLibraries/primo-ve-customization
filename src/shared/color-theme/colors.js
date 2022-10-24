@@ -1,16 +1,16 @@
 import { readFile } from 'fs/promises';
 
-const convertPropPair = (scss, pair) =>
-  scss + `$${pair.join(': ')};`;
+const colorTheme = 
+  await readFile(new URL('./colors.json', import.meta.url))
+  .then(JSON.parse);
 
 const convertable = {
-  toScss: function() {
-    return Object.entries(this).reduce(convertPropPair, '');
+  toSass: function() {
+    return Object.entries(this).reduce(
+      (sass, entry) => sass + `$${entry.join(': ')};`, 
+      '');
   }
 }
-
-const colorTheme = await readFile(new URL('./colors.json', import.meta.url))
-  .then(JSON.parse);
 
 /**
  * Defines a common set of color variables that can be shared between

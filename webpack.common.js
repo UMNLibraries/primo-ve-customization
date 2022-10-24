@@ -81,7 +81,7 @@ const baseConfig = {
           ...cssLoaders,
           {
             loader: 'sass-loader',
-            options: { additionalData: colors.toScss() }
+            options: { additionalData: colors.toSass() }
           },
         ],
       },
