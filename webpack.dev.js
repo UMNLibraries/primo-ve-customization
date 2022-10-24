@@ -42,10 +42,10 @@ const devConfig = {
             if (responseBuffer.length === 0)
               return responseBuffer;
             const vid = req.url.split('/').pop();
-            const pkg = vid.replace(':', '-');
+            const view = vid.replace(':', '-');
             try {
               let appConfig = JSON.parse(responseBuffer.toString('utf8'));
-              return JSON.stringify(await injectCustomizations(appConfig, pkg));
+              return JSON.stringify(await injectCustomizations(appConfig, view));
             } catch (e) {
               console.error(e);
             }
@@ -71,37 +71,37 @@ async function fileExists(filename) {
 /**
  * Overwrite the appConfig object with local customizations (js/css/html/images).
  */
-async function injectCustomizations(appConfig, pkg) {
+async function injectCustomizations(appConfig, view) {
   // css
-  if (await fileExists(`./dist/${pkg}/css/custom1.css`))
-    appConfig.customization.viewCss = `custom/${pkg}/css/custom1.css`;
+  if (await fileExists(`./dist/${view}/css/custom1.css`))
+    appConfig.customization.viewCss = `custom/${view}/css/custom1.css`;
 
   // js
-  if (await fileExists(`./dist/${pkg}/js/custom.js`))
-    appConfig.customization.viewJs = `custom/${pkg}/js/custom.js`;
+  if (await fileExists(`./dist/${view}/js/custom.js`))
+    appConfig.customization.viewJs = `custom/${view}/js/custom.js`;
 
   // html
-  if (await fileExists(`./dist/${pkg}/html/homepage/homepage_en.html`))
+  if (await fileExists(`./dist/${view}/html/homepage/homepage_en.html`))
     appConfig.customization.staticHtml.homepage = {
-      'en': `custom/${pkg}/html/homepage/homepage_en.html`
+      'en': `custom/${view}/html/homepage/homepage_en.html`
     };
-  if (await fileExists(`./dist/${pkg}/html/email_en.html`))
+  if (await fileExists(`./dist/${view}/html/email_en.html`))
     appConfig.customization.staticHtml.email = {
-      'en': `custom/${pkg}/html/email_en.html`
+      'en': `custom/${view}/html/email_en.html`
     };
-  if (await fileExists(`./dist/${pkg}/html/help_en.html`))
+  if (await fileExists(`./dist/${view}/html/help_en.html`))
     appConfig.customization.staticHtml.help = {
-      'en': `custom/${pkg}/html/help_en.html`
+      'en': `custom/${view}/html/help_en.html`
     };
   
   // images
-  if (await fileExists(`./dist/${pkg}/img/favicon.ico`))
-    appConfig.customization.favIcon = `custom/${pkg}/img/favicon.ico`;
-  if (await fileExists(`./dist/${pkg}/img/library-logo.png`))
-    appConfig.customization.libraryLogo = `custom/${pkg}/img/library-logo.png`;
-  if (await fileExists(`./dist/${pkg}/img/home-screen-icon.png`))
-    appConfig.customization.homeScreenIcon = `custom/${pkg}/img/home-screen-icon.png`;
-  for (let icon of await glob(`./dist/${pkg}/img/icon_**.png`)) {
+  if (await fileExists(`./dist/${view}/img/favicon.ico`))
+    appConfig.customization.favIcon = `custom/${view}/img/favicon.ico`;
+  if (await fileExists(`./dist/${view}/img/library-logo.png`))
+    appConfig.customization.libraryLogo = `custom/${view}/img/library-logo.png`;
+  if (await fileExists(`./dist/${view}/img/home-screen-icon.png`))
+    appConfig.customization.homeScreenIcon = `custom/${view}/img/home-screen-icon.png`;
+  for (let icon of await glob(`./dist/${view}/img/icon_**.png`)) {
     const [_, resouce] = icon.match(/^.*icon_(.*).png$/);
     appConfig.customization.resourceIcons[resouce] = 
       icon.replace(/^\.?\/dist/, 'custom');

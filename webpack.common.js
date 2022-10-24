@@ -6,8 +6,8 @@ import * as path from 'node:path';
 import colors from './src/shared/color-theme/colors.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const pkgsDir = path.resolve(__dirname, 'src', 'packages');
-const pkgs = (await readdir(pkgsDir));
+const viewsDir = path.resolve(__dirname, 'src', 'views');
+const views = (await readdir(viewsDir));
 const cssLoaders = [
   MiniCssExtractPlugin.loader,
   "css-loader",
@@ -24,8 +24,8 @@ const cssLoaders = [
 ]
 
 const baseConfig = {
-  entry: pkgs.reduce((entries, pkg) =>
-    Object.assign(entries, { [pkg]: `${pkgsDir}/${pkg}` }), {}),
+  entry: views.reduce((entries, view) =>
+    Object.assign(entries, { [view]: `${viewsDir}/${view}` }), {}),
   output: {
     filename: '[name]/js/custom.js',
     publicPath: '/discovery/custom',
@@ -43,17 +43,17 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          context: pkgsDir,
+          context: viewsDir,
           from: `*/{img,html}/**`,
         },
-        ...pkgs.map(pkg => ({
+        ...views.map(view => ({
           from: path.resolve(__dirname, 'src', 'shared', 'img'),
-          to: `${pkg}/img/[name][ext]`,
+          to: `${view}/img/[name][ext]`,
           noErrorOnMissing: true,
         })),
-        ...pkgs.map(pkg => ({
+        ...views.map(view => ({
           from: path.resolve(__dirname, 'src', 'shared', 'html'),
-          to: `${pkg}/html/[name][ext]`,
+          to: `${view}/html/[name][ext]`,
           noErrorOnMissing: true,
         })),
       ]
