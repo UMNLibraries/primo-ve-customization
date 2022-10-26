@@ -1,4 +1,4 @@
-import Icon from './icon/icon.module.js';
+import Icon from './icon/icon.module';
 
 export default angular
   .module('components', [
