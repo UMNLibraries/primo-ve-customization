@@ -33,8 +33,5 @@
     "webpack-dev-server": "^4.9.3",
     "webpack-merge": "^5.8.0",
     "zip-webpack-plugin": "^4.0.1"
-  },
-  "dependencies": {
-    "promise-polyfill": "^8.2.3"
   }
 }
