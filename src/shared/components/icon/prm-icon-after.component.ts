@@ -7,6 +7,10 @@ import template from './icon.html';
  * to the use of one-time binding, this cannot be dynamically modified. 
  */
 class PrmIconAfterController {
+  private parentCtrl: ng.IComponentController;
+  private svgIconSet: string;
+  private iconDefinition: string;
+
   $onInit() {
     switch (this.parentCtrl.iconDefinition) {
       case 'prm_pin':
@@ -29,3 +33,4 @@ export default {
   template: template,
   bindings: { parentCtrl: '<' },
 };
+
