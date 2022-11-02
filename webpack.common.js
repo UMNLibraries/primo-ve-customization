@@ -30,7 +30,7 @@ const baseConfig = {
     filename: '[name]/js/custom.js',
     publicPath: '/discovery/custom',
     clean: true,
-//    assetModuleFilename: '[runtime]/img/[base]',
+    //    assetModuleFilename: '[runtime]/img/[base]',
   },
   target: ['web', 'es5'],
   optimization: {
@@ -61,6 +61,12 @@ const baseConfig = {
   ],
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',

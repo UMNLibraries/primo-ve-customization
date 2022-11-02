@@ -1,3 +1,3 @@
-import Shared from '../../shared/index';
+import Shared from '../../shared';
 
 angular.module('viewCustom', [Shared]);

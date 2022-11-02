@@ -14,7 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "@types/angular": "^1.8.4",
-    "@types/angular-cookies": "^1.8.1",
     "@types/angular-material": "^1.1.73",
     "@types/lodash": "^4.14.186",
     "@umn-libraries/primo-color-theme": "^1.0.0",
