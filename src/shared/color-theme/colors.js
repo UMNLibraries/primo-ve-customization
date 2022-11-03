@@ -1,8 +1,4 @@
-import { readFile } from 'fs/promises';
-
-const colorTheme = 
-  await readFile(new URL('./colors.json', import.meta.url))
-  .then(JSON.parse);
+import colorTheme from './colors.json' assert {type: 'json'};
 
 const convertable = {
   toSass: function() {
