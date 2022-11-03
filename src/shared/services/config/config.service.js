@@ -4,20 +4,25 @@ import CampusCode from './campus-code';
  * Configuration service to support feature flagging.
  */
 class Config {
+  static $inject = ['$window'];
+  #appConfig;
+  #campus;
+
   constructor($window) {
-    this.appConfig = $window.appConfig;
+    this.#appConfig = $window.appConfig;
   }
 
-  get institution() {
-    return this.appConfig['primo-view']['institution']['institution-code'];
+  get vid() {
+    return this.#appConfig['vid'];
   }
 
-  get institutionLibraryCodes() {
-    return Object.keys(this.appConfig['institution-libraries']);
+  get campus() {
+    return this.#campus ??= Object.values(CampusCode)
+      .find(campus => this.vid.includes(campus));
   }
 
   get showCustomAccountTiles() {
-    return this.institution === CampusCode.TWINCITIES;
+    return this.campus === CampusCode.TWINCITIES;
   }
 
   /**
@@ -28,7 +33,7 @@ class Config {
   }
 
   get showIllLink() {
-    return !this.enableIlliad && this.institution === CampusCode.TWINCITIES;
+    return !this.enableIlliad && this.campus === CampusCode.TWINCITIES;
   }
 
   get browzine() {
@@ -43,7 +48,5 @@ class Config {
     // TODO
   }
 }
-
-Config.$inject = ['$window'];
 
 export default Config;
