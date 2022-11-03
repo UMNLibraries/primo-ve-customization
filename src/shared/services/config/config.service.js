@@ -1,4 +1,3 @@
-import ViewProperties from './view-properties';
 import CampusCode from './campus-code';
 
 /**
@@ -7,9 +6,6 @@ import CampusCode from './campus-code';
 class Config {
   constructor($window) {
     this.appConfig = $window.appConfig;
-    this.viewProperties = ViewProperties.of(
-      this.appConfig['mapping-tables']['View Properties']
-    );
   }
 
   get institution() {
@@ -28,7 +24,7 @@ class Config {
    * Indicates if the custom ILLiad integration components should display.
    */
   get enableIlliad() {
-    return this.viewProperties.getValue('umn-illiad-enable') === 'true';
+    // TODO
   }
 
   get showIllLink() {
@@ -36,13 +32,15 @@ class Config {
   }
 
   get browzine() {
-    const id = this.viewProperties.getValue('umn-browzine-id');
-    const key = this.viewProperties.getValue('umn-browzine-key');
-    return { id, key };
+    //const id = this.viewProperties.getValue('umn-browzine-id');
+    //const key = this.viewProperties.getValue('umn-browzine-key');
+    //return { id, key };
+    // TODO
   }
 
   get getItNote() {
-    return this.viewProperties.getValue('umn-get-it-note');
+    //return this.viewProperties.getValue('umn-get-it-note');
+    // TODO
   }
 }
 
