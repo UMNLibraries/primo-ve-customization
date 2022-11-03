@@ -22,3 +22,4 @@ export default {
   ...colorTheme,
   lightSecondary: '#ffd75f', // light gold from the Nokomis theme
 }
+
