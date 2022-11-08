@@ -2,8 +2,6 @@ import PrmIconAfter from './prm-icon-after.component.js';
 import toggle from '../../img/svg-sprite-toggle.svg';
 import './icon.scss';
 
-//const toggle = import('./svg-sprite-toggle.svg');
-
 export default angular
   .module('icon', [])
   .component('prmIconAfter', PrmIconAfter)

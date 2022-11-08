@@ -1,13 +1,16 @@
 import './color-theme/generated-theme.css';
 
 import Components from './components/components.module';
-import Services from './services/services.module';
 import Filters from './filters/filters.module';
+import Services from './services/services.module';
 
-
-export default angular.module('centralCustom', [
-  Services,
-  Filters,
+/**
+ * This is functionally similar to the Primo 'centralCustom' 
+ * module in that it's intended to be shared among all views.
+ */
+export default angular.module('shared', [
   Components,
+  Filters,
+  Services,
 ]).name;
 
