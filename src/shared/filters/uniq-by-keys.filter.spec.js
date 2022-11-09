@@ -1,8 +1,10 @@
+import FiltersModule from './filters.module';
+
 describe('uniqByKeys Filter', () => {
   let $filter;
 
   beforeEach(() => {
-    angular.mock.module('filters');
+    angular.mock.module(FiltersModule);
     angular.mock.inject($injector => { 
       $filter = $injector.get('$filter');
     });
