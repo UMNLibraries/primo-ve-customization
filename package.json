@@ -1,8 +1,8 @@
 {
-  "name": "webpack-test",
+  "name": "umn-primo-ve",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
+  "description": "UMN Libraries Primo VE Customization Packages",
+  "author": "Jeff Peterson <gpeterso@umn.edu>",
   "private": true,
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js --open-target=/discovery/search?vid=01UMN_INST:TWINCITIES",
@@ -10,9 +10,6 @@
     "build": "webpack --config config/webpack.prod.js",
     "color-theme": "cd src/shared/color-theme && primo-color-theme -s umn.primo.exlibrisgroup.com -f colors.json > generated-theme.css"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
