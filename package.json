@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js --open-target=/discovery/search?vid=01UMN_INST:TWINCITIES",
-    "test": "karma start karma.conf.cjs",
+    "test": "karma start config/karma.conf.cjs",
     "build": "webpack --config config/webpack.prod.js",
     "color-theme": "cd src/shared/color-theme && primo-color-theme -s umn.primo.exlibrisgroup.com -f colors.json > generated-theme.css"
   },
