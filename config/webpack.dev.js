@@ -4,10 +4,12 @@ import { responseInterceptor } from 'http-proxy-middleware';
 import { access } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import _glob from 'glob';
+import webpack from 'webpack';
 
 const glob = promisify(_glob);
+const outputPath = webpack(baseConfig).options.output.path;
 
-const PROXY_TARGET = process.env.PROXY_TARGET || 
+const PROXY_TARGET = process.env.PROXY_TARGET ||
   'https://umn-psb.primo.exlibrisgroup.com';
 //const PROXY_TARGET = 'https://umn.primo.exlibrisgroup.com';
 
@@ -15,6 +17,9 @@ const devConfig = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
+    static: {
+      directory: outputPath,
+    },
     hot: false,
     liveReload: true,
     devMiddleware: {
@@ -73,41 +78,40 @@ async function fileExists(filename) {
  */
 async function injectCustomizations(appConfig, view) {
   // css
-  if (await fileExists(`./dist/${view}/css/custom1.css`))
+  if (await fileExists(`${outputPath}/${view}/css/custom1.css`))
     appConfig.customization.viewCss = `custom/${view}/css/custom1.css`;
 
   // js
-  if (await fileExists(`./dist/${view}/js/custom.js`))
+  if (await fileExists(`${outputPath}/${view}/js/custom.js`))
     appConfig.customization.viewJs = `custom/${view}/js/custom.js`;
 
   // html
-  if (await fileExists(`./dist/${view}/html/homepage/homepage_en.html`))
+  if (await fileExists(`${outputPath}/${view}/html/homepage/homepage_en.html`))
     appConfig.customization.staticHtml.homepage = {
       'en': `custom/${view}/html/homepage/homepage_en.html`
     };
-  if (await fileExists(`./dist/${view}/html/email_en.html`))
+  if (await fileExists(`${outputPath}/${view}/html/email_en.html`))
     appConfig.customization.staticHtml.email = {
       'en': `custom/${view}/html/email_en.html`
     };
-  if (await fileExists(`./dist/${view}/html/help_en.html`))
+  if (await fileExists(`${outputPath}/${view}/html/help_en.html`))
     appConfig.customization.staticHtml.help = {
       'en': `custom/${view}/html/help_en.html`
     };
-  
+
   // images
-  if (await fileExists(`./dist/${view}/img/favicon.ico`))
+  if (await fileExists(`${outputPath}/${view}/img/favicon.ico`))
     appConfig.customization.favIcon = `custom/${view}/img/favicon.ico`;
-  if (await fileExists(`./dist/${view}/img/library-logo.png`))
+  if (await fileExists(`${outputPath}/${view}/img/library-logo.png`))
     appConfig.customization.libraryLogo = `custom/${view}/img/library-logo.png`;
-  if (await fileExists(`./dist/${view}/img/home-screen-icon.png`))
+  if (await fileExists(`${outputPath}/${view}/img/home-screen-icon.png`))
     appConfig.customization.homeScreenIcon = `custom/${view}/img/home-screen-icon.png`;
-  for (let icon of await glob(`./dist/${view}/img/icon_**.png`)) {
+  for (let icon of await glob(`${outputPath}/${view}/img/icon_**.png`)) {
     const [_, resouce] = icon.match(/^.*icon_(.*).png$/);
-    appConfig.customization.resourceIcons[resouce] = 
-      icon.replace(/^\.?\/dist/, 'custom');
+    appConfig.customization.resourceIcons[resouce] =
+      icon.replace(outputPath, 'custom');
   }
   return appConfig;
 }
 
 export default merge(baseConfig, devConfig);
-

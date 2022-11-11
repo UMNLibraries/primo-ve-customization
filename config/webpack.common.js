@@ -3,10 +3,11 @@ import CopyPlugin from 'copy-webpack-plugin';
 import { readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import * as path from 'node:path';
-import colors from './src/shared/color-theme/colors.js';
+import colors from '../src/shared/color-theme/colors.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const viewsDir = path.resolve(__dirname, 'src', 'views');
+const viewsDir = path.resolve(__dirname, '..', 'src', 'views');
+const sharedDir = path.resolve(__dirname, '..', 'src', 'shared');
 const views = (await readdir(viewsDir));
 const cssLoaders = [
   MiniCssExtractPlugin.loader,
@@ -47,12 +48,12 @@ const baseConfig = {
           from: `*/{img,html}/**`,
         },
         ...views.map(view => ({
-          from: path.resolve(__dirname, 'src', 'shared', 'img'),
+          from: path.resolve(sharedDir, 'img'),
           to: `${view}/img/[name][ext]`,
           noErrorOnMissing: true,
         })),
         ...views.map(view => ({
-          from: path.resolve(__dirname, 'src', 'shared', 'html'),
+          from: path.resolve(sharedDir, 'html'),
           to: `${view}/html/[name][ext]`,
           noErrorOnMissing: true,
         })),
@@ -109,4 +110,3 @@ const baseConfig = {
 };
 
 export default baseConfig;
-
