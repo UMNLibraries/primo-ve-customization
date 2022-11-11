@@ -29,7 +29,7 @@ const baseConfig = {
     Object.assign(entries, { [view]: `${viewsDir}/${view}` }), {}),
   output: {
     filename: '[name]/js/custom.js',
-    publicPath: '/discovery/custom',
+    publicPath: '/discovery/custom/',
     clean: true,
     //    assetModuleFilename: '[runtime]/img/[base]',
   },
