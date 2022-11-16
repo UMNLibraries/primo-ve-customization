@@ -1,24 +1,28 @@
-import CampusCode from './campus-code';
+import CampusCode from "./campus-code";
 
 /**
  * Configuration service to support feature flagging.
  */
 class Config {
-  static $inject = ['$window'];
+  static $inject = ["$window", "$translate", "$q"];
+  #translate;
   #appConfig;
   #campus;
 
-  constructor($window) {
+  constructor($window, $translate, $q) {
     this.#appConfig = $window.appConfig;
+    this.#translate = $translate;
+    this.$q = $q;
   }
 
   get vid() {
-    return this.#appConfig['vid'];
+    return this.#appConfig["vid"];
   }
 
   get campus() {
-    return this.#campus ??= Object.values(CampusCode)
-      .find(campus => this.vid.includes(campus));
+    return (this.#campus ??= Object.values(CampusCode).find((campus) =>
+      this.vid.includes(campus)
+    ));
   }
 
   get showCustomAccountTiles() {
@@ -36,11 +40,15 @@ class Config {
     return !this.enableIlliad && this.campus === CampusCode.TWINCITIES;
   }
 
-  get browzine() {
-    //const id = this.viewProperties.getValue('umn-browzine-id');
-    //const key = this.viewProperties.getValue('umn-browzine-key');
-    //return { id, key };
-    // TODO
+  getBrowzineConfig() {
+    return this.#translate(["umn.browzine.id", "umn.browzine.key"]).then(
+      (translations) =>
+        Object.entries(translations).reduce(
+          (obj, entry) =>
+            Object.assign(obj, { [entry[0].split(".").pop()]: entry[1] }),
+          {}
+        )
+    );
   }
 
   get getItNote() {
