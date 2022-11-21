@@ -59,7 +59,7 @@ class BrowzineService {
   }
 
   /**
-   * Memoized. Multiple calls will return the same promise.
+   * Multiple calls will return the same promise.
    */
   loadAdapter() {
     return (this.loadAdapter.done ||= this.$q((resolve, reject) =>
