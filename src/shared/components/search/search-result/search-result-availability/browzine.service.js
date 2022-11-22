@@ -44,18 +44,32 @@ const configure = (window, browzineConfig) => {
       "Read Open Access Article (Accepted Manuscript)",
   };
 };
-
+const TRANSLATION_NAMESPACE = "umn.browzine.";
 const SCRIPT_URL =
   "https://s3.amazonaws.com/browzine-adapters/primo/browzine-primo-adapter.js";
 
+const removeNamespaces = (translations) =>
+  Object.entries(translations).reduce(
+    (obj, [key, value]) =>
+      Object.assign(obj, { [key.replace(TRANSLATION_NAMESPACE, "")]: value }),
+    {}
+  );
+
 class BrowzineService {
-  static $inject = ["$window", "config", "angularLoad", "$q"];
-  constructor($window, config, angularLoad, $q) {
+  static $inject = ["$window", "$translate", "angularLoad", "$q"];
+  constructor($window, $translate, angularLoad, $q) {
     this.$window = $window;
-    this.config = config;
+    this.$translate = $translate;
     this.angularLoad = angularLoad;
     this.$q = $q;
     this.loadAdapter();
+  }
+
+  getBrowzineConfig() {
+    return this.$translate([
+      `${TRANSLATION_NAMESPACE}id`,
+      `${TRANSLATION_NAMESPACE}key`,
+    ]).then(removeNamespaces);
   }
 
   /**
@@ -63,8 +77,7 @@ class BrowzineService {
    */
   loadAdapter() {
     return (this.loadAdapter.done ||= this.$q((resolve, reject) =>
-      this.config
-        .getBrowzineConfig()
+      this.getBrowzineConfig()
         .then((browzineConfig) => configure(this.$window, browzineConfig))
         .then(() => this.angularLoad.loadScript(SCRIPT_URL))
         .then(() => resolve(true))
