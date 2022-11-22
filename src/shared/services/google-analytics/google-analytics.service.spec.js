@@ -4,7 +4,7 @@ const view = "TEST";
 angular.module(GoogleAnalytics).constant("view", view);
 
 describe("GoogleAnalytics Service", () => {
-  let $rootScope, $location, $window, view, googleAnalyticsService;
+  let $rootScope, $location, $window, googleAnalyticsService;
 
   beforeEach(angular.mock.module(GoogleAnalytics));
 
@@ -18,12 +18,8 @@ describe("GoogleAnalytics Service", () => {
   );
 
   it("should create a global ga function", () => {
-    expect($window.ga).toBeDefined();
-  });
-
-  it("should set the view dimension", () => {
     spyOn($window, "ga");
-    expect($window.ga).toHaveBeenCalledWith("set", "dimenstion2", view);
+    expect($window.ga).toBeDefined();
   });
 
   it("should record pageview events when the location changes", () => {
