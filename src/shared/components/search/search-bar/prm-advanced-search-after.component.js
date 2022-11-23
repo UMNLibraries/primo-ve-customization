@@ -1,6 +1,6 @@
-import template from './prm-advanced-search-after.html';
+import template from "./prm-advanced-search-after.html";
 
 export default {
-  bindings: { parentCtrl: '<' },
+  bindings: { parentCtrl: "<" },
   template: template,
 };

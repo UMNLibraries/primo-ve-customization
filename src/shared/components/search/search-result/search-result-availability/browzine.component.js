@@ -9,11 +9,11 @@ class BrowzineController {
   }
 }
 
-BrowzineController.$inject = ['browzineService', '$scope'];
+BrowzineController.$inject = ["browzineService", "$scope"];
 
 export default {
   require: {
-    parentCtrl: '^prmSearchResultAvailabilityLine',
+    parentCtrl: "^prmSearchResultAvailabilityLine",
   },
   controller: BrowzineController,
 };

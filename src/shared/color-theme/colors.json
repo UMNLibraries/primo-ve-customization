@@ -1,7 +1,7 @@
 {
   "primary": "#7a0019",
-  "secondary" : "#809fa6",
-  "backgroundColor" : "#fff",
+  "secondary": "#809fa6",
+  "backgroundColor": "#fff",
   "links": "#3f729b",
   "warning": "tomato",
   "positive": "#0f7d00",
@@ -10,6 +10,5 @@
   "linkTitle": "#33ffff",
   "citation": "tomato",
   "citationTitles": "rgb(68, 112, 123)",
-  "personalization": "#7d1538" 
+  "personalization": "#7d1538"
 }
-

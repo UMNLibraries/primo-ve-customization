@@ -1,21 +1,21 @@
-import template from './icon.html';
+import template from "./icon.html";
 
 /**
  * Replace the "pin" icon with an MD star icon. Note that we're also overriding
  * the OTB template here. The reason is that, in some cases (notably the top bar),
  * the SVG definition is a hard-coded attribute value on the component, and due
- * to the use of one-time binding, this cannot be dynamically modified. 
+ * to the use of one-time binding, this cannot be dynamically modified.
  */
 class PrmIconAfterController {
   $onInit() {
     switch (this.parentCtrl.iconDefinition) {
-      case 'prm_pin':
-        this.svgIconSet = 'toggle';
-        this.iconDefinition = 'ic_star_border_24px';
+      case "prm_pin":
+        this.svgIconSet = "toggle";
+        this.iconDefinition = "ic_star_border_24px";
         break;
-      case 'prm_unpin':
-        this.svgIconSet = 'toggle';
-        this.iconDefinition = 'ic_star_24px';
+      case "prm_unpin":
+        this.svgIconSet = "toggle";
+        this.iconDefinition = "ic_star_24px";
         break;
       default:
         this.svgIconSet = this.parentCtrl.svgIconSet;
@@ -27,5 +27,5 @@ class PrmIconAfterController {
 export default {
   controller: PrmIconAfterController,
   template: template,
-  bindings: { parentCtrl: '<' },
+  bindings: { parentCtrl: "<" },
 };
