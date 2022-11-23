@@ -15,6 +15,7 @@ angular
   //  .component('availabilityOverride', PrmAvailbilityOverride)
   //  .component('prmNoSearchResultAfter', PrmNoSearchResultAfter)
   //  .component('prmSearchResultListAfter', PrmSearchResultListAfter)
+  .component("prmSearchErrorMessageAfter", PrmSearchErrorMessageAfter)
   .component(
     "prmSearchResultAvailabilityLineAfter",
     PrmSearchResultAvailabilityLineAfter
