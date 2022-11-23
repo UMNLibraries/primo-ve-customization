@@ -11,7 +11,7 @@ angular
   .module("searchResult", [HathiTrustAvailability])
   .service("browzineService", BrowzineService)
   .component("browzine", BrowzineComponent)
-  //  .component('prmNoSearchResultAfter', PrmNoSearchResultAfter)
+  .component("prmNoSearchResultAfter", PrmNoSearchResultAfter)
   .component("prmSearchResultListAfter", PrmSearchResultListAfter)
   .component("prmSearchErrorMessageAfter", PrmSearchErrorMessageAfter)
   .component(

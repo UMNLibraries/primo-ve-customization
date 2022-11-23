@@ -1,3 +1,5 @@
+import "./css/search-result-list.css";
+
 import Shared from "../../shared";
 import ViewCode from "../../view-code";
 

@@ -1,0 +1,47 @@
+<md-card
+  ng-if="$ctrl.enabled"
+  class="default-card zero-margin md-primoExplore-theme no-results"
+  aria-labelledby="noResultsTitle"
+>
+  <md-card-title>
+    <md-card-title-text>
+      <h2 id="noResultsTitle" class="md-headline">No results found</h2>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <p>
+      <span class="bold-text"
+        >We don't have everything, but we can get you a copy of almost
+        anything.</span
+      >
+    </p>
+    <ul>
+      <li>
+        <span
+          >Use
+          <a
+            href="https://ezproxy.lib.umn.edu/login?qurl=https%3A//umn.illiad.oclc.org/illiad/ILLiad.dll"
+          >
+            interlibrary loan</a
+          >
+          or
+          <a
+            href="https://universityofminnesota-minneapolis.on.worldcat.org/v2/search?queryString={{$ctrl.searchString}}"
+            >WorldCat</a
+          >
+          to request items from other libraries</span
+        >
+      </li>
+      <li>
+        <span>
+          <a show-chat-on-click href="">Chat with library staff 24/7</a></span
+        >
+      </li>
+      <li>
+        <span
+          >You may also wish to try your search with different keywords.</span
+        >
+      </li>
+    </ul>
+  </md-card-content>
+</md-card>
