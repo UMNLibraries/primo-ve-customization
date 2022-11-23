@@ -8,7 +8,11 @@
     "start": "webpack serve --config config/webpack.dev.js --open-target=/discovery/search?vid=01UMN_INST:TWINCITIES",
     "test": "karma start config/karma.conf.cjs",
     "build": "webpack --config config/webpack.prod.js",
-    "color-theme": "cd src/shared/color-theme && primo-color-theme -s umn.primo.exlibrisgroup.com -f colors.json > generated-theme.css"
+    "color-theme": "cd src/shared/color-theme && primo-color-theme -s umn.primo.exlibrisgroup.com -f colors.json > generated-theme.css",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -28,16 +32,19 @@
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
     "html-loader": "^4.1.0",
+    "husky": "^8.0.2",
     "jasmine-core": "^4.5.0",
     "karma": "^6.4.1",
     "karma-chrome-launcher": "^3.1.1",
     "karma-jasmine": "^5.1.0",
     "karma-spec-reporter": "^0.0.34",
     "karma-webpack": "^5.0.0",
+    "lint-staged": "^13.0.3",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss": "^8.4.17",
     "postcss-loader": "^7.0.1",
+    "prettier": "2.8.0",
     "puppeteer": "^19.2.2",
     "sass": "^1.54.5",
     "sass-loader": "^13.0.2",
@@ -48,6 +55,6 @@
     "zip-webpack-plugin": "^4.0.1"
   },
   "dependencies": {
-    "primo-explore-hathitrust-availability": "^2.7.1"
+    "primo-explore-hathitrust-availability": "^2.7.2"
   }
 }
