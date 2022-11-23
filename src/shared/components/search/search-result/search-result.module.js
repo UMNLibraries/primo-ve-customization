@@ -12,7 +12,7 @@ angular
   .service("browzineService", BrowzineService)
   .component("browzine", BrowzineComponent)
   //  .component('prmNoSearchResultAfter', PrmNoSearchResultAfter)
-  //  .component('prmSearchResultListAfter', PrmSearchResultListAfter)
+  .component("prmSearchResultListAfter", PrmSearchResultListAfter)
   .component("prmSearchErrorMessageAfter", PrmSearchErrorMessageAfter)
   .component(
     "prmSearchResultAvailabilityLineAfter",
