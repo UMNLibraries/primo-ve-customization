@@ -49,7 +49,7 @@ const baseConfig = {
           from: `*/{img,html}/**`,
         },
         ...views.map((view) => ({
-          from: path.resolve(sharedDir, "img"),
+          from: `${sharedDir}/**/*.{ico,png,svg}`,
           to: `${view}/img/[name][ext]`,
           noErrorOnMissing: true,
         })),
@@ -96,10 +96,10 @@ const baseConfig = {
         ],
       },
       {
-        test: /\.svg$/,
+        test: /\.(pn|sv)g$/,
         type: "asset/resource",
         generator: {
-          emit: false,
+          //emit: false,
           filename: "[runtime]/img/[base]",
         },
       },
