@@ -1,0 +1,13 @@
+askus-bubble {
+  a:hover {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  img {
+    width: 40px;
+    opacity: 0.85;
+  }
+  img:hover {
+    opacity: 1;
+  }
+}
