@@ -1,8 +1,9 @@
 import NoResults from "./no-results/no-results.component";
 import SearchResultHelp from "./search-result-help/search-result-help.component";
+import QuestionPoint from "./qpoint-chat/qpoint-chat.module";
 
 export default angular
-  .module("twincitiesComponents", [])
+  .module("twincitiesComponents", [QuestionPoint])
   .component("noResults", NoResults)
   .component("searchResultHelp", SearchResultHelp)
   .component("prmSearchResultListAfter", {
