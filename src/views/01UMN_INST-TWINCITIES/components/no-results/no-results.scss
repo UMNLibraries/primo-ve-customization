@@ -1,0 +1,4 @@
+// hide the OTB no results message
+prm-no-search-result > md-card {
+  display: none;
+}
