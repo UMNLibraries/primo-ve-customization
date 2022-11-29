@@ -17,5 +17,8 @@ const convertable = {
 export default {
   __proto__: convertable,
   ...colorTheme,
-  lightSecondary: "#ffd75f", // light gold from the Nokomis theme
+  maroon: colorTheme.primary,
+  gold: "#ffcc33",
+  lightGold: "#ffd75f", // light gold from the Nokomis theme
+  darkGold: "#ffb71e",
 };
