@@ -1,6 +1,7 @@
-import "./css/search-result-list.css";
-
-import Shared from "../../shared";
 import ViewCode from "../../view-code";
+import Shared from "../../shared";
+import TwinCitiesComponents from "./components/twincities-components.module";
 
-angular.module("viewCustom", [Shared]).constant("view", ViewCode.TWINCITIES);
+angular
+  .module("viewCustom", [Shared, TwinCitiesComponents])
+  .constant("view", ViewCode.TWINCITIES);

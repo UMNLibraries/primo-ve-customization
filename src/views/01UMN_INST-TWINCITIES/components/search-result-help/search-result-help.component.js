@@ -1,20 +1,14 @@
-import ViewCode from "../../../../../view-code";
-import template from "./prm-search-result-list-after.html";
+import "./search-result-help.scss";
+import template from "./search-result-help.html";
 
 class PrmSearchResultListAfterAfterController {
-  static $inject = ["$location", "view"];
-  constructor($location, view) {
+  static $inject = ["$location"];
+  constructor($location) {
     this.$location = $location;
-    this.view = view;
   }
 
   get visible() {
-    return (
-      this.view === ViewCode.TWINCITIES &&
-      this.onSearchPage &&
-      this.hasResults &&
-      !this.searchInProgress
-    );
+    return this.onSearchPage && this.hasResults && !this.searchInProgress;
   }
 
   get onSearchPage() {
