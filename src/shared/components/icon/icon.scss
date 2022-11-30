@@ -1,3 +1,8 @@
-prm-icon > md-icon {
-  display: none !important;
+prm-icon {
+  & > md-icon {
+    display: none !important; // we're overriding the OTB icon component
+  }
+  md-icon[md-svg-icon="toggle:ic_star_border_24px"] {
+    transform: rotate(0deg) !important; // never rotate the star icon
+  }
 }
