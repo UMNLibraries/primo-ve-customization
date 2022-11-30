@@ -1,6 +1,6 @@
 import colorTheme from "./colors.json" assert { type: "json" };
 
-const convertable = {
+const convertible = {
   toSass: function () {
     return Object.entries(this).reduce(
       (sass, entry) => sass + `$${entry.join(": ")};`,
@@ -15,7 +15,7 @@ const convertable = {
  * (defined in colors.json) and any additional custom color variables.
  */
 export default {
-  __proto__: convertable,
+  __proto__: convertible,
   ...colorTheme,
   maroon: colorTheme.primary,
   gold: "#ffcc33",
