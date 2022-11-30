@@ -1,0 +1,7 @@
+// add-to-favorites action animation colors
+.pinDummy prm-icon {
+  color: $primary;
+}
+.pinDummy:before {
+  background-color: $lightGold;
+}
