@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 /**
  * An attempt to encapsulate the Browzine/LibKey integration. Vender instructions:
  * https://thirdiron.atlassian.net/wiki/spaces/BrowZineAPIDocs/pages/79200260/Ex+Libris+Primo+Integration
@@ -17,41 +16,39 @@
  *    DOM manipulation
  */
 
-const configure = (window, browzineConfig) => {
-  window.browzine = {
-    api: `https://public-api.thirdiron.com/public/v1/libraries/${browzineConfig.id}`,
-    apiKey: browzineConfig.key,
-    journalCoverImagesEnabled: true,
-    journalBrowZineWebLinkTextEnabled: false,
-    journalBrowZineWebLinkText: "View Journal Contents",
-    articleBrowZineWebLinkTextEnabled: false,
-    articleBrowZineWebLinkText: "View Issue Contents",
-    articlePDFDownloadLinkEnabled: true,
-    articlePDFDownloadLinkText: "Download PDF",
-    articleLinkEnabled: true,
-    articleLinkText: "Read Article",
-    printRecordsIntegrationEnabled: true,
-    unpaywallEmailAddressKey: "almaprim@umn.edu",
-    articlePDFDownloadViaUnpaywallEnabled: true,
-    articlePDFDownloadViaUnpaywallText: "Download Open Access PDF",
-    articleLinkViaUnpaywallEnabled: true,
-    articleLinkViaUnpaywallText: "Read Open Access Article",
-    articleAcceptedManuscriptPDFViaUnpaywallEnabled: true,
-    articleAcceptedManuscriptPDFViaUnpaywallText:
-      "Download Open Access PDF (Accepted Manuscript)",
-    articleAcceptedManuscriptArticleLinkViaUnpaywallEnabled: true,
-    articleAcceptedManuscriptArticleLinkViaUnpaywallText:
-      "Read Open Access Article (Accepted Manuscript)",
-  };
+const DEFAULT_SETTINGS = {
+  journalCoverImagesEnabled: true,
+  journalBrowZineWebLinkTextEnabled: false,
+  journalBrowZineWebLinkText: "View Journal Contents",
+  articleBrowZineWebLinkTextEnabled: false,
+  articleBrowZineWebLinkText: "View Issue Contents",
+  articlePDFDownloadLinkEnabled: true,
+  articlePDFDownloadLinkText: "Download PDF",
+  articleLinkEnabled: true,
+  articleLinkText: "Read Article",
+  printRecordsIntegrationEnabled: true,
+  unpaywallEmailAddressKey: "almaprim@umn.edu",
+  articlePDFDownloadViaUnpaywallEnabled: true,
+  articlePDFDownloadViaUnpaywallText: "Download Open Access PDF",
+  articleLinkViaUnpaywallEnabled: true,
+  articleLinkViaUnpaywallText: "Read Open Access Article",
+  articleAcceptedManuscriptPDFViaUnpaywallEnabled: true,
+  articleAcceptedManuscriptPDFViaUnpaywallText:
+    "Download Open Access PDF (Accepted Manuscript)",
+  articleAcceptedManuscriptArticleLinkViaUnpaywallEnabled: true,
+  articleAcceptedManuscriptArticleLinkViaUnpaywallText:
+    "Read Open Access Article (Accepted Manuscript)",
 };
-const TRANSLATION_NAMESPACE = "umn.browzine.";
+const TRANSLATION_NAMESPACE = "umn.browzine";
 const SCRIPT_URL =
   "https://s3.amazonaws.com/browzine-adapters/primo/browzine-primo-adapter.js";
 
 const removeNamespaces = (translations) =>
   Object.entries(translations).reduce(
     (obj, [key, value]) =>
-      Object.assign(obj, { [key.replace(TRANSLATION_NAMESPACE, "")]: value }),
+      Object.assign(obj, {
+        [key.replace(`${TRANSLATION_NAMESPACE}.`, "")]: value,
+      }),
     {}
   );
 
@@ -65,11 +62,17 @@ class BrowzineService {
     this.loadAdapter();
   }
 
-  getBrowzineConfig() {
+  getBrowzineSettings() {
     return this.$translate([
-      `${TRANSLATION_NAMESPACE}id`,
-      `${TRANSLATION_NAMESPACE}key`,
-    ]).then(removeNamespaces);
+      `${TRANSLATION_NAMESPACE}.api`,
+      `${TRANSLATION_NAMESPACE}.apiKey`,
+    ])
+      .then(removeNamespaces)
+      .then((settings) => Object.assign(DEFAULT_SETTINGS, settings));
+  }
+
+  configureAdapter(browzineSettings) {
+    this.$window.browzine = browzineSettings;
   }
 
   /**
@@ -77,8 +80,8 @@ class BrowzineService {
    */
   loadAdapter() {
     return (this.loadAdapter.done ||= this.$q((resolve, reject) =>
-      this.getBrowzineConfig()
-        .then((browzineConfig) => configure(this.$window, browzineConfig))
+      this.getBrowzineSettings()
+        .then((settings) => this.configureAdapter(settings))
         .then(() => this.angularLoad.loadScript(SCRIPT_URL))
         .then(() => resolve(true))
     ));
