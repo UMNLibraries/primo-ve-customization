@@ -1,0 +1,36 @@
+// fix my account links
+//prm-account-links {
+//  a {
+//    margin-left: 1em;
+//  }
+//  md-icon {
+//    height: 15px;
+//    min-height: 15px;
+//    width: 15px;
+//    min-width: 15px;
+//    margin-left: 0.2em;
+//  }
+//}
+// TODO: ^ Still needed?
+
+prm-personal-info {
+  // hide group and expire date
+  div.header-subtitle {
+    display: none;
+  }
+
+  // hide language option
+  md-card:not(#personalDetails) {
+    display: none;
+  }
+}
+
+// don't show icons in the empty tiles
+prm-account-overview {
+  .tiles-grid-tile,
+  .message-with-icon {
+    prm-icon.giant-icon {
+      display: none;
+    }
+  }
+}

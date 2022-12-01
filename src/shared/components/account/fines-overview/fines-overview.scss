@@ -1,0 +1,16 @@
+// accommodate fines note
+prm-fines-overview {
+  display: inline-block;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+
+  prm-fines-overview-after {
+    section {
+      display: inline-block;
+      margin-left: 0.5em;
+      position: relative;
+      top: -1em;
+    }
+  }
+}
