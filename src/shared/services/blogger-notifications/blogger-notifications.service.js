@@ -1,7 +1,14 @@
 import notificationTemplate from "./blogger-notification.html";
 import "./blogger-notification.scss";
 
-class BloggerNotifications {
+export class BloggerNotificationsService {
+  static $inject = [
+    "$mdToast",
+    "$http",
+    "$document",
+    "bloggerBaseUrl",
+    "$cookies",
+  ];
   constructor($mdToast, $http, $document, bloggerBaseUrl, $cookies) {
     this.$mdToast = $mdToast;
     this.$http = $http;
@@ -61,13 +68,3 @@ class BloggerNotifications {
       });
   }
 }
-
-BloggerNotifications.$inject = [
-  "$mdToast",
-  "$http",
-  "$document",
-  "bloggerBaseUrl",
-  "$cookies",
-];
-
-export default BloggerNotifications;

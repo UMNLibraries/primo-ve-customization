@@ -1,12 +1,12 @@
-import GoogleAnalytics from "./google-analytics.module";
+import { GoogleAnalyticsModule } from "./google-analytics.module";
 
 const view = "TEST";
-angular.module(GoogleAnalytics).constant("view", view);
+angular.module(GoogleAnalyticsModule).constant("view", view);
 
 describe("GoogleAnalytics Service", () => {
   let $rootScope, $location, $window, googleAnalyticsService;
 
-  beforeEach(angular.mock.module(GoogleAnalytics));
+  beforeEach(angular.mock.module(GoogleAnalyticsModule));
 
   beforeEach(
     angular.mock.inject(($injector) => {

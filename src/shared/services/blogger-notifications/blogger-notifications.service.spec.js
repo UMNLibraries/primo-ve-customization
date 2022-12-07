@@ -1,4 +1,4 @@
-import BloggerNotifications from "./blogger-notifications.module";
+import { BloggerNotificationsModule } from "./blogger-notifications.module";
 
 describe("BloggerNotifications Service", () => {
   let bloggerNotifications, $httpBackend, $timeout, $mdToast, url;
@@ -24,7 +24,7 @@ describe("BloggerNotifications Service", () => {
   };
 
   beforeEach(() => {
-    angular.mock.module(BloggerNotifications);
+    angular.mock.module(BloggerNotificationsModule);
     angular.mock.module("ngMaterial");
     angular.mock.module("ngCookies");
     angular.mock.module(($provide) => {

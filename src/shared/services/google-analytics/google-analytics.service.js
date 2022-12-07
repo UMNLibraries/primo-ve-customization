@@ -24,7 +24,7 @@ function loadAnalytics(window) {
   );
 }
 
-class GoogleAnalytics {
+export class GoogleAnalyticsService {
   static $inject = ["$rootScope", "$location", "$window", "view"];
   constructor($rootScope, $location, $window, view) {
     this.$rootScope = $rootScope;
@@ -54,5 +54,3 @@ class GoogleAnalytics {
     this.$window.ga("send", "event", category, action, label);
   }
 }
-
-export default GoogleAnalytics;

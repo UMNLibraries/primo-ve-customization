@@ -1,7 +1,7 @@
-import Shared from "../../shared";
+import { SharedModule } from "../../shared";
 import ViewCode from "../../view-code";
 import DuluthComponents from "./components/duluth-components.module";
 
 angular
-  .module("viewCustom", [Shared, DuluthComponents])
+  .module("viewCustom", [SharedModule, DuluthComponents])
   .constant("view", ViewCode.DULUTH);

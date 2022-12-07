@@ -1,4 +1,6 @@
-import Shared from "../../shared";
+import { SharedModule } from "../../shared";
 import ViewCode from "../../view-code";
 
-angular.module("viewCustom", [Shared]).constant("view", ViewCode.CROOKSTON);
+angular
+  .module("viewCustom", [SharedModule])
+  .constant("view", ViewCode.CROOKSTON);

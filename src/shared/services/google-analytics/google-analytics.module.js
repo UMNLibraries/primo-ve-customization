@@ -1,8 +1,8 @@
-import GoogleAnalytics from "./google-analytics.service.js";
+import { GoogleAnalyticsService } from "./google-analytics.service";
 
-export default angular
+export const GoogleAnalyticsModule = angular
   .module("googleAnalytics", [])
-  .service("googleAnalytics", GoogleAnalytics)
+  .service("googleAnalytics", GoogleAnalyticsService)
   .run([
     "googleAnalytics",
     (googleAnalytics) => googleAnalytics.trackPageviews(),

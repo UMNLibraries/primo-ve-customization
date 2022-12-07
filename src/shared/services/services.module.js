@@ -1,7 +1,7 @@
-import BloggerNotifications from "./blogger-notifications/blogger-notifications.module";
-import GoogleAnalytics from "./google-analytics/google-analytics.module";
+import { BloggerNotificationsModule } from "./blogger-notifications";
+import { GoogleAnalyticsModule } from "./google-analytics";
 
-export default angular.module("services", [
-  BloggerNotifications,
-  GoogleAnalytics,
+export const ServicesModule = angular.module("services", [
+  BloggerNotificationsModule,
+  GoogleAnalyticsModule,
 ]).name;
