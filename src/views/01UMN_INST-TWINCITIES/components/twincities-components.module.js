@@ -3,9 +3,15 @@ import NoResults from "./no-results/no-results.component";
 import SearchResultHelp from "./search-result-help/search-result-help.component";
 import QuestionPoint from "./qpoint-chat/qpoint-chat.module";
 import { ShibAuthModule } from "./shib-auth";
+import { AccountModule } from "./account";
 
 export default angular
-  .module("twincitiesComponents", [Footer, QuestionPoint, ShibAuthModule])
+  .module("twincitiesComponents", [
+    AccountModule,
+    Footer,
+    QuestionPoint,
+    ShibAuthModule,
+  ])
   .component("noResults", NoResults)
   .component("searchResultHelp", SearchResultHelp)
   .component("prmSearchResultListAfter", {

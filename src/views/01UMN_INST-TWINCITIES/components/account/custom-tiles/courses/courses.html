@@ -1,0 +1,53 @@
+<shib-auth on-auth="$ctrl.loadCourses()">
+  <div class="tiles-grid-tile" layout="column">
+    <div class="tile-content layout-column" layout="column">
+      <div class="tile-header layout-column" layout="column">
+        <div
+          layout="row"
+          layout-align="space-between"
+          class="layout-align-space-between-stretch layout-row"
+        >
+          <h2 class="light-text">
+            <span>Library Research Guides</span>
+          </h2>
+        </div>
+      </div>
+      <div layout="column" layout-align="center center">
+        <prm-spinner
+          ng-if="$ctrl.loading"
+          class="default-loader dark-on-light overlay-cover no-text"
+          layout="row"
+          layout-align="center center"
+        ></prm-spinner>
+        <md-list>
+          <md-list-item
+            ng-repeat="course in $ctrl.courses | orderBy:['subject', 'courseNumber'] | uniqByKeys:['subject', 'courseNumber']"
+          >
+            <a
+              class=""
+              ng-href="https://www.lib.umn.edu/course/{{course.subject}}/{{course.courseNumber}}"
+            >
+              {{course.subject}} {{course.courseNumber}}
+            </a>
+          </md-list-item>
+        </md-list>
+        <div
+          ng-if="!$ctrl.hasCourses()"
+          class="message-with-icon layout-margin layout-padding layout-align-center-center layout-column"
+          layout="column"
+          layout-align="center center"
+          layout-padding=""
+          layout-margin=""
+        >
+          <prm-icon
+            class="giant-icon bg-icon"
+            icon-type="svg"
+            svg-icon-set="social"
+            icon-definition="ic_school_24px"
+          ></prm-icon>
+          <div><span>There are no guides</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</shib-auth>

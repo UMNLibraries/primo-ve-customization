@@ -1,0 +1,73 @@
+<div class="tiles-grid-tile">
+  <div class="tile-content" layout="column">
+    <div class="tile-header" layout="column">
+      <div layout="row" layout-align="space-between">
+        <h2
+          class="header-link light-text"
+          ng-click="$ctrl.goToArticlePage()"
+          tabindex="0"
+        >
+          <span>Digital Delivery</span>
+          <prm-icon
+            external-link
+            icon-type="svg"
+            svg-icon-set="primo-ui"
+            icon-definition="open-in-new"
+          ></prm-icon>
+        </h2>
+      </div>
+    </div>
+    <md-list layout="column">
+      <prm-spinner
+        ng-if="$ctrl.loading"
+        class="default-loader dark-on-light overlay-cover no-text"
+        layout="row"
+        layout-align="center center"
+      ></prm-spinner>
+      <md-list-item
+        class="md-2-line"
+        ng-repeat="article in $ctrl.articles | limitTo:$ctrl.maxDisplay"
+        ng-click="$ctrl.goToArticlePage(article.txnNum)"
+        class="display-block"
+      >
+        <span class="item-index">{{$index + 1}}</span>
+        <div class="md-list-item-text" layout-fill>
+          <h3 ng-if="article.title"><span>{{article.title}}</span></h3>
+          <h4 ng-if="article.author"><span>{{article.author}}</span></h4>
+        </div>
+        <prm-icon
+          external-link
+          icon-type="svg"
+          svg-icon-set="primo-ui"
+          icon-definition="open-in-new"
+        ></prm-icon>
+      </md-list-item>
+    </md-list>
+    <div
+      ng-if="!$ctrl.hasArticles()"
+      ng-cloak
+      class="message-with-icon"
+      layout="column"
+      layout-align="center center"
+      layout-padding
+      layout-margin
+    >
+      <div><span>There are no documents</span></div>
+    </div>
+    <md-button
+      class="button-with-icon prm-links overflow-visible"
+      layout="row"
+      layout-align="center center"
+      ng-if="$ctrl.articles.length > $ctrl.maxDisplay"
+      ng-click="$ctrl.goToArticlePage()"
+      aria-label="all articles"
+      ><span>View all {{ $ctrl.articles.length }} articles</span>
+      <prm-icon
+        external-link
+        icon-type="svg"
+        svg-icon-set="primo-ui"
+        icon-definition="open-in-new"
+      ></prm-icon>
+    </md-button>
+  </div>
+</div>
