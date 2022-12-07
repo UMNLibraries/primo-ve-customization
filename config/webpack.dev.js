@@ -8,15 +8,14 @@ import webpack from "webpack";
 
 const glob = promisify(_glob);
 const outputPath = webpack(baseConfig).options.output.path;
-
 const PROXY_TARGET =
   process.env.PROXY_TARGET || "https://umn.primo.exlibrisgroup.com";
-//  'https://umn-psb.primo.exlibrisgroup.com';
 
 const devConfig = {
   mode: "development",
   devtool: "inline-source-map",
   devServer: {
+    allowedHosts: [".lib.umn.edu", ".primo.exlibrisgroup.com"],
     static: {
       directory: outputPath,
     },
