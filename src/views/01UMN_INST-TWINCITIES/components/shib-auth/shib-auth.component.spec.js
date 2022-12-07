@@ -1,5 +1,7 @@
+import { ShibAuthModule } from ".";
+
 describe("ShibAuth Component", () => {
-  beforeEach(angular.mock.module("shibAuth"));
+  beforeEach(angular.mock.module(ShibAuthModule));
 
   let element, scope, controller, $compile, shibAuthEvents;
   const content = "my content";
