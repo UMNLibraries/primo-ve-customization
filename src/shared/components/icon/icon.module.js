@@ -1,10 +1,10 @@
-import PrmIconAfter from "./prm-icon-after.component.js";
+import { PrmIconAfterComponent } from "./prm-icon-after.component";
 import toggle from "./svg-sprite-toggle.svg";
 import "./icon.scss";
 
-export default angular
+export const IconModule = angular
   .module("icon", [])
-  .component("prmIconAfter", PrmIconAfter)
+  .component("prmIconAfter", PrmIconAfterComponent)
   .config([
     "$mdIconProvider",
     ($mdIconProvider) => {

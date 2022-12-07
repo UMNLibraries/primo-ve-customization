@@ -24,7 +24,7 @@ class PrmIconAfterController {
   }
 }
 
-export default {
+export const PrmIconAfterComponent = {
   controller: PrmIconAfterController,
   template: template,
   bindings: { parentCtrl: "<" },
