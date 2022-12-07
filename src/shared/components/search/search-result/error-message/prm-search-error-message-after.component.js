@@ -1,4 +1,8 @@
+/**
+ * log search errors in analytics service
+ */
 class PrmSearchErrorMessageAfterController {
+  static $inject = ["googleAnalytics"];
   constructor(googleAnalytics) {
     this.googleAnalytics = googleAnalytics;
   }
@@ -12,9 +16,7 @@ class PrmSearchErrorMessageAfterController {
   }
 }
 
-PrmSearchErrorMessageAfterController.$inject = ["googleAnalytics"];
-
-export default {
+export const PrmSearchErrorMessageAfterComponent = {
   bindings: { parentCtrl: "<" },
   controller: PrmSearchErrorMessageAfterController,
 };

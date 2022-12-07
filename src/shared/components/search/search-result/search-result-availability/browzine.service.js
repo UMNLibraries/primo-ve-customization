@@ -52,7 +52,7 @@ const removeNamespaces = (translations) =>
     {}
   );
 
-class BrowzineService {
+export class BrowzineService {
   static $inject = ["$window", "$translate", "angularLoad", "$q"];
   constructor($window, $translate, angularLoad, $q) {
     this.$window = $window;
@@ -100,5 +100,3 @@ class BrowzineService {
     );
   }
 }
-
-export default BrowzineService;

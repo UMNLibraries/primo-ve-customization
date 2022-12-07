@@ -1,16 +1,15 @@
 import HathiTrustAvailability from "primo-explore-hathitrust-availability";
-import BrowzineService from "./search-result-availability/browzine.service";
-import BrowzineComponent from "./search-result-availability/browzine.component";
-import PrmSearchResultAvailabilityLineAfter from "./search-result-availability/prm-search-result-availability-line-after.component";
-import PrmSearchErrorMessageAfter from "./error-message/prm-search-error-message-after.component";
+import { BrowzineService } from "./search-result-availability";
+import { BrowzineComponent } from "./search-result-availability";
+import { PrmSearchResultAvailabilityLineAfterComponent } from "./search-result-availability";
+import { PrmSearchErrorMessageAfterComponent } from "./error-message";
 
-export default //  .component('prmSearchErrorMessageAfter', PrmSearchErrorMessageAfter)
-angular
+export const SearchResultModule = angular
   .module("searchResult", [HathiTrustAvailability])
   .service("browzineService", BrowzineService)
   .component("browzine", BrowzineComponent)
-  .component("prmSearchErrorMessageAfter", PrmSearchErrorMessageAfter)
+  .component("prmSearchErrorMessageAfter", PrmSearchErrorMessageAfterComponent)
   .component(
     "prmSearchResultAvailabilityLineAfter",
-    PrmSearchResultAvailabilityLineAfter
+    PrmSearchResultAvailabilityLineAfterComponent
   ).name;

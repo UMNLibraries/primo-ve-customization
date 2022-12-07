@@ -18,9 +18,7 @@ class GetItNoteController {
   }
 }
 
-const GetItNote = {
+export const GetItNoteComponent = {
   controller: GetItNoteController,
   template: template,
 };
-
-export default GetItNote;

@@ -1,3 +1,3 @@
-import GetIt from "./get-it/get-it.module";
+import { GetItModule } from "./get-it";
 
-export default angular.module("fullView", [GetIt]).name;
+export const FullViewModule = angular.module("fullView", [GetItModule]).name;

@@ -2,7 +2,7 @@
  * Force the advanced search menu to always be uncollapsed by toggling
  * whenever its collapsed state is true.
  */
-export default {
+export const UncollapseAdvancedSearchComponent = {
   bindings: { collapsed: "<" },
   require: { prmAdvancedSearchCtrl: "^prmAdvancedSearch" },
   controller: class {

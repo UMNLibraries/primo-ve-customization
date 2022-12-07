@@ -1,6 +1,6 @@
 import template from "./prm-advanced-search-after.html";
 
-export default {
+export const PrmAdvncedSearchAfterComponent = {
   bindings: { parentCtrl: "<" },
   template: template,
 };

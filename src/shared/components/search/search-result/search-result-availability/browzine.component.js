@@ -1,4 +1,5 @@
 class BrowzineController {
+  static $inject = ["browzineService", "$scope"];
   constructor(browzineService, $scope) {
     this.browzineService = browzineService;
     this.$scope = $scope;
@@ -9,9 +10,7 @@ class BrowzineController {
   }
 }
 
-BrowzineController.$inject = ["browzineService", "$scope"];
-
-export default {
+export const BrowzineComponent = {
   require: {
     parentCtrl: "^prmSearchResultAvailabilityLine",
   },

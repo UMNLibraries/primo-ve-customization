@@ -1,8 +1,8 @@
-import GetItNote from "./get-it-note/get-it-note.component";
+import { GetItNoteComponent } from "./get-it-note";
 
-export default angular
+export const GetItModule = angular
   .module("getIt", [])
   .component("prmRequestServicesAfter", {
     template: "<get-it-note></get-it-note>",
   })
-  .component("getItNote", GetItNote).name;
+  .component("getItNote", GetItNoteComponent).name;
