@@ -1,0 +1,21 @@
+prm-logo {
+  #banner {
+    a:hover {
+      box-shadow: none;
+      background-color: transparent;
+    }
+  }
+}
+
+prm-search-bookmark-filter {
+  #favorites-button:before {
+    background-color: $lightGold;
+  }
+
+  a {
+    &:hover,
+    &:focus {
+      box-shadow: none; //the shadow looks goofy with our header color
+    }
+  }
+}
