@@ -1,4 +1,4 @@
-const courses = JSON.parse(` 
+const courses = JSON.parse(`
 [{
   "role": "Student",
   "term": "1183",
@@ -44,11 +44,14 @@ const courses = JSON.parse(`
   "sectionType": "IND"
 }]`);
 
+import { CoursesModule } from ".";
+import FiltersModule from "../../../../../../shared/filters/filters.module";
+
 describe("Courses Component", () => {
   let element, scope, controller, $compile, coursesService, $q;
 
   beforeEach(() => {
-    angular.mock.module("courses");
+    angular.mock.module(CoursesModule, FiltersModule);
   });
 
   beforeEach(() => {

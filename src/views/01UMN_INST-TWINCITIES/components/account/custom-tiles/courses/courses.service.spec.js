@@ -141,11 +141,13 @@ const RESPONSE_FIXTURE = `
   }
 }`;
 
+import { CoursesModule } from ".";
+
 describe("Courses Service", () => {
   let courses, $httpBackend;
 
   beforeEach(() => {
-    angular.mock.module("courses");
+    angular.mock.module(CoursesModule);
     angular.mock.inject(($injector) => {
       courses = $injector.get("courses");
       $httpBackend = $injector.get("$httpBackend");
