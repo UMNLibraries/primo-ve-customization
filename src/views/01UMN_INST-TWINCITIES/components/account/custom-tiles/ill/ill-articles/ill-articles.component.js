@@ -1,6 +1,7 @@
 import template from "./ill-articles.html";
 
 class IllArticlesController {
+  static $inject = ["illiad", "$window"];
   constructor(illiad, $window) {
     this.illiad = illiad;
     this.$window = $window;
@@ -35,9 +36,7 @@ class IllArticlesController {
   }
 }
 
-IllArticlesController.$inject = ["illiad", "$window"];
-
-export default {
+export const IllArticlesComponent = {
   controller: IllArticlesController,
   template: template,
 };

@@ -1,6 +1,7 @@
 const proxyBaseUrl = "https://ezproxy.lib.umn.edu/login?qurl=";
 
-class ILLiad {
+export class ILLiadService {
+  static $inject = ["$http"];
   constructor($http) {
     this.$http = $http;
     this.requestsUrl = "/primo_library/libweb/umn/ill-requests.jsp";
@@ -87,7 +88,3 @@ class ILLiad {
     }
   }
 }
-
-ILLiad.$inject = ["$http"];
-
-export default ILLiad;

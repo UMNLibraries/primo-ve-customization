@@ -1,12 +1,14 @@
-import IllRequests from "./ill-requests.component";
-const MAX_REQUESTS_TO_DISPLAY = new IllRequests.controller().maxDisplay;
+import { IllModule } from "../ill.module";
+import { IllRequestsComponent } from "./ill-requests.component";
+const MAX_REQUESTS_TO_DISPLAY = new IllRequestsComponent.controller()
+  .maxDisplay;
 const NO_REQUEST_MSG = "There are no requests";
 
 describe("ILL Requests Component", () => {
   let element, scope, $q, $compile, $window, illiadService, requests;
 
   beforeEach(() => {
-    angular.mock.module("ill");
+    angular.mock.module(IllModule);
     angular.mock.module(($compileProvider) => {
       $compileProvider.directive("translate", fakeTranslateDirective);
     });

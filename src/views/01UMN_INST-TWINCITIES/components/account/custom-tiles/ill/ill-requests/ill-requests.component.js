@@ -1,6 +1,7 @@
 import template from "./ill-requests.html";
 
 class IllRequestsController {
+  static $inject = ["illiad", "$window"];
   constructor(illiad, $window) {
     this.illiad = illiad;
     this.$window = $window;
@@ -35,9 +36,7 @@ class IllRequestsController {
   }
 }
 
-IllRequestsController.$inject = ["illiad", "$window"];
-
-export default {
+export const IllRequestsComponent = {
   controller: IllRequestsController,
   template: template,
 };

@@ -1,8 +1,10 @@
+import { IllModule } from ".";
+
 describe("Illiad Service", () => {
   let illiad, $httpBackend;
 
   beforeEach(() => {
-    angular.mock.module("ill");
+    angular.mock.module(IllModule);
     angular.mock.inject(($injector) => {
       illiad = $injector.get("illiad");
       $httpBackend = $injector.get("$httpBackend");

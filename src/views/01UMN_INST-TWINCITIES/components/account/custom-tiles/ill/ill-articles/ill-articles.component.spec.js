@@ -1,11 +1,13 @@
-import IllArticles from "./ill-articles.component";
-const MAX_ARTICLES_TO_DISPLAY = new IllArticles.controller().maxDisplay;
+import { IllModule } from "../ill.module";
+import { IllArticlesComponent } from "./ill-articles.component";
+const MAX_ARTICLES_TO_DISPLAY = new IllArticlesComponent.controller()
+  .maxDisplay;
 
 describe("ILL Articles Component", () => {
   let element, scope, $q, $compile, $window, illiadService, articles;
 
   beforeEach(() => {
-    angular.mock.module("ill");
+    angular.mock.module(IllModule);
     angular.mock.inject(($injector) => {
       scope = $injector.get("$rootScope").$new();
       illiadService = $injector.get("illiad");
