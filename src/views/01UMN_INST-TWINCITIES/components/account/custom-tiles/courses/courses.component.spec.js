@@ -45,7 +45,7 @@ const courses = JSON.parse(`
 }]`);
 
 import { CoursesModule } from ".";
-import FiltersModule from "../../../../../../shared/filters/filters.module";
+import { FiltersModule } from "../../../../../../shared/filters";
 
 describe("Courses Component", () => {
   let element, scope, controller, $compile, coursesService, $q;

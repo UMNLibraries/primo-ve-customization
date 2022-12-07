@@ -1,7 +1,7 @@
 import "./color-theme/generated-theme.css";
 
-import Components from "./components/components.module";
-import Filters from "./filters/filters.module";
+import { ComponentsModule } from "./components";
+import { FiltersModule } from "./filters";
 import Services from "./services/services.module";
 
 /**
@@ -10,7 +10,7 @@ import Services from "./services/services.module";
  */
 export default angular.module("shared", [
   "angularLoad",
-  Components,
-  Filters,
+  ComponentsModule,
+  FiltersModule,
   Services,
 ]).name;

@@ -9,7 +9,5 @@
  * {{ users | uniqByKeys:['firstName', 'lastName'] }}
  *
  */
-const uniqByKeys = () => (input, keys) =>
+export const uniqByKeys = () => (input, keys) =>
   _.uniqBy(input, (obj) => keys.map((key) => obj[key]).join());
-
-export default uniqByKeys;

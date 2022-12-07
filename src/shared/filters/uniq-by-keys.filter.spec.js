@@ -1,4 +1,4 @@
-import FiltersModule from "./filters.module";
+import { FiltersModule } from ".";
 
 describe("uniqByKeys Filter", () => {
   let $filter;
