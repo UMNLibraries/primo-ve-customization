@@ -1,6 +1,7 @@
 import template from "./qpoint-chat.html";
 
-class QpointChat {
+export class QpointChatService {
+  static $inject = ["$mdDialog"];
   constructor($mdDialog) {
     this.$mdDialog = $mdDialog;
   }
@@ -21,7 +22,3 @@ class QpointChat {
     });
   }
 }
-
-QpointChat.$inject = ["$mdDialog"];
-
-export default QpointChat;

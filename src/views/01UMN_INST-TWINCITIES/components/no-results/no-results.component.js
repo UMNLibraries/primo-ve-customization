@@ -1,14 +1,14 @@
 import "./no-results.scss";
 import template from "./no-results.html";
 
-class PrmNoSearchResultAfterAfterController {
+class NoResultsController {
   get searchString() {
     return this.prmSearchResultListCtrl.searchString;
   }
 }
 
-export default {
+export const NoResultsComponent = {
   template: template,
-  controller: PrmNoSearchResultAfterAfterController,
+  controller: NoResultsController,
   require: { prmSearchResultListCtrl: "^^prmSearchResultList" },
 };

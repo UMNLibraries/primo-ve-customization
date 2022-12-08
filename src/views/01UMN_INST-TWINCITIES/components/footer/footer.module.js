@@ -1,8 +1,8 @@
-import UmnFooter from "./umn-footer.component";
+import { UmnFooterComponent } from "./umn-footer.component";
 
-export default angular
+export const FooterModule = angular
   .module("footer", [])
-  .component("umnFooter", UmnFooter)
+  .component("umnFooter", UmnFooterComponent)
   .component("prmExploreFooterAfter", {
     template: "<umn-footer></umn-footer>",
   }).name;

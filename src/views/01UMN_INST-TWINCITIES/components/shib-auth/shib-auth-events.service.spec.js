@@ -1,6 +1,6 @@
-import ShibAuthEvents from "./shib-auth-events.service";
+import { ShibAuthEventsService } from "./shib-auth-events.service";
 
-describe("ShibAuthEvents Service", () => {
+describe("ShibAuthEventsService", () => {
   const msg = "my message";
   let $window, shibAuthEvents;
 
@@ -12,7 +12,7 @@ describe("ShibAuthEvents Service", () => {
 
   beforeEach(() => {
     angular.mock.inject(($injector) => ($window = $injector.get("$window")));
-    shibAuthEvents = new ShibAuthEvents(msg, $window);
+    shibAuthEvents = new ShibAuthEventsService(msg, $window);
     shibAuthEvents.init();
   });
 

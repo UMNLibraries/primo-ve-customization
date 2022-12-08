@@ -1,19 +1,19 @@
-import Footer from "./footer/footer.module";
-import NoResults from "./no-results/no-results.component";
-import SearchResultHelp from "./search-result-help/search-result-help.component";
-import QuestionPoint from "./qpoint-chat/qpoint-chat.module";
+import { FooterModule } from "./footer";
+import { NoResultsComponent } from "./no-results";
+import { SearchResultHelpComponent } from "./search-result-help";
+import { QuestionPointModule } from "./qpoint-chat";
 import { ShibAuthModule } from "./shib-auth";
 import { AccountModule } from "./account";
 
-export default angular
+export const TwinCitiesComponentsModule = angular
   .module("twincitiesComponents", [
     AccountModule,
-    Footer,
-    QuestionPoint,
+    FooterModule,
+    QuestionPointModule,
     ShibAuthModule,
   ])
-  .component("noResults", NoResults)
-  .component("searchResultHelp", SearchResultHelp)
+  .component("noResults", NoResultsComponent)
+  .component("searchResultHelp", SearchResultHelpComponent)
   .component("prmSearchResultListAfter", {
     template: "<search-result-help></search-result-help>",
   })

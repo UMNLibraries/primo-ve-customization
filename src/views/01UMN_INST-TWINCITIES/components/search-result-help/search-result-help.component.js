@@ -1,7 +1,7 @@
 import "./search-result-help.scss";
 import template from "./search-result-help.html";
 
-class PrmSearchResultListAfterAfterController {
+class SearchResultHelpController {
   static $inject = ["$location"];
   constructor($location) {
     this.$location = $location;
@@ -31,8 +31,8 @@ class PrmSearchResultListAfterAfterController {
   }
 }
 
-export default {
+export const SearchResultHelpComponent = {
   require: { prmSearchResultListCtrl: "^^prmSearchResultList" },
-  controller: PrmSearchResultListAfterAfterController,
+  controller: SearchResultHelpController,
   template: template,
 };

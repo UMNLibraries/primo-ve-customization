@@ -1,4 +1,5 @@
-class ShibAuthEvents {
+export class ShibAuthEventsService {
+  static $inject = ["shibAuthExpectedMsg", "$window"];
   constructor(expectedMsg, $window) {
     this.$window = $window;
     this.expectedMsg = expectedMsg;
@@ -25,7 +26,3 @@ class ShibAuthEvents {
     this.observers.forEach((observer) => observer());
   }
 }
-
-ShibAuthEvents.$inject = ["shibAuthExpectedMsg", "$window"];
-
-export default ShibAuthEvents;

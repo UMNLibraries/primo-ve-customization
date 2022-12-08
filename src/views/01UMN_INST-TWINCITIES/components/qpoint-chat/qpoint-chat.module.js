@@ -1,8 +1,8 @@
 import "./qpoint-chat.scss";
-import QpointChat from "./qpoint-chat.service";
-import ShowChatOnClick from "./qpoint-chat-click.directive";
+import { QpointChatService } from "./qpoint-chat.service";
+import { showChatOnClick } from "./qpoint-chat-click.directive";
 
-export default angular
-  .module("qpointChat", [])
-  .service("qpointChat", QpointChat)
-  .directive("showChatOnClick", ShowChatOnClick).name;
+export const QuestionPointModule = angular
+  .module("questionPoint", [])
+  .service("qpointChat", QpointChatService)
+  .directive("showChatOnClick", showChatOnClick).name;

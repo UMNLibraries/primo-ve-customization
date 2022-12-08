@@ -1,6 +1,14 @@
 import template from "./shib-auth.html";
 
 class ShibAuthController {
+  static $inject = [
+    "shibAuthHost",
+    "shibAuthTarget",
+    "shibAuthEvents",
+    "$sce",
+    "$element",
+    "$timeout",
+  ];
   constructor(host, target, shibAuthEvents, $sce, $element, $timeout) {
     this.shibAuthEvents = shibAuthEvents;
     this.$element = $element;
@@ -35,16 +43,7 @@ class ShibAuthController {
   }
 }
 
-ShibAuthController.$inject = [
-  "shibAuthHost",
-  "shibAuthTarget",
-  "shibAuthEvents",
-  "$sce",
-  "$element",
-  "$timeout",
-];
-
-export default {
+export const ShibAuthComponent = {
   bindings: {
     onAuth: "&",
   },

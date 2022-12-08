@@ -1,5 +1,5 @@
 showChatOnClick.$inject = ["qpointChat", "googleAnalytics"];
-function showChatOnClick(qpointChat, googleAnalytics) {
+export function showChatOnClick(qpointChat, googleAnalytics) {
   return {
     restrict: "A",
     link($scope, $element, $attrs) {
@@ -10,5 +10,3 @@ function showChatOnClick(qpointChat, googleAnalytics) {
     },
   };
 }
-
-export default showChatOnClick;
