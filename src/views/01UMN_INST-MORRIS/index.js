@@ -1,7 +1,7 @@
 import { SharedModule } from "../../shared";
+import { MorrisComponentsModule } from "./components";
 import ViewCode from "../../view-code";
-import MorrisComponents from "./components/morris-components.module";
 
 angular
-  .module("viewCustom", [SharedModule, MorrisComponents])
+  .module("viewCustom", [SharedModule, MorrisComponentsModule])
   .constant("view", ViewCode.MORRIS);

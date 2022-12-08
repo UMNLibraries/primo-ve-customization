@@ -1,5 +1,5 @@
 import template from "./askus-button.html";
 
-export default {
+export const AskusButtonComponent = {
   template: template,
 };
