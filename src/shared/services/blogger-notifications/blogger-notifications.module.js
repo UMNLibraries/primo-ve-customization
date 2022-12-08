@@ -10,9 +10,9 @@ export const BloggerNotificationsModule = angular
     "$sceDelegateProvider",
     "bloggerBaseUrl",
     ($sceDelegateProvider, bloggerBaseUrl) => {
-      let urlWhitelist = $sceDelegateProvider.resourceUrlWhitelist();
-      urlWhitelist.push(`${bloggerBaseUrl}**`);
-      $sceDelegateProvider.resourceUrlWhitelist(urlWhitelist);
+      let trustedUrls = $sceDelegateProvider.trustedResourceUrlList();
+      trustedUrls.push(`${bloggerBaseUrl}**`);
+      $sceDelegateProvider.trustedResourceUrlList(trustedUrls);
     },
   ])
   .run([
