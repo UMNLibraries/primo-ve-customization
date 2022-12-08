@@ -1,4 +1,7 @@
+import ViewCode from "../../../../view-code";
+
 class PrmSearchBarAfterController {
+  static $inject = ["$scope", "$element"];
   constructor($scope, $element) {
     this.$scope = $scope;
     this.$element = $element;
@@ -6,7 +9,7 @@ class PrmSearchBarAfterController {
 
   $onInit() {
     switch (this.parentCtrl.vid) {
-      case "TWINCITIES":
+      case ViewCode.TWINCITIES:
         this.hideTabSuggestions();
         this.hideBlendedTabSelector();
         // The parent controller re-initializes its settings on search state changes,
@@ -15,7 +18,7 @@ class PrmSearchBarAfterController {
           this.hideBlendedTabSelector()
         );
         break;
-      case "MORRIS":
+      case ViewCode.MORRIS:
         this.hideTabSuggestions();
         break;
     }
@@ -38,9 +41,7 @@ class PrmSearchBarAfterController {
   }
 }
 
-PrmSearchBarAfterController.$inject = ["$scope", "$element"];
-
-export default {
+export const PrmSearchBarAfterComponent = {
   bindings: { parentCtrl: "<" },
   controller: PrmSearchBarAfterController,
 };
