@@ -1,6 +1,6 @@
 import "./topbar.scss";
-import PrmSkipToAfter from "./skip-to/prm-skip-to-after.component";
+import { PrmSkipToAfterComponent } from "./skip-to";
 
 export const TopbarModule = angular
   .module("topbar", [])
-  .component("prmSkipToAfter", PrmSkipToAfter).name;
+  .component("prmSkipToAfter", PrmSkipToAfterComponent).name;

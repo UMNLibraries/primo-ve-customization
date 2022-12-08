@@ -15,7 +15,7 @@ class PrmSkipToAfterController {
   }
 }
 
-export default {
+export const PrmSkipToAfterComponent = {
   bindings: { parentCtrl: "<" },
   controller: PrmSkipToAfterController,
 };
