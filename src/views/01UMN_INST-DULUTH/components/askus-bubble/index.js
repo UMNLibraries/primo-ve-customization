@@ -8,7 +8,7 @@ class AskusBubbleController {
   }
 }
 
-export default {
+export const AskusBubbleComponent = {
   controller: AskusBubbleController,
   template: template,
 };

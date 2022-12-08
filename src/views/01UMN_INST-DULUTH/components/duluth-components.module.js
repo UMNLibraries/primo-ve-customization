@@ -1,8 +1,8 @@
-import AskusBubble from "./askus-bubble";
+import { AskusBubbleComponent } from "./askus-bubble";
 
-export default angular
+export const DuluthComponentsModule = angular
   .module("duluthComponents", [])
-  .component("askusBubble", AskusBubble)
+  .component("askusBubble", AskusBubbleComponent)
   .component("prmSearchBookmarkFilterAfter", {
     template: "<askus-bubble></askus-bubble>",
   }).name;
