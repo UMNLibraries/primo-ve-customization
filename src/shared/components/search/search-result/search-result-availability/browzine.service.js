@@ -43,14 +43,9 @@ const TRANSLATION_NAMESPACE = "umn.browzine";
 const SCRIPT_URL =
   "https://s3.amazonaws.com/browzine-adapters/primo/browzine-primo-adapter.js";
 
-const removeNamespaces = (translations) =>
-  Object.entries(translations).reduce(
-    (obj, [key, value]) =>
-      Object.assign(obj, {
-        [key.replace(`${TRANSLATION_NAMESPACE}.`, "")]: value,
-      }),
-    {}
-  );
+const removeNamespaces = _.partialRight(_.mapKeys, (_, key) =>
+  key.replace(`${TRANSLATION_NAMESPACE}.`, "")
+);
 
 export class BrowzineService {
   static $inject = ["$window", "$translate", "angularLoad", "$q"];
@@ -63,6 +58,7 @@ export class BrowzineService {
   }
 
   getBrowzineSettings() {
+    // merge default and view-specific settings
     return this.$translate([
       `${TRANSLATION_NAMESPACE}.api`,
       `${TRANSLATION_NAMESPACE}.apiKey`,
@@ -79,7 +75,7 @@ export class BrowzineService {
    * Multiple calls will return the same promise.
    */
   loadAdapter() {
-    return (this.loadAdapter.done ||= this.$q((resolve, reject) =>
+    return (this.loadAdapter.done ||= this.$q((resolve) =>
       this.getBrowzineSettings()
         .then((settings) => this.configureAdapter(settings))
         .then(() => this.angularLoad.loadScript(SCRIPT_URL))
