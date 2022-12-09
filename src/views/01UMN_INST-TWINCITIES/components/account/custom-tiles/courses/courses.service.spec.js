@@ -142,6 +142,7 @@ const RESPONSE_FIXTURE = `
 }`;
 
 import { CoursesModule } from ".";
+import { CoursesService } from "./courses.service";
 
 describe("Courses Service", () => {
   let courses, $httpBackend;
@@ -155,7 +156,7 @@ describe("Courses Service", () => {
   });
 
   it("should return a merged array of student and instructor courses", () => {
-    $httpBackend.expectGET(courses.coursesUrl).respond(RESPONSE_FIXTURE);
+    $httpBackend.expectGET(CoursesService.URL).respond(RESPONSE_FIXTURE);
     courses.getCourses().then((courseList) => {
       expect(courseList.length).toBe(12);
       expect(courseList.filter((c) => c.role === "Student").length).toBe(9);
@@ -173,7 +174,7 @@ describe("Courses Service", () => {
       instructor: [ ]
       }
     }`;
-    $httpBackend.expectGET(courses.coursesUrl).respond(response);
+    $httpBackend.expectGET(CoursesService.URL).respond(response);
     courses.getCourses().then((courseList) => {
       expect(courseList.length).toBe(0);
     });
