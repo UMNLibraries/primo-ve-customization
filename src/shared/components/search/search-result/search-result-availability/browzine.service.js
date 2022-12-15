@@ -39,13 +39,8 @@ const DEFAULT_SETTINGS = {
   articleAcceptedManuscriptArticleLinkViaUnpaywallText:
     "Read Open Access Article (Accepted Manuscript)",
 };
-const TRANSLATION_NAMESPACE = "umn.browzine";
 const SCRIPT_URL =
   "https://s3.amazonaws.com/browzine-adapters/primo/browzine-primo-adapter.js";
-
-const removeNamespaces = _.partialRight(_.mapKeys, (_, key) =>
-  key.replace(`${TRANSLATION_NAMESPACE}.`, "")
-);
 
 export class BrowzineService {
   static $inject = ["$window", "$translate", "angularLoad", "$q"];
@@ -57,14 +52,19 @@ export class BrowzineService {
     this.loadAdapter();
   }
 
+  getTranslations(ids = []) {
+    const namespace = "umn.browzine";
+    return this.$translate(ids.map((id) => `${namespace}.${id}`)).then(
+      (tranlations) =>
+        _.mapKeys(tranlations, (_, key) => key.replace(`${namespace}.`, ""))
+    );
+  }
+
   getBrowzineSettings() {
     // merge default and view-specific settings
-    return this.$translate([
-      `${TRANSLATION_NAMESPACE}.api`,
-      `${TRANSLATION_NAMESPACE}.apiKey`,
-    ])
-      .then(removeNamespaces)
-      .then((settings) => Object.assign(DEFAULT_SETTINGS, settings));
+    return this.getTranslations(["api", "apiKey"]).then((settings) =>
+      Object.assign(DEFAULT_SETTINGS, settings)
+    );
   }
 
   configureAdapter(browzineSettings) {
