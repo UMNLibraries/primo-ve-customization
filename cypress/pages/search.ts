@@ -1,7 +1,7 @@
 import { PrimoPage } from "./primo";
 
 export class SearchPage extends PrimoPage {
-  visit() {
+  override visit() {
     super.visit(`/search`);
   }
 
