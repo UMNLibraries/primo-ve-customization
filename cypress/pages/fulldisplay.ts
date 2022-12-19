@@ -1,10 +1,13 @@
-import { PrimoPage } from "./primo";
+import { PrimoPage, ViewCode } from "./primo";
 
 export class FullDisplayPage extends PrimoPage {
-  override visit(
-    url: string = "/fullview",
-    options: { qs: { docid: string } }
-  ): void {
-    super.visit(url, options);
+  readonly docid;
+
+  constructor(view: ViewCode, docid: string) {
+    super(view);
+  }
+
+  override visit() {
+    super.visit("/fulldisplay", { qs: { docid: this.docid } });
   }
 }

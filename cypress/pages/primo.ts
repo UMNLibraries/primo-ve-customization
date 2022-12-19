@@ -1,4 +1,4 @@
-type View =
+export type ViewCode =
   | "01UMN_INST:TWINCITIES"
   | "01UMN_INST:DULUTH"
   | "01UMN_INST:MORRIS"
@@ -9,7 +9,7 @@ type QueryString = {
 };
 
 export abstract class PrimoPage {
-  constructor(readonly view: View) {}
+  constructor(readonly view: ViewCode) {}
 
   visit(url: string, options: { qs: QueryString } = { qs: {} }) {
     options.qs.vid ??= this.view;
