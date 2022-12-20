@@ -25,7 +25,7 @@ All JavaScript, CSS, HTML, images, etc. in the `src/shared` directory are includ
 
 ### Local Development
 
-Run `npm start` to launch a development proxy server and preview the customization packages in the UMN Libraries sandbox server. To preview a view, go to `http://localhost:8080/discovery/search?vid={view_code}` (e.g. http://localhost:8080/discovery/search?vid=01UMN_INST:TWINCITIES).
+Run `npm start` to launch a development proxy server and preview the customization packages in the UMN Libraries production server. To preview a view, go to `http://localhost:8080/discovery/search?vid={view_code}` (e.g. http://localhost:8080/discovery/search?vid=01UMN_INST:TWINCITIES).
 
 Set the `PROXY_TARGET` environment variable to preview the customizations in a different Primo environment (e.g. `PROXY_TARGET=umn.primo.exlibrisgroup.com npm start`).
 
@@ -39,8 +39,10 @@ Run `npm run build` to create production-ready deployment packages. A zip file f
 
 ### Test
 
-#### Unit Tests (Karma + Jasmine)
+#### Unit Tests (Karma)
 
-`npm test`
+Run `npm test` to execute the unit tests. The Karma configuration file is `config/karma.config.cjs`.
 
-#### End-to-end Tests (Protractor + Jasmine)
+#### End-to-end Tests (Cypress)
+
+Run `npm run test:e2e` to launch the local dev server and execute the end-to-end tests. The Cypress config file is `config/cypress.config.js`. (Note: we're now using Cypress instead of Protractor for end-to-end tests.)
