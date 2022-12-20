@@ -8,8 +8,8 @@
     "start": "webpack serve --config config/webpack.dev.js",
     "test": "karma start config/karma.conf.cjs",
     "build": "webpack --config config/webpack.prod.js",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open --e2e",
+    "cy:run": "cypress run --config-file config/cypress.config.js",
+    "cy:open": "cypress open --e2e --config-file config/cypress.config.js",
     "test:e2e": "start-server-and-test start http-get://localhost:8080 cy:run",
     "color-theme": "cd src/shared/color-theme && primo-color-theme -s umn.primo.exlibrisgroup.com -f colors.json > generated-theme.css",
     "prepare": "husky install"
