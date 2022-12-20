@@ -8,6 +8,9 @@
     "start": "webpack serve --config config/webpack.dev.js",
     "test": "karma start config/karma.conf.cjs",
     "build": "webpack --config config/webpack.prod.js",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open --e2e",
+    "test:e2e": "start-server-and-test start http-get://localhost:8080 cy:run",
     "color-theme": "cd src/shared/color-theme && primo-color-theme -s umn.primo.exlibrisgroup.com -f colors.json > generated-theme.css",
     "prepare": "husky install"
   },
@@ -49,6 +52,7 @@
     "puppeteer": "^19.2.2",
     "sass": "^1.54.5",
     "sass-loader": "^13.0.2",
+    "start-server-and-test": "^1.15.2",
     "typescript": "^4.9.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
