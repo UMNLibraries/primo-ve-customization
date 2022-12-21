@@ -1,10 +1,11 @@
 import { PrimoPage, ViewCode } from "./primo";
 
 export class FullDisplayPage extends PrimoPage {
-  readonly docid;
+  readonly docid: string;
 
   constructor(view: ViewCode, docid: string) {
     super(view);
+    this.docid = docid;
   }
 
   override visit() {
