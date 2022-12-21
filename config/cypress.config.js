@@ -6,6 +6,8 @@ export default defineConfig({
 
     defaultCommandTimeout: 12000,
 
+    chromeWebSecurity: false,
+
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
