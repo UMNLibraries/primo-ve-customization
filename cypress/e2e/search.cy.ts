@@ -1,6 +1,8 @@
 import { SearchPage } from "../pages";
 import { inAllViews, inView } from "../support/e2e";
 
+// TOOD: add topbar tags test?
+
 describe("Search", () => {
   let searchPage: SearchPage;
 

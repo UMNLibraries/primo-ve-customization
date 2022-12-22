@@ -1,0 +1,17 @@
+{
+  "feed": {
+    "entry": [
+      {
+        "updated": { "$t": "2016-11-12T21:25:30.000Z" },
+        "title": {
+          "type": "text",
+          "$t": "Test Notification"
+        },
+        "content": {
+          "type": "text",
+          "$t": "This is a test."
+        }
+      }
+    ]
+  }
+}

@@ -43,4 +43,8 @@ export class SearchPage extends PrimoPage {
   get advancedSearchSubmit() {
     return cy.get('#advanced-search button[type="submit"]');
   }
+
+  get bloggerNotification() {
+    return cy.get("md-toast.blogger-notification");
+  }
 }
