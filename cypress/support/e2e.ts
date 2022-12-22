@@ -13,8 +13,14 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
 import "./commands";
+import ViewCode from "../../src/view-code";
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+type View = typeof ViewCode[keyof typeof ViewCode];
+type ViewCallback = (view: View) => void;
+
+export const inView = (view: View, fn: ViewCallback) =>
+  context(`In the ${view} view, `, () => fn(view));
+
+export const inAllViews = (fn: ViewCallback) =>
+  Object.values(ViewCode).forEach((v: View) => inView(v, fn));

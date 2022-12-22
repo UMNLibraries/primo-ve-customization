@@ -1,11 +1,12 @@
 import { SearchPage } from "../pages/search";
+import { inAllViews, inView } from "../support/e2e";
 
 describe("Search", () => {
   let searchPage: SearchPage;
 
-  context("Twin Cities", () => {
+  inView("01UMN_INST:TWINCITIES", (view) => {
     beforeEach(() => {
-      searchPage = new SearchPage("01UMN_INST:TWINCITIES");
+      searchPage = new SearchPage(view);
       searchPage.visit();
     });
 
@@ -16,6 +17,13 @@ describe("Search", () => {
         searchPage.chatCloseButton.click();
         searchPage.chatDialog.should("not.exist");
       });
+    });
+  });
+
+  inAllViews((view) => {
+    beforeEach(() => {
+      searchPage = new SearchPage(view);
+      searchPage.visit();
     });
 
     describe("Advanced Search", () => {
