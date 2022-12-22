@@ -1,4 +1,4 @@
-import { SearchPage } from "../pages/search";
+import { SearchPage } from "../pages";
 import { inAllViews, inView } from "../support/e2e";
 
 describe("Search", () => {
