@@ -26,8 +26,14 @@ describe("Search", () => {
       searchPage.visit();
     });
 
+    describe("Logo", () => {
+      it("is clickable", () => {
+        cy.get("prm-logo a").should("exist");
+      });
+    });
+
     describe("Advanced Search", () => {
-      it("should not be collapsed", () => {
+      it("is not collapsed", () => {
         searchPage.advancedSearchButton.click();
         searchPage.advancedSearchInputFields.first().type("test");
         searchPage.advancedSearchSubmit.click();
