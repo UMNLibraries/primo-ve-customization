@@ -4,7 +4,7 @@ describe("Search", () => {
   let searchPage: SearchPage;
 
   context("Twin Cities", () => {
-    before(() => {
+    beforeEach(() => {
       searchPage = new SearchPage("01UMN_INST:TWINCITIES");
       searchPage.visit();
     });
@@ -15,6 +15,18 @@ describe("Search", () => {
         searchPage.chatDialog.contains("h2", /libraries.*chat/i);
         searchPage.chatCloseButton.click();
         searchPage.chatDialog.should("not.exist");
+      });
+    });
+
+    describe("Advanced Search", () => {
+      it("should not be collapsed", () => {
+        searchPage.advancedSearchButton.click();
+        searchPage.advancedSearchInputFields.first().type("test");
+        searchPage.advancedSearchSubmit.click();
+        cy.get("#advancedSearchTabs").should(
+          "not.have.class",
+          "shrink-content"
+        );
       });
     });
   });

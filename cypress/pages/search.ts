@@ -31,4 +31,16 @@ export class SearchPage extends PrimoPage {
   get chatCloseButton() {
     return cy.get(".qpoint-chat").find("md-dialog-actions button");
   }
+
+  get advancedSearchInputFields() {
+    return cy.get('#advanced-search input[ng-model="row.searchQuery"]');
+  }
+
+  get advancedSearchButton() {
+    return cy.get('button[ng-click="$ctrl.switchAdvancedSearch()"]');
+  }
+
+  get advancedSearchSubmit() {
+    return cy.get('#advanced-search button[type="submit"]');
+  }
 }
