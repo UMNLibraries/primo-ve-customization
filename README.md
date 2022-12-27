@@ -35,7 +35,7 @@ The color theme is defined in the central package and is generated with the [pri
 
 ### Deployment
 
-Run `npm run build` to create production-ready deployment packages. A zip file for each package will be created under `dist/packages/`. To deploy a package, upload its zip file in the Manage Customization Package tab in Alma (under Discovery > Manage Views > {view_code}).
+Run `npm run build` to create production-ready deployment packages. A zip file for each view will be created under `dist/packages/`. To deploy a package, upload its zip file in the Manage Customization Package tab in Alma (under Discovery > Manage Views > {view_code}).
 
 ### Test
 
