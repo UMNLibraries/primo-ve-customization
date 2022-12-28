@@ -21,7 +21,7 @@ module.exports = async function (config) {
       "../node_modules/angular-aria/angular-aria.js",
       "../node_modules/angular-cookies/angular-cookies.js",
       "../node_modules/lodash/lodash.js",
-      "../src/**/*.spec.js",
+      "../src/**/*.spec.*",
     ],
 
     // list of files / patterns to exclude
@@ -30,7 +30,7 @@ module.exports = async function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
-      "../src/**/*.spec.js": ["webpack"],
+      "../src/**/*.spec.*": ["webpack"],
     },
 
     webpack: webpackConfig,
