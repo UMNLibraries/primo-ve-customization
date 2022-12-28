@@ -77,6 +77,11 @@ const baseConfig = {
         },
       },
       {
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
         test: /\.html$/,
         use: "html-loader",
         exclude: /node_modules/,
