@@ -1,7 +1,11 @@
 import notificationTemplate from "./blogger-notification.html";
 import "./blogger-notification.scss";
+import { BloggerFeed } from "./blogger-feed.model";
 
 export class BloggerNotificationsService {
+  private url: string;
+  private notificationTimestamp: string;
+
   static $inject = [
     "$mdToast",
     "$http",
@@ -9,15 +13,17 @@ export class BloggerNotificationsService {
     "bloggerBaseUrl",
     "$cookies",
   ];
-  constructor($mdToast, $http, $document, bloggerBaseUrl, $cookies) {
-    this.$mdToast = $mdToast;
-    this.$http = $http;
-    this.$document = $document;
-    this.$cookies = $cookies;
+  constructor(
+    private $mdToast: ng.material.IToastService,
+    private $http: ng.IHttpService,
+    private $document: ng.IDocumentService,
+    bloggerBaseUrl: string,
+    private $cookies: ng.cookies.ICookiesService
+  ) {
     this.url = `${bloggerBaseUrl}/feeds/posts/default?alt=json-in-script`;
   }
 
-  showToast(msg) {
+  showToast(msg: string) {
     this.$mdToast.show({
       controllerAs: "ctrl",
       bindToController: true,
@@ -31,6 +37,8 @@ export class BloggerNotificationsService {
         msg: msg,
       },
       controller: class {
+        $mdToast: ng.material.IToastService;
+        notificationService: BloggerNotificationsService;
         close() {
           this.$mdToast.hide();
           this.notificationService.markNotificationAsRead();
@@ -54,7 +62,7 @@ export class BloggerNotificationsService {
 
   show() {
     this.$http
-      .jsonp(this.url, { jsonpCallbackParam: "callback" })
+      .jsonp<BloggerFeed>(this.url, { jsonpCallbackParam: "callback" })
       .then((resp) => {
         let entry = resp.data.feed.entry;
         if (entry) {
