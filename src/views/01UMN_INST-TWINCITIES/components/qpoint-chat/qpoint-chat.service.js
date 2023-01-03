@@ -13,10 +13,10 @@ export class QpointChatService {
       locals: {
         $mdDialog: this.$mdDialog,
       },
-      controller: class {
-        close() {
+      controller: function () {
+        this.close = function () {
           this.$mdDialog.hide();
-        }
+        };
       },
       template: template,
     });

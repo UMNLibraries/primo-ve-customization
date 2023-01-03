@@ -36,13 +36,11 @@ export class BloggerNotificationsService {
         notificationService: this,
         msg: msg,
       },
-      controller: class {
-        $mdToast: ng.material.IToastService;
-        notificationService: BloggerNotificationsService;
-        close() {
+      controller: function () {
+        this.close = function () {
           this.$mdToast.hide();
           this.notificationService.markNotificationAsRead();
-        }
+        };
       },
       template: notificationTemplate,
     });
