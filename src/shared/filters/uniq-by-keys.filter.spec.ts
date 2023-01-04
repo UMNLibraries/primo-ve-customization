@@ -1,7 +1,7 @@
 import { FiltersModule } from ".";
 
 describe("uniqByKeys Filter", () => {
-  let $filter;
+  let $filter: ng.IFilterService;
 
   beforeEach(() => {
     angular.mock.module(FiltersModule);
@@ -11,14 +11,16 @@ describe("uniqByKeys Filter", () => {
   });
 
   it("should remove duplicate objects based on matching properties", () => {
-    const users = [
+    type User = { firstName: string; lastName: string };
+    const users: User[] = [
       { firstName: "Carl", lastName: "Carlson" },
       { firstName: "Carl", lastName: "Carlson" },
       { firstName: "Lenny", lastName: "Lenard" },
       { firstName: "Lenny", lastName: "Simpson" },
     ];
-    const uniqByKeys = $filter("uniqByKeys");
-    const filteredUsers = uniqByKeys(users, ["firstName", "lastName"]);
+    const uniqByKeys: (input: User[], keys: string[]) => User[] =
+      $filter("uniqByKeys");
+    const filteredUsers: User[] = uniqByKeys(users, ["firstName", "lastName"]);
     expect(filteredUsers.length).toEqual(3);
     expect(
       filteredUsers.filter((user) => user.firstName === "Carl").length
