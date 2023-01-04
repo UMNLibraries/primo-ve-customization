@@ -16,7 +16,14 @@ const cssLoaders = [
     loader: "postcss-loader",
     options: {
       postcssOptions: {
-        plugins: [["autoprefixer", { cascade: false }]],
+        plugins: [
+          [
+            "postcss-preset-env",
+            {
+              autoprefixer: { cascade: false },
+            },
+          ],
+        ],
       },
     },
   },
