@@ -1,11 +1,13 @@
 import ViewCode from "../../../../view-code";
 
 class PrmSearchBarAfterController {
+  private parentCtrl: ng.IComponentController;
+
   static $inject = ["$scope", "$element"];
-  constructor($scope, $element) {
-    this.$scope = $scope;
-    this.$element = $element;
-  }
+  constructor(
+    private $scope: ng.IScope,
+    private $element: ng.IAugmentedJQuery
+  ) {}
 
   $onInit() {
     switch (this.parentCtrl.vid) {
