@@ -1,9 +1,15 @@
 import { ShibAuthModule } from ".";
+import { Observer } from "./observer.model";
+import { ShibAuthEventsService } from "./shib-auth-events.service";
 
 describe("ShibAuth Component", () => {
   beforeEach(angular.mock.module(ShibAuthModule));
 
-  let element, scope, controller, $compile, shibAuthEvents;
+  let element: ng.IAugmentedJQuery,
+    scope: ng.IRootScopeService & { callback: Observer },
+    controller: ng.IComponentController,
+    $compile: ng.ICompileService,
+    shibAuthEvents: ShibAuthEventsService;
   const content = "my content";
 
   beforeEach(() => {

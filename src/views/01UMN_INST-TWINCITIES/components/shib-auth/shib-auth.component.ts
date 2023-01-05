@@ -1,6 +1,13 @@
+import { Observer } from "./observer.model";
+import { ShibAuthEventsService } from "./shib-auth-events.service";
 import template from "./shib-auth.html";
 
 class ShibAuthController {
+  private src: string;
+  private authenticationObserver: Observer;
+  private timer: ng.IPromise<void>;
+  public onAuth: () => void; // output binding
+
   static $inject = [
     "shibAuthHost",
     "shibAuthTarget",
@@ -9,10 +16,14 @@ class ShibAuthController {
     "$element",
     "$timeout",
   ];
-  constructor(host, target, shibAuthEvents, $sce, $element, $timeout) {
-    this.shibAuthEvents = shibAuthEvents;
-    this.$element = $element;
-    this.$timeout = $timeout;
+  constructor(
+    host: string,
+    target: string,
+    private shibAuthEvents: ShibAuthEventsService,
+    $sce: ng.ISCEService,
+    private $element: ng.IAugmentedJQuery,
+    private $timeout: ng.ITimeoutService
+  ) {
     this.src = $sce.trustAsResourceUrl(
       `https://${host}/Shibboleth.sso/Login?isPassive=true&target=${encodeURIComponent(
         target

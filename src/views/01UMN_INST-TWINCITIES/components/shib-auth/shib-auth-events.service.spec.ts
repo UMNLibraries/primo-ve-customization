@@ -1,10 +1,11 @@
+import { Observer } from "./observer.model";
 import { ShibAuthEventsService } from "./shib-auth-events.service";
 
 describe("ShibAuthEventsService", () => {
   const msg = "my message";
-  let $window, shibAuthEvents;
+  let $window: ng.IWindowService, shibAuthEvents: ShibAuthEventsService;
 
-  function onMessage(assertionFunc) {
+  function onMessage(assertionFunc: Observer) {
     $window.addEventListener("message", (event) => {
       if (event.data == msg) assertionFunc();
     });
@@ -42,7 +43,7 @@ describe("ShibAuthEventsService", () => {
       jasmine.arrayContaining([observers[1]])
     );
     expect(shibAuthEvents.observers).toEqual(
-      jasmine.arrayContaining([observers[0]], observers[2])
+      jasmine.arrayContaining([observers[0], observers[2]])
     );
   });
 });

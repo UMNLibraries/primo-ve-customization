@@ -1,6 +1,11 @@
 import { ShibAuthEventsService } from "./shib-auth-events.service";
 import { ShibAuthComponent } from "./shib-auth.component";
 
+run.$inject = ["shibAuthEvents"];
+function run(shibAuthEvents: ShibAuthEventsService) {
+  shibAuthEvents.init();
+}
+
 export const ShibAuthModule = angular
   .module("shibAuth", [])
   .constant("shibAuthHost", "stacks.lib.umn.edu")
@@ -8,4 +13,4 @@ export const ShibAuthModule = angular
   .constant("shibAuthExpectedMsg", "stacks")
   .service("shibAuthEvents", ShibAuthEventsService)
   .component("shibAuth", ShibAuthComponent)
-  .run(["shibAuthEvents", (shibAuthEvents) => shibAuthEvents.init()]).name;
+  .run(run).name;
