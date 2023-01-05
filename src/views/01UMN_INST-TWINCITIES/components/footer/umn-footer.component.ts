@@ -3,9 +3,7 @@ import template from "./umn-footer.html";
 
 class UmnFooterController {
   static $inject = ["$mdMedia"];
-  constructor($mdMedia) {
-    this.$mdMedia = $mdMedia;
-  }
+  constructor(private $mdMedia: ng.material.IMedia) {}
 }
 
 export const UmnFooterComponent = {
