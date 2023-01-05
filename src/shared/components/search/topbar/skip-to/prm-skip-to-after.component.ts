@@ -1,10 +1,17 @@
+type SkipLinksObject = {
+  [key: string]: string[];
+};
+
 class PrmSkipToAfterController {
+  private parentCtrl: ng.IComponentController;
+
   $onInit() {
-    const skipLinksObject = this.parentCtrl.skipToService.skipLinksObject;
+    const skipLinksObject: SkipLinksObject =
+      this.parentCtrl.skipToService.skipLinksObject;
     this.removeMainMenuLinks(skipLinksObject);
   }
 
-  removeMainMenuLinks(skipLinksObject) {
+  private removeMainMenuLinks(skipLinksObject: SkipLinksObject): void {
     const states = Object.getOwnPropertyNames(skipLinksObject);
     states.forEach(
       (stateName) =>
