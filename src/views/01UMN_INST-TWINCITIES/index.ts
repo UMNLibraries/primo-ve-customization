@@ -1,4 +1,4 @@
-import ViewCode from "../../view-code";
+import { ViewCode } from "../../view-code";
 import { SharedModule } from "../../shared";
 import { TwinCitiesComponentsModule } from "./components";
 

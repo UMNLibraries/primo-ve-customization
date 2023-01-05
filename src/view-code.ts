@@ -1,8 +1,6 @@
-const ViewCode = Object.freeze({
+export const ViewCode = Object.freeze({
   CROOKSTON: "01UMN_INST:CROOKSTON",
   DULUTH: "01UMN_INST:DULUTH",
   MORRIS: "01UMN_INST:MORRIS",
   TWINCITIES: "01UMN_INST:TWINCITIES",
 });
-
-export default ViewCode;

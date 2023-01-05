@@ -14,7 +14,7 @@
 // ***********************************************************
 
 import "./commands";
-import ViewCode from "../../src/view-code";
+import { ViewCode } from "../../src/view-code";
 
 type View = typeof ViewCode[keyof typeof ViewCode];
 type ViewCallback = (view: View) => void;

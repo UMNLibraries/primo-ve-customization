@@ -1,4 +1,4 @@
-import ViewCode from "../../../../view-code";
+import { ViewCode } from "../../../../view-code";
 
 class PrmSearchBarAfterController {
   private parentCtrl: ng.IComponentController;

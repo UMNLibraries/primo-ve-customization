@@ -1,5 +1,5 @@
 import { SharedModule } from "../../shared";
-import ViewCode from "../../view-code";
+import { ViewCode } from "../../view-code";
 
 angular
   .module("viewCustom", [SharedModule])
