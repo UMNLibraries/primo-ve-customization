@@ -1,11 +1,13 @@
+import { GoogleAnalyticsService } from "../../../../services/google-analytics/google-analytics.service";
+
 /**
  * log search errors in analytics service
  */
 class PrmSearchErrorMessageAfterController {
+  private parentCtrl: ng.IComponentController;
+
   static $inject = ["googleAnalytics"];
-  constructor(googleAnalytics) {
-    this.googleAnalytics = googleAnalytics;
-  }
+  constructor(private googleAnalytics: GoogleAnalyticsService) {}
 
   $onInit() {
     const label =

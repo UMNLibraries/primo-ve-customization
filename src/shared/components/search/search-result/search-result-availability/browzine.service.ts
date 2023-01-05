@@ -16,7 +16,9 @@
  *    DOM manipulation
  */
 
-const DEFAULT_SETTINGS = {
+import { BrowzineSettings } from "./browzine-settings.model";
+
+const DEFAULT_SETTINGS: Partial<BrowzineSettings> = {
   journalCoverImagesEnabled: true,
   journalBrowZineWebLinkTextEnabled: false,
   journalBrowZineWebLinkText: "View Journal Contents",
@@ -44,15 +46,16 @@ const SCRIPT_URL =
 
 export class BrowzineService {
   static $inject = ["$window", "$translate", "angularLoad", "$q"];
-  constructor($window, $translate, angularLoad, $q) {
-    this.$window = $window;
-    this.$translate = $translate;
-    this.angularLoad = angularLoad;
-    this.$q = $q;
+  constructor(
+    private $window: ng.IWindowService,
+    private $translate: ng.translate.ITranslateService,
+    private angularLoad: ng.load.IAngularLoadService,
+    private $q: ng.IQService
+  ) {
     this.loadAdapter();
   }
 
-  getTranslations(ids = []) {
+  private getTranslations(ids: string[] = []) {
     const namespace = "umn.browzine";
     return this.$translate(ids.map((id) => `${namespace}.${id}`)).then(
       (tranlations) =>
@@ -60,21 +63,23 @@ export class BrowzineService {
     );
   }
 
-  getBrowzineSettings() {
+  private getBrowzineSettings(): ng.IPromise<BrowzineSettings> {
     // merge default and view-specific settings
-    return this.getTranslations(["api", "apiKey"]).then((settings) =>
-      Object.assign(DEFAULT_SETTINGS, settings)
+    return this.getTranslations(["api", "apiKey"]).then(
+      (settings) =>
+        Object.assign(DEFAULT_SETTINGS, settings) as BrowzineSettings
     );
   }
 
-  configureAdapter(browzineSettings) {
+  private configureAdapter(browzineSettings: BrowzineSettings): void {
     this.$window.browzine = browzineSettings;
   }
 
   /**
    * Multiple calls will return the same promise.
    */
-  loadAdapter() {
+  private loadAdapter(): ng.IPromise<boolean> {
+    // @ts-ignore
     return (this.loadAdapter.done ||= this.$q((resolve) =>
       this.getBrowzineSettings()
         .then((settings) => this.configureAdapter(settings))
@@ -90,7 +95,7 @@ export class BrowzineService {
    * to belong to a PrmSearchAvailabilityLineAfter component, with a parentCtrl
    * property.
    */
-  handleSearchResult(scope) {
+  handleSearchResult(scope: ng.IScope) {
     this.loadAdapter().then(() =>
       this.$window.browzine.primo.searchResult(scope)
     );
