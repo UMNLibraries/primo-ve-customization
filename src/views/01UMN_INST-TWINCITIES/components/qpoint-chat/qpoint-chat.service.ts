@@ -2,9 +2,7 @@ import template from "./qpoint-chat.html";
 
 export class QpointChatService {
   static $inject = ["$mdDialog"];
-  constructor($mdDialog) {
-    this.$mdDialog = $mdDialog;
-  }
+  constructor(private $mdDialog: ng.material.IDialogService) {}
 
   showChatDialog() {
     this.$mdDialog.show({
