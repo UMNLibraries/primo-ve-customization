@@ -10,11 +10,11 @@
  */
 class InjectCustomTilesController {
   static $inject = ["$scope", "$compile", "$element"];
-  constructor($scope, $compile, $element) {
-    this.$scope = $scope;
-    this.$element = $element;
-    this.$compile = $compile;
-  }
+  constructor(
+    private $scope: ng.IScope,
+    private $compile: ng.ICompileService,
+    private $element: ng.IAugmentedJQuery
+  ) {}
 
   getAccountOverviewGrid() {
     return this.$element.parent().parent().parent();

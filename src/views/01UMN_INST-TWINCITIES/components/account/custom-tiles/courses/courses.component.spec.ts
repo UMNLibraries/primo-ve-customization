@@ -1,4 +1,4 @@
-const courses = JSON.parse(`
+const courses: Course[] = JSON.parse(`
 [{
   "role": "Student",
   "term": "1183",
@@ -46,9 +46,16 @@ const courses = JSON.parse(`
 
 import { CoursesModule } from ".";
 import { FiltersModule } from "../../../../../../shared/filters";
+import { Course } from "./courses.model";
+import { CoursesService } from "./courses.service";
 
 describe("Courses Component", () => {
-  let element, scope, controller, $compile, coursesService, $q;
+  let element: ng.IAugmentedJQuery,
+    scope: ng.IRootScopeService & { [key: string]: any },
+    controller: ng.IComponentController,
+    $compile: ng.ICompileService,
+    coursesService: CoursesService,
+    $q: ng.IQService;
 
   beforeEach(() => {
     angular.mock.module(CoursesModule, FiltersModule);

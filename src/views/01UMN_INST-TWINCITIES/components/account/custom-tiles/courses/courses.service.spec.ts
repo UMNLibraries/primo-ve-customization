@@ -145,7 +145,7 @@ import { CoursesModule } from ".";
 import { CoursesService } from "./courses.service";
 
 describe("Courses Service", () => {
-  let courses, $httpBackend;
+  let courses: CoursesService, $httpBackend: ng.IHttpBackendService;
 
   beforeEach(() => {
     angular.mock.module(CoursesModule);

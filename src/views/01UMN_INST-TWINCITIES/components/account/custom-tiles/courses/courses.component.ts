@@ -1,11 +1,13 @@
 import template from "./courses.html";
+import { Course } from "./courses.model";
+import { CoursesService } from "./courses.service";
 
 class CoursesController {
+  private courses: Course[] = [];
+  private loading: boolean;
+
   static $inject = ["courses"];
-  constructor(coursesService) {
-    this.coursesService = coursesService;
-    this.courses = [];
-  }
+  constructor(private coursesService: CoursesService) {}
 
   loadCourses() {
     this.loading = true;
