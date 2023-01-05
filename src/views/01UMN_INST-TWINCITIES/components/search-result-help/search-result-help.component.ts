@@ -2,10 +2,10 @@ import "./search-result-help.scss";
 import template from "./search-result-help.html";
 
 class SearchResultHelpController {
+  private prmSearchResultListCtrl: ng.IComponentController;
+
   static $inject = ["$location"];
-  constructor($location) {
-    this.$location = $location;
-  }
+  constructor(private $location: ng.ILocationService) {}
 
   get visible() {
     return this.onSearchPage && this.hasResults && !this.searchInProgress;
