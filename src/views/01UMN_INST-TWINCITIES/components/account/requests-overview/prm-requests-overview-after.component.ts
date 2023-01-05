@@ -2,9 +2,7 @@ import template from "./prm-requests-overview-after.html";
 
 class PrmRequestsOverviewAfterController {
   static $inject = ["illiadEnabled"];
-  constructor(illiadEnabled) {
-    this.illiadEnabled = illiadEnabled;
-  }
+  constructor(private illiadEnabled: boolean) {}
 
   get showIllLink() {
     return !this.illiadEnabled;

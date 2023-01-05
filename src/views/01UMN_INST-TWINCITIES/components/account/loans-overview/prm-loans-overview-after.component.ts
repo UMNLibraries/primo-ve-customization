@@ -2,9 +2,7 @@ import template from "./prm-loans-overview-after.html";
 
 class PrmLoansOverviewAfterController {
   static $inject = ["illiadEnabled"];
-  constructor(illiadEnabled) {
-    this.illiadEnabled = illiadEnabled;
-  }
+  constructor(private illiadEnabled: boolean) {}
 }
 
 export const PrmLoansOverviewAfterComponent = {
