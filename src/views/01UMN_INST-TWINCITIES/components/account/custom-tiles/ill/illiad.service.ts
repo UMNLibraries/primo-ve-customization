@@ -1,12 +1,16 @@
+import {
+  IlliadApiResponse,
+  NormalizedIllTransaction,
+} from "./illiad-api.model";
+
 const proxyBaseUrl = "https://ezproxy.lib.umn.edu/login?qurl=";
 
-export class ILLiadService {
+export class IlliadService {
+  readonly requestsUrl = "/primo_library/libweb/umn/ill-requests.jsp";
+  readonly articlesUrl = "/primo_library/libweb/umn/ill-articles.jsp";
+
   static $inject = ["$http"];
-  constructor($http) {
-    this.$http = $http;
-    this.requestsUrl = "/primo_library/libweb/umn/ill-requests.jsp";
-    this.articlesUrl = "/primo_library/libweb/umn/ill-articles.jsp";
-  }
+  constructor(private $http: ng.IHttpService) {}
 
   /**
    * Retrieves the current user's open ILL requests from ILLiad.
@@ -15,8 +19,8 @@ export class ILLiadService {
    *  - title {string}
    *  - author {string}
    */
-  getRequests() {
-    return this.$http.get(this.requestsUrl).then((resp) => {
+  getRequests(): ng.IPromise<NormalizedIllTransaction[]> {
+    return this.$http.get<IlliadApiResponse>(this.requestsUrl).then((resp) => {
       return resp.data.map((data) => ({
         txnNum: data.TransactionNumber,
         title: data.PhotoArticleTitle || data.LoanTitle,
@@ -32,8 +36,8 @@ export class ILLiadService {
    *  - title {string}
    *  - author {string}
    */
-  getArticles() {
-    return this.$http.get(this.articlesUrl).then((resp) => {
+  getArticles(): ng.IPromise<NormalizedIllTransaction[]> {
+    return this.$http.get<IlliadApiResponse>(this.articlesUrl).then((resp) => {
       return resp.data.map((data) => ({
         txnNum: data.TransactionNumber,
         title: data.PhotoArticleTitle,
@@ -47,7 +51,7 @@ export class ILLiadService {
    * transaction number is provided).
    * @param {number} txnNum (optional) An ILLiad transaction number for a request
    */
-  getRequestPageUrl(txnNum) {
+  getRequestPageUrl(txnNum?: number) {
     if (txnNum) {
       return (
         proxyBaseUrl +
@@ -70,7 +74,7 @@ export class ILLiadService {
    * transaction number is provided).
    * @param {number} txnNum (optional) An ILLiad transaction number for an article
    */
-  getArticlePageUrl(txnNum) {
+  getArticlePageUrl(txnNum?: number) {
     if (txnNum) {
       return (
         proxyBaseUrl +

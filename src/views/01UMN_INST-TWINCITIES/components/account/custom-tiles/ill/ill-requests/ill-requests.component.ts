@@ -1,12 +1,16 @@
+import { NormalizedIllTransaction } from "../illiad-api.model";
+import { IlliadService } from "../illiad.service";
 import template from "./ill-requests.html";
 
 class IllRequestsController {
+  private requests: NormalizedIllTransaction[] = [];
+  private loading: boolean;
+
   static $inject = ["illiad", "$window"];
-  constructor(illiad, $window) {
-    this.illiad = illiad;
-    this.$window = $window;
-    this.requests = [];
-  }
+  constructor(
+    private illiad: IlliadService,
+    private $window: ng.IWindowService
+  ) {}
 
   /**
    * Maximum number of requests to display.
@@ -31,7 +35,7 @@ class IllRequestsController {
       .finally(() => (this.loading = false));
   }
 
-  goToRequestPage(txnNum) {
+  goToRequestPage(txnNum: number) {
     this.$window.open(this.illiad.getRequestPageUrl(txnNum), "_blank");
   }
 }

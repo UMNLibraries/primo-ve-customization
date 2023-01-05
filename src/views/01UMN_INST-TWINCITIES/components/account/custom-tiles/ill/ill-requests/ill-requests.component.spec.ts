@@ -1,15 +1,24 @@
 import { IllModule } from "../ill.module";
+import { NormalizedIllTransaction } from "../illiad-api.model";
+import { IlliadService } from "../illiad.service";
 import { IllRequestsComponent } from "./ill-requests.component";
-const MAX_REQUESTS_TO_DISPLAY = new IllRequestsComponent.controller()
-  .maxDisplay;
+
 const NO_REQUEST_MSG = "There are no requests";
+const MAX_REQUESTS_TO_DISPLAY = new IllRequestsComponent.controller(null, null)
+  .maxDisplay;
 
 describe("ILL Requests Component", () => {
-  let element, scope, $q, $compile, $window, illiadService, requests;
+  let element: ng.IAugmentedJQuery,
+    scope: ng.IRootScopeService,
+    $q: ng.IQService,
+    $compile: ng.ICompileService,
+    $window: ng.IWindowService,
+    illiadService: IlliadService,
+    requests: NormalizedIllTransaction[];
 
   beforeEach(() => {
     angular.mock.module(IllModule);
-    angular.mock.module(($compileProvider) => {
+    angular.mock.module(($compileProvider: ng.ICompileProvider) => {
       $compileProvider.directive("translate", fakeTranslateDirective);
     });
     angular.mock.inject(($injector) => {
@@ -94,7 +103,11 @@ describe("ILL Requests Component", () => {
   function fakeTranslateDirective() {
     return {
       restrict: "A",
-      link(scope, element, attrs) {
+      link(
+        _scope: ng.IScope,
+        element: ng.IAugmentedJQuery,
+        attrs: ng.IAttributes
+      ) {
         if (attrs.translate === "nui.overview.norequests") {
           element.text(NO_REQUEST_MSG);
         }
@@ -111,7 +124,7 @@ describe("ILL Requests Component", () => {
   /**
    * @param {number} n number of articles to create
    */
-  function stubRequests(n = 1) {
+  function stubRequests(n: number = 1) {
     requests = Array.from({ length: n }, (_, i) => ({
       txnNum: i,
       title: `Tets Title ${i}`,

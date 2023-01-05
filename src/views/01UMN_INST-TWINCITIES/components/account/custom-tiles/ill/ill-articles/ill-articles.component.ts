@@ -1,12 +1,16 @@
+import { NormalizedIllTransaction } from "../illiad-api.model";
+import { IlliadService } from "../illiad.service";
 import template from "./ill-articles.html";
 
 class IllArticlesController {
+  private articles: NormalizedIllTransaction[] = [];
+  private loading: boolean;
+
   static $inject = ["illiad", "$window"];
-  constructor(illiad, $window) {
-    this.illiad = illiad;
-    this.$window = $window;
-    this.articles = [];
-  }
+  constructor(
+    private illiad: IlliadService,
+    private $window: ng.IWindowService
+  ) {}
 
   /**
    * Maximum number of articles to display.
@@ -31,7 +35,7 @@ class IllArticlesController {
       .finally(() => (this.loading = false));
   }
 
-  goToArticlePage(txnNum) {
+  goToArticlePage(txnNum: number) {
     this.$window.open(this.illiad.getArticlePageUrl(txnNum), "_blank");
   }
 }

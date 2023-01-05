@@ -1,10 +1,18 @@
 import { IllModule } from "../ill.module";
+import { NormalizedIllTransaction } from "../illiad-api.model";
+import { IlliadService } from "../illiad.service";
 import { IllArticlesComponent } from "./ill-articles.component";
-const MAX_ARTICLES_TO_DISPLAY = new IllArticlesComponent.controller()
+const MAX_ARTICLES_TO_DISPLAY = new IllArticlesComponent.controller(null, null)
   .maxDisplay;
 
 describe("ILL Articles Component", () => {
-  let element, scope, $q, $compile, $window, illiadService, articles;
+  let element: ng.IAugmentedJQuery,
+    scope: ng.IRootScopeService,
+    $q: ng.IQService,
+    $compile: ng.ICompileService,
+    $window: ng.IWindowService,
+    illiadService: IlliadService,
+    articles: NormalizedIllTransaction[];
 
   beforeEach(() => {
     angular.mock.module(IllModule);

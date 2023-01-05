@@ -1,7 +1,8 @@
 import { IllModule } from ".";
+import { IlliadService } from "./illiad.service";
 
 describe("Illiad Service", () => {
-  let illiad, $httpBackend;
+  let illiad: IlliadService, $httpBackend: ng.IHttpBackendService;
 
   beforeEach(() => {
     angular.mock.module(IllModule);
