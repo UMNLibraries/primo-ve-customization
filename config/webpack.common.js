@@ -30,6 +30,7 @@ const cssLoaders = [
 ];
 
 const baseConfig = {
+  // create an entry point for each view
   entry: views.reduce(
     (entries, view) =>
       Object.assign(entries, { [view]: `${viewsDir}/${view}` }),
@@ -39,7 +40,6 @@ const baseConfig = {
     filename: "[name]/js/custom.js",
     publicPath: "/discovery/custom/",
     clean: true,
-    //    assetModuleFilename: '[runtime]/img/[base]',
   },
   target: ["web", "es5"],
   optimization: {
@@ -52,14 +52,15 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
+          // copy each view's img/ and html/ dir as-is
           context: viewsDir,
           from: `*/{img,html}/**`,
-        },
+        }, // copy any image in the shared dir to *each* view's img dir
         ...views.map((view) => ({
           from: `${sharedDir}/**/*.{ico,png,svg}`,
           to: `${view}/img/[name][ext]`,
           noErrorOnMissing: true,
-        })),
+        })), // copy the shared html dir to *each* view's html dir
         ...views.map((view) => ({
           from: path.resolve(sharedDir, "html"),
           to: `${view}/html/[name][ext]`,
@@ -94,6 +95,7 @@ const baseConfig = {
         exclude: /node_modules/,
       },
       {
+        // enable importing html files as strings
         test: /\.html$/,
         use: "html-loader",
         exclude: /node_modules/,
@@ -113,6 +115,7 @@ const baseConfig = {
         ],
       },
       {
+        // enable importing image urls
         test: /\.(pn|sv)g$/,
         type: "asset/resource",
         generator: {
