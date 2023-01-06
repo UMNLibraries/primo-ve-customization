@@ -1,6 +1,6 @@
 import { loadAnalytics } from "./load-analytics";
 
-const PROD_HOST_PATTERN = /^(primo.lib|umn.primo).*/;
+const PROD_HOST_PATTERN = /^(primo.lib|umn.primo|umn.alma).*/;
 const PROD_TRACKING_ID = "UA-20973358-32";
 const STAGE_TRACKING_ID = "UA-20973358-29";
 
