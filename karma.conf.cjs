@@ -1,7 +1,7 @@
 process.env.CHROME_BIN = require("puppeteer").executablePath();
 
 module.exports = async function (config) {
-  const { default: webpackConfig } = await import("./webpack.test.js");
+  const { default: webpackConfig } = await import("./webpack/webpack.test.js");
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: "",
@@ -12,16 +12,16 @@ module.exports = async function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      "../node_modules/angular/angular.js",
-      "../node_modules/angular-ui-router/release/angular-ui-router.js",
-      "../node_modules/angular-mocks/angular-mocks.js",
-      "../node_modules/angular-translate/dist/angular-translate.js",
-      "../node_modules/angular-material/angular-material.js",
-      "../node_modules/angular-animate/angular-animate.js",
-      "../node_modules/angular-aria/angular-aria.js",
-      "../node_modules/angular-cookies/angular-cookies.js",
-      "../node_modules/lodash/lodash.js",
-      "../src/**/*.spec.*",
+      "./node_modules/angular/angular.js",
+      "./node_modules/angular-ui-router/release/angular-ui-router.js",
+      "./node_modules/angular-mocks/angular-mocks.js",
+      "./node_modules/angular-translate/dist/angular-translate.js",
+      "./node_modules/angular-material/angular-material.js",
+      "./node_modules/angular-animate/angular-animate.js",
+      "./node_modules/angular-aria/angular-aria.js",
+      "./node_modules/angular-cookies/angular-cookies.js",
+      "./node_modules/lodash/lodash.js",
+      "./src/**/*.spec.*",
     ],
 
     // list of files / patterns to exclude
@@ -30,7 +30,7 @@ module.exports = async function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
-      "../src/**/*.spec.*": ["webpack"],
+      "./src/**/*.spec.*": ["webpack"],
     },
 
     webpack: webpackConfig,
