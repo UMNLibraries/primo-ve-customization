@@ -1,8 +1,8 @@
 import "./search-result-help.scss";
 import template from "./search-result-help.html";
 
-class SearchResultHelpController {
-  private prmSearchResultListCtrl: ng.IComponentController;
+class SearchResultHelpController implements ng.IController {
+  private prmSearchResultListCtrl: ng.IController;
 
   static $inject = ["$location"];
   constructor(private $location: ng.ILocationService) {}
@@ -31,7 +31,7 @@ class SearchResultHelpController {
   }
 }
 
-export const SearchResultHelpComponent = {
+export const SearchResultHelpComponent: ng.IComponentOptions = {
   require: { prmSearchResultListCtrl: "^^prmSearchResultList" },
   controller: SearchResultHelpController,
   template: template,

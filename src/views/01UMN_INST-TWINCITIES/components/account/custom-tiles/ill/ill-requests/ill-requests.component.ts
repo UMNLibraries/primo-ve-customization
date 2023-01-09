@@ -2,7 +2,7 @@ import { NormalizedIllTransaction } from "../illiad-api.model";
 import { IlliadService } from "../illiad.service";
 import template from "./ill-requests.html";
 
-class IllRequestsController {
+export class IllRequestsController implements ng.IController {
   private requests: NormalizedIllTransaction[] = [];
   private loading: boolean;
 
@@ -40,7 +40,7 @@ class IllRequestsController {
   }
 }
 
-export const IllRequestsComponent = {
+export const IllRequestsComponent: ng.IComponentOptions = {
   controller: IllRequestsController,
   template: template,
 };

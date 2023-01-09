@@ -3,7 +3,7 @@ import template from "./get-it-note.html";
 
 const TRANSLATE_KEY = "getItNote";
 
-class GetItNoteController {
+class GetItNoteController implements ng.IController {
   private note: string;
 
   static $inject = ["$translate"];
@@ -18,7 +18,7 @@ class GetItNoteController {
   }
 }
 
-export const GetItNoteComponent = {
+export const GetItNoteComponent: ng.IComponentOptions = {
   controller: GetItNoteController,
   template: template,
 };

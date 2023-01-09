@@ -5,7 +5,7 @@ showChatOnClick.$inject = ["qpointChat", "googleAnalytics"];
 export function showChatOnClick(
   qpointChat: QpointChatService,
   googleAnalytics: GoogleAnalyticsService
-) {
+): ng.IDirective {
   return {
     restrict: "A",
     link(

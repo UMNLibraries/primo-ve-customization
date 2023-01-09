@@ -9,7 +9,7 @@
  * {{ users | uniqByKeys:['firstName', 'lastName'] }}
  *
  */
-export const uniqByKeys =
+export const uniqByKeys: ng.FilterFactory =
   () =>
   <Type>(input: Array<Type>, keys: Array<keyof Type>): Array<Type> =>
     _.uniqBy(input, (obj) => keys.map((key) => obj[key]).join());

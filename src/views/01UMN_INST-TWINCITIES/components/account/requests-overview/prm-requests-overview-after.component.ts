@@ -1,6 +1,6 @@
 import template from "./prm-requests-overview-after.html";
 
-class PrmRequestsOverviewAfterController {
+class PrmRequestsOverviewAfterController implements ng.IController {
   static $inject = ["illiadEnabled"];
   constructor(private illiadEnabled: boolean) {}
 
@@ -9,7 +9,7 @@ class PrmRequestsOverviewAfterController {
   }
 }
 
-export const PrmRequestsOverviewAfterComponent = {
+export const PrmRequestsOverviewAfterComponent: ng.IComponentOptions = {
   controller: PrmRequestsOverviewAfterController,
   template: template,
 };

@@ -1,10 +1,13 @@
 import { IllModule } from "../ill.module";
 import { NormalizedIllTransaction } from "../illiad-api.model";
 import { IlliadService } from "../illiad.service";
-import { IllRequestsComponent } from "./ill-requests.component";
+import {
+  IllRequestsComponent,
+  IllRequestsController,
+} from "./ill-requests.component";
 
 const NO_REQUEST_MSG = "There are no requests";
-const MAX_REQUESTS_TO_DISPLAY = new IllRequestsComponent.controller(null, null)
+const MAX_REQUESTS_TO_DISPLAY = new IllRequestsController(null, null)
   .maxDisplay;
 
 describe("ILL Requests Component", () => {

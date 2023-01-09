@@ -1,6 +1,6 @@
 import { BrowzineService } from "./browzine.service";
 
-class BrowzineController {
+class BrowzineController implements ng.IController {
   static $inject = ["browzineService", "$scope"];
   constructor(
     private browzineService: BrowzineService,
@@ -12,7 +12,7 @@ class BrowzineController {
   }
 }
 
-export const BrowzineComponent = {
+export const BrowzineComponent: ng.IComponentOptions = {
   require: {
     parentCtrl: "^prmSearchResultAvailabilityLine",
   },

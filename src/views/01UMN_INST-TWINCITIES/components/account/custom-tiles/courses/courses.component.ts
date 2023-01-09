@@ -2,7 +2,7 @@ import template from "./courses.html";
 import { Course } from "./courses.model";
 import { CoursesService } from "./courses.service";
 
-class CoursesController {
+class CoursesController implements ng.IController {
   private courses: Course[] = [];
   private loading: boolean;
 
@@ -22,7 +22,7 @@ class CoursesController {
   }
 }
 
-export const CoursesComponent = {
+export const CoursesComponent: ng.IComponentOptions = {
   controller: CoursesController,
   template: template,
 };

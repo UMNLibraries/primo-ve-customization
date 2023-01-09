@@ -1,7 +1,7 @@
 import "./no-results.scss";
 import template from "./no-results.html";
 
-class NoResultsController {
+class NoResultsController implements ng.IController {
   private prmSearchResultListCtrl: ng.IComponentController;
 
   get searchString() {
@@ -9,7 +9,7 @@ class NoResultsController {
   }
 }
 
-export const NoResultsComponent = {
+export const NoResultsComponent: ng.IComponentOptions = {
   template: template,
   controller: NoResultsController,
   require: { prmSearchResultListCtrl: "^^prmSearchResultList" },

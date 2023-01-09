@@ -2,7 +2,7 @@ import { Observer } from "./observer.model";
 import { ShibAuthEventsService } from "./shib-auth-events.service";
 import template from "./shib-auth.html";
 
-class ShibAuthController {
+class ShibAuthController implements ng.IController {
   private src: string;
   private authenticationObserver: Observer;
   private timer: ng.IPromise<void>;
@@ -54,7 +54,7 @@ class ShibAuthController {
   }
 }
 
-export const ShibAuthComponent = {
+export const ShibAuthComponent: ng.IComponentOptions = {
   bindings: {
     onAuth: "&",
   },

@@ -1,7 +1,7 @@
 import { ViewCode } from "../../../../view-code";
 
-class PrmSearchBarAfterController {
-  private parentCtrl: ng.IComponentController;
+class PrmSearchBarAfterController implements ng.IController {
+  private parentCtrl: ng.IController;
 
   static $inject = ["$scope", "$element"];
   constructor(
@@ -43,7 +43,7 @@ class PrmSearchBarAfterController {
   }
 }
 
-export const PrmSearchBarAfterComponent = {
+export const PrmSearchBarAfterComponent: ng.IComponentOptions = {
   bindings: { parentCtrl: "<" },
   controller: PrmSearchBarAfterController,
 };

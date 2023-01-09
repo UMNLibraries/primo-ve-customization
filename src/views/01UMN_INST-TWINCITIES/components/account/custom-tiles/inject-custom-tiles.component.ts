@@ -8,7 +8,7 @@
  *  </prm-loans-overview-after>
  *
  */
-class InjectCustomTilesController {
+class InjectCustomTilesController implements ng.IController {
   static $inject = ["$scope", "$compile", "$element"];
   constructor(
     private $scope: ng.IScope,
@@ -42,6 +42,6 @@ class InjectCustomTilesController {
   }
 }
 
-export const InjectCustomTilesComponent = {
+export const InjectCustomTilesComponent: ng.IComponentOptions = {
   controller: InjectCustomTilesController,
 };

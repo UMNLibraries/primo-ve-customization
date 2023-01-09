@@ -1,12 +1,12 @@
 import "./umn-footer.scss";
 import template from "./umn-footer.html";
 
-class UmnFooterController {
+class UmnFooterController implements ng.IController {
   static $inject = ["$mdMedia"];
   constructor(private $mdMedia: ng.material.IMedia) {}
 }
 
-export const UmnFooterComponent = {
+export const UmnFooterComponent: ng.IComponentOptions = {
   template: template,
   controller: UmnFooterController,
 };

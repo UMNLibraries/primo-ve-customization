@@ -6,8 +6,8 @@ import template from "./icon.html";
  * the SVG definition is a hard-coded attribute value on the component, and due
  * to the use of one-time binding, this cannot be dynamically modified.
  */
-class PrmIconAfterController {
-  private parentCtrl: ng.IComponentController;
+class PrmIconAfterController implements ng.IController {
+  private parentCtrl: ng.IController;
   private svgIconSet: string;
   private iconDefinition: string;
 
@@ -28,7 +28,7 @@ class PrmIconAfterController {
   }
 }
 
-export const PrmIconAfterComponent = {
+export const PrmIconAfterComponent: ng.IComponentOptions = {
   controller: PrmIconAfterController,
   template: template,
   bindings: { parentCtrl: "<" },

@@ -1,8 +1,12 @@
 import { IllModule } from "../ill.module";
 import { NormalizedIllTransaction } from "../illiad-api.model";
 import { IlliadService } from "../illiad.service";
-import { IllArticlesComponent } from "./ill-articles.component";
-const MAX_ARTICLES_TO_DISPLAY = new IllArticlesComponent.controller(null, null)
+import {
+  IllArticlesComponent,
+  IllArticlesController,
+} from "./ill-articles.component";
+
+const MAX_ARTICLES_TO_DISPLAY = new IllArticlesController(null, null)
   .maxDisplay;
 
 describe("ILL Articles Component", () => {

@@ -3,8 +3,8 @@ import { GoogleAnalyticsService } from "../../../../services/google-analytics/go
 /**
  * log search errors in analytics service
  */
-class PrmSearchErrorMessageAfterController {
-  private parentCtrl: ng.IComponentController;
+class PrmSearchErrorMessageAfterController implements ng.IController {
+  private parentCtrl: ng.IController;
 
   static $inject = ["googleAnalytics"];
   constructor(private googleAnalytics: GoogleAnalyticsService) {}
@@ -18,7 +18,7 @@ class PrmSearchErrorMessageAfterController {
   }
 }
 
-export const PrmSearchErrorMessageAfterComponent = {
+export const PrmSearchErrorMessageAfterComponent: ng.IComponentOptions = {
   bindings: { parentCtrl: "<" },
   controller: PrmSearchErrorMessageAfterController,
 };

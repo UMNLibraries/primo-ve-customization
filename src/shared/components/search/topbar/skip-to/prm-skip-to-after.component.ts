@@ -2,8 +2,8 @@ type SkipLinksObject = {
   [key: string]: string[];
 };
 
-class PrmSkipToAfterController {
-  private parentCtrl: ng.IComponentController;
+class PrmSkipToAfterController implements ng.IController {
+  private parentCtrl: ng.IController;
 
   $onInit() {
     const skipLinksObject: SkipLinksObject =
@@ -22,7 +22,7 @@ class PrmSkipToAfterController {
   }
 }
 
-export const PrmSkipToAfterComponent = {
+export const PrmSkipToAfterComponent: ng.IComponentOptions = {
   bindings: { parentCtrl: "<" },
   controller: PrmSkipToAfterController,
 };

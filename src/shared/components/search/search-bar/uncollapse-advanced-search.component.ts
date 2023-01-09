@@ -6,10 +6,10 @@ interface CollapsedStateChanges extends ng.IOnChangesObject {
  * Force the advanced search menu to always be uncollapsed by toggling
  * whenever its collapsed state is true.
  */
-export const UncollapseAdvancedSearchComponent = {
+export const UncollapseAdvancedSearchComponent: ng.IComponentOptions = {
   bindings: { collapsed: "<" },
   require: { prmAdvancedSearchCtrl: "^prmAdvancedSearch" },
-  controller: class {
+  controller: class implements ng.IOnChanges {
     private prmAdvancedSearchCtrl: ng.IComponentController;
     $onChanges(changes: CollapsedStateChanges) {
       if (changes.collapsed.currentValue === true)
