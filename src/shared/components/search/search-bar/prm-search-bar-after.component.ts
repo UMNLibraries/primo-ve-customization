@@ -1,4 +1,4 @@
-import { ViewCode } from "../../../../view-code";
+import { View } from "../../../../view-code";
 
 class PrmSearchBarAfterController implements ng.IController {
   private parentCtrl: ng.IController;
@@ -11,7 +11,7 @@ class PrmSearchBarAfterController implements ng.IController {
 
   $onInit() {
     switch (this.parentCtrl.vid) {
-      case ViewCode.TWINCITIES:
+      case View.TWINCITIES:
         this.hideTabSuggestions();
         this.hideBlendedTabSelector();
         // The parent controller re-initializes its settings on search state changes,
@@ -20,7 +20,7 @@ class PrmSearchBarAfterController implements ng.IController {
           this.hideBlendedTabSelector()
         );
         break;
-      case ViewCode.MORRIS:
+      case View.MORRIS:
         this.hideTabSuggestions();
         break;
     }

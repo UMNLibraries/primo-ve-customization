@@ -14,13 +14,12 @@
 // ***********************************************************
 
 import "./commands";
-import { ViewCode } from "../../src/view-code";
+import { View, ViewCode } from "../../src/view-code";
 
-type View = typeof ViewCode[keyof typeof ViewCode];
-type ViewCallback = (view: View) => void;
+type ViewCallback = (view: ViewCode) => void;
 
-export const inView = (view: View, fn: ViewCallback) =>
+export const inView = (view: ViewCode, fn: ViewCallback) =>
   context(`In the ${view} view, `, () => fn(view));
 
 export const inAllViews = (fn: ViewCallback) =>
-  Object.values(ViewCode).forEach((v: View) => inView(v, fn));
+  Object.values(View).forEach((v: ViewCode) => inView(v, fn));
