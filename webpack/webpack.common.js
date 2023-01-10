@@ -110,7 +110,10 @@ const baseConfig = {
           ...cssLoaders,
           {
             loader: "sass-loader",
-            options: { additionalData: colors.toSass() },
+            options: {
+              // make color variables available globally in sass/scss files
+              additionalData: colors.toSass(),
+            },
           },
         ],
       },

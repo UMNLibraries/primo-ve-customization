@@ -24,6 +24,8 @@ Set the `PROXY_TARGET` environment variable to preview the customizations in a d
 
 The color theme is generated with the [primo-color-theme tool](https://github.com/UMNLibraries/primo-color-theme). To modify the color theme, edit `src/shared/color-theme/colors.json` and then run `npm run color-theme`. This will rebuild the `src/shared/color-theme/generated-theme.css` file. It's a good practice to regenerate the color theme whenever Primo VE is upgraded.
 
+_Note_: The color variables defined in `src/shared/color-theme/colors.js` are available globally in any sass/scss file.
+
 ### Deployment
 
 Run `npm run build` to create production-ready deployment packages. A zip file for each view will be created under `dist/packages/`. To deploy a package, upload its zip file in the Manage Customization Package tab in Alma (under Discovery > Manage Views > {view_code}).
