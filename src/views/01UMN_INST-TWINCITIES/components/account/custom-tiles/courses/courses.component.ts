@@ -1,3 +1,4 @@
+import "./courses.scss";
 import template from "./courses.html";
 import { Course } from "./courses.model";
 import { CoursesService } from "./courses.service";

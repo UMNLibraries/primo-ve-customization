@@ -1,0 +1,11 @@
+courses {
+  .tiles-grid-tile .tile-content md-list-item {
+    border-bottom: none;
+    cursor: default;
+    padding-bottom: 0.75em;
+
+    &:hover {
+      background-color: unset;
+    }
+  }
+}
