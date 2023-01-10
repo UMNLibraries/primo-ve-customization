@@ -1,0 +1,15 @@
+// TODO: Not yes sure if we still need this; waiting for bX to be enabled
+
+.recommendations-item a:focus {
+  text-decoration: underline;
+}
+
+// Fix bX header position on smaller viewports
+.__sm prm-full-view-cont .recommendations-wrapper {
+  padding-left: 1em;
+}
+@media (max-width: 960px) {
+  .full-view-aside {
+    padding-left: 1em;
+  }
+}

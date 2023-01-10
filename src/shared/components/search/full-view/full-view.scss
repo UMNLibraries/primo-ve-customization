@@ -1,0 +1,13 @@
+prm-full-view {
+  .services-index-under {
+    button:not(.accessible-close) {
+      display: none;
+    }
+    button.accessible-close.md-focused {
+      background-color: rgb(58, 58, 58) !important;
+    }
+  }
+  .full-view-section-content {
+    padding-left: 0 !important;
+  }
+}
