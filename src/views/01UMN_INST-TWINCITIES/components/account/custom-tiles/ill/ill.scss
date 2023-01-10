@@ -1,0 +1,30 @@
+ill-requests,
+ill-articles {
+  md-list-item .md-button:hover:not([disabled]) {
+    background-color: transparent;
+    color: inherit;
+    z-index: 3;
+  }
+  md-list md-list-item .md-button:focus:not([disabled]) {
+    background-color: #fff;
+    & + .md-list-item-inner {
+      z-index: 2;
+    }
+  }
+  [external-link] {
+    color: inherit;
+  }
+  .header-link,
+  md-list-item .md-button {
+    [external-link] {
+      opacity: 0;
+    }
+    &:hover,
+    &:focus {
+      [external-link],
+      & + .md-list-item-inner [external-link] {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import "./ill.scss";
+
 import { IlliadService } from "./illiad.service";
 import { IllRequestsComponent } from "./ill-requests/ill-requests.component";
 import { IllArticlesComponent } from "./ill-articles/ill-articles.component";
