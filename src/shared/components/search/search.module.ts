@@ -1,4 +1,5 @@
 import "./brief-result.scss";
+import "./facet.scss";
 
 import { FullViewModule } from "./full-view";
 import { SearchBarModule } from "./search-bar";
