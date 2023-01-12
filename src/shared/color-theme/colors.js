@@ -17,8 +17,16 @@ const convertible = {
 export default {
   __proto__: convertible,
   ...colorTheme,
-  maroon: colorTheme.primary,
+  maroon: "#7a0019",
+  darkMaroon: "#5b0013",
+  lightMaroon: "#900021",
   gold: "#ffcc33",
-  lightGold: "#ffd75f", // light gold from the Nokomis theme
+  lightGold: "#ffde7a",
   darkGold: "#ffb71e",
+  darkerGrey: "#333333",
+  darkGrey: "#5a5a5a",
+  mediumGrey: "#777677",
+  lightGrey: "#d5d6d2",
+  lighterGrey: "#f0efee",
+  offWhite: "#f9f7f6",
 };
