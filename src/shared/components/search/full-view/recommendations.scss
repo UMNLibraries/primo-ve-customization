@@ -1,15 +1,20 @@
-// TODO: Not yes sure if we still need this; waiting for bX to be enabled
+// NOTE: not a typo; the component is spelled one "m"
+prm-recomendations {
+  // Fix bX header position in smaller breakpoints
+  .recommendations-wrapper {
+    prm-full-view-cont & {
+      .__sm & {
+        padding-left: 1em;
+      }
+    }
+    @media (max-width: 599px) {
+      .section-description {
+        padding-left: 1.5em;
+      }
+    }
+  }
 
-.recommendations-item a:focus {
-  text-decoration: underline;
-}
-
-// Fix bX header position on smaller viewports
-.__sm prm-full-view-cont .recommendations-wrapper {
-  padding-left: 1em;
-}
-@media (max-width: 960px) {
-  .full-view-aside {
-    padding-left: 1em;
+  .recommendations-item a:focus {
+    text-decoration: underline;
   }
 }
