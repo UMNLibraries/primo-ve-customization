@@ -1,0 +1,21 @@
+prm-search-result-list {
+  // collapse the spacing above the "haven't found" card
+  .list-spacer {
+    min-height: initial;
+  }
+  &-after md-card {
+    margin: 10px 0 100px 0;
+  }
+
+  // truncate long author lists in brief results
+  prm-brief-result h3.item-title + div.item-detail > span:first-child {
+    max-width: 30em;
+    white-space: nowrap;
+    display: inline-flex;
+
+    span:not(.media-delimiter) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
