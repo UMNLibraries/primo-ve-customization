@@ -830,14 +830,14 @@ md-toolbar.default-toolbar:not(.md-menu-toolbar) {
     background-color: #0f7d00; }
 
 .prm-negative {
-  color: gray; }
+  color: #5a5a5a; }
   .prm-negative.prm-hue1, .status-unavailable, [class*="unavailable"],
   [class*="no_"],
   .restricted,
   .duedate,
   .esploro_status\.embargoed,
   .esploro_status\.restricted {
-    color: #6c6161; }
+    color: #443d3d; }
 
 .prm-citation-color, prm-chapters-and-reviews .item-type {
   color: tomato; }
