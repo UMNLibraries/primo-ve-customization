@@ -13,7 +13,7 @@ export class GoogleAnalyticsService {
     private view: string
   ) {
     loadAnalytics(this.$window);
-    this.$window.ga("create", this.trackingId, "auto");
+    this.$window.ga("create", this.trackingId);
     this.$window.ga("set", "anonymizeIp", true);
     this.$window.ga("set", "dimension2", this.view);
   }
