@@ -16,7 +16,7 @@ When planning our migration from Primo to Primo VE, we discovered that VE does n
 
 ### Local Development
 
-Run `npm start` to launch a development proxy server and preview the customization packages in the UMN Libraries production server. To preview a view, go to `http://localhost:8080/discovery/search?vid={view_code}` (e.g. http://localhost:8080/discovery/search?vid=01UMN_INST:TWINCITIES).
+Run `npm start` to launch a development proxy server and preview the customization packages in the UMN Libraries production server. To preview a view, go to `http://localhost:8080/discovery/search?vid={view_code}` (e.g. http://localhost:8080/discovery/search?vid=01UMN_INST:TWINCITIES). If you need to modify the email template, you can preview an example at `http://localhost:8080/discovery/email-template?lang=en&vid={view_code}&dirName`.
 
 Set the `PROXY_TARGET` environment variable to preview the customizations in a different Primo environment (e.g. `PROXY_TARGET=umn.primo.exlibrisgroup.com npm start`).
 

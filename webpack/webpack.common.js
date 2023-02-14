@@ -62,8 +62,13 @@ const baseConfig = {
           noErrorOnMissing: true,
         })), // copy the shared html dir to *each* view's html dir
         ...views.map((view) => ({
-          from: path.resolve(sharedDir, "html"),
+          from: path.resolve(sharedDir, "html/*"),
           to: `${view}/html/[name][ext]`,
+          noErrorOnMissing: true,
+        })), // copy the shared email template to *each* view's html dir
+        ...views.map((view) => ({
+          from: path.resolve(sharedDir, "html/email"),
+          to: `${view}/html/email/[name][ext]`,
           noErrorOnMissing: true,
         })),
       ],

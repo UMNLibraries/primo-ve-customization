@@ -90,9 +90,9 @@ async function injectCustomizations(appConfig, view) {
     appConfig.customization.staticHtml.homepage = {
       en: `custom/${view}/html/homepage/homepage_en.html`,
     };
-  if (await fileExists(`${outputPath}/${view}/html/email_en.html`))
+  if (await fileExists(`${outputPath}/${view}/html/email/email_en.html`))
     appConfig.customization.staticHtml.email = {
-      en: `custom/${view}/html/email_en.html`,
+      en: `custom/${view}/html/email/email_en.html`,
     };
   if (await fileExists(`${outputPath}/${view}/html/help_en.html`))
     appConfig.customization.staticHtml.help = {
