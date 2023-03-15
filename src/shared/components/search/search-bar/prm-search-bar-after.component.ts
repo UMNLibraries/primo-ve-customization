@@ -35,7 +35,7 @@ class PrmSearchBarAfterController implements ng.IController {
   }
 
   onBlendedTab() {
-    return this.parentCtrl.selectedTab === "article_discovery";
+    return this.parentCtrl.selectedTab === "Everything";
   }
 
   hideTabSelector() {
