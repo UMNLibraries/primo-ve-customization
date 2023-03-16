@@ -1,5 +1,5 @@
-import { View } from "../../view-code";
-import { SharedModule } from "../../shared";
+import { SharedModule } from "@src/shared";
+import { View } from "@src/view-code";
 import { TwinCitiesComponentsModule } from "./components";
 
 angular

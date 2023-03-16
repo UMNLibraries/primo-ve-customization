@@ -1,4 +1,4 @@
-import { GoogleAnalyticsService } from "../../../../services/google-analytics/google-analytics.service";
+import { GoogleAnalyticsService } from "@src/shared/services/google-analytics/google-analytics.service";
 
 /**
  * log search errors in analytics service

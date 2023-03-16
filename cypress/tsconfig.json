@@ -5,7 +5,11 @@
     "module": "esnext",
     "target": "es6",
     "lib": ["es6", "dom"],
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["../src/*"]
+    }
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "../src/**/*.ts"]
 }

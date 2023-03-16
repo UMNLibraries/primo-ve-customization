@@ -45,7 +45,7 @@ const courses: Course[] = JSON.parse(`
 }]`);
 
 import { CoursesModule } from ".";
-import { FiltersModule } from "../../../../../../shared/filters";
+import { FiltersModule } from "@src/shared/filters";
 import { Course } from "./courses.model";
 import { CoursesService } from "./courses.service";
 

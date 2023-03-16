@@ -135,6 +135,9 @@ const baseConfig = {
   },
   resolve: {
     extensions: [".ts", "..."],
+    alias: {
+      "@src": path.resolve(__dirname, "..", "src"),
+    },
   },
 };
 

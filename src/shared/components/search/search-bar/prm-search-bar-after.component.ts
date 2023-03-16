@@ -1,4 +1,4 @@
-import { View } from "../../../../view-code";
+import { View } from "@src/view-code";
 
 class PrmSearchBarAfterController implements ng.IController {
   private parentCtrl: ng.IController;

@@ -1,6 +1,6 @@
-import { SharedModule } from "../../shared";
+import { SharedModule } from "@src/shared";
+import { View } from "@src/view-code";
 import { MorrisComponentsModule } from "./components";
-import { View } from "../../view-code";
 
 angular
   .module("viewCustom", [SharedModule, MorrisComponentsModule])

@@ -1,4 +1,4 @@
-import { GoogleAnalyticsService } from "../../../../shared/services/google-analytics/google-analytics.service";
+import { GoogleAnalyticsService } from "@src/shared/services/google-analytics/google-analytics.service";
 import { QpointChatService } from "./qpoint-chat.service";
 
 showChatOnClick.$inject = ["qpointChat", "googleAnalytics"];
