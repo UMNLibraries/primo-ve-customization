@@ -10,4 +10,22 @@ prm-full-view {
   .full-view-section-content {
     padding-left: 0 !important;
   }
+
+  // order the top 4 items in the services menu (pushes down the actions menu)
+  .full-view-inner-container {
+    display: flex;
+    flex-direction: column;
+  }
+  #brief {
+    order: -4;
+  }
+  #getit_link1_0 {
+    order: -3;
+  }
+  #getit_link1_1 {
+    order: -2;
+  }
+  #getit_link2 {
+    order: -1;
+  }
 }
