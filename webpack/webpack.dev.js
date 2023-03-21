@@ -19,8 +19,8 @@ const devConfig = {
     static: {
       directory: outputPath,
     },
-    hot: false,
-    liveReload: true,
+    hot: true,
+    liveReload: false,
     devMiddleware: {
       writeToDisk: true,
     },
