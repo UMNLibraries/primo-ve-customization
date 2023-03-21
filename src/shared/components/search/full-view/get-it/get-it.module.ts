@@ -1,3 +1,4 @@
+import "./service-button.scss";
 import { GetItNoteComponent } from "./get-it-note";
 
 export const GetItModule = angular
