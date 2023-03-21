@@ -7,25 +7,32 @@ prm-full-view {
       background-color: rgb(58, 58, 58) !important;
     }
   }
+
   .full-view-section-content {
     padding-left: 0 !important;
   }
 
-  // order the top 4 items in the services menu (pushes down the actions menu)
+  // force ordering of services in the full-view menu
   .full-view-inner-container {
     display: flex;
     flex-direction: column;
   }
   #brief {
-    order: -4;
+    order: -6;
   }
   #getit_link1_0 {
-    order: -3;
+    order: -5;
   }
   #getit_link1_1 {
-    order: -2;
+    order: -4;
   }
   #getit_link2 {
+    order: -3;
+  }
+  #action_list {
+    order: -2;
+  }
+  #citationTrails {
     order: -1;
   }
 }
