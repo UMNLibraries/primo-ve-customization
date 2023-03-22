@@ -1,4 +1,5 @@
 import "./primo-explore.scss";
+import "./report-problem.scss";
 
 import { IconModule } from "./icon";
 import { SearchModule } from "./search";
