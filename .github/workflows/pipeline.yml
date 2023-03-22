@@ -1,0 +1,50 @@
+name: Build & test
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm clean-install
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: customization-packages-${{ github.sha }}
+          path: dist/packages/*.zip
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Run end-to-end tests
+        run: npm run test:e2e
+        env:
+          CYPRESS_VERIFY_TIMEOUT: 100000
+
+      - name: Archive e2e test videos
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos-${{ github.sha }}
+          path: cypress/videos
