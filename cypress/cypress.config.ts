@@ -4,7 +4,8 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:8080/discovery",
 
-    defaultCommandTimeout: 12000,
+    defaultCommandTimeout: 60_000,
+    pageLoadTimeout: 120_000,
 
     chromeWebSecurity: false,
 

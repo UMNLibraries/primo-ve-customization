@@ -15,9 +15,7 @@ describe("Full Display", () => {
       });
 
       it("displays a PDF download link", () => {
-        cy.get("a.browzine-direct-to-pdf-link", { timeout: 20_000 }).should(
-          "exist"
-        );
+        cy.get("a.browzine-direct-to-pdf-link").should("exist");
       });
     });
   });
