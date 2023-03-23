@@ -62,7 +62,7 @@ If you care to use the [Cypress GUI](https://docs.cypress.io/guides/core-concept
 
 ## Structure & Build Process
 
-The files under `src/shared/` are intended to be shared across all views. Any view-specific customizations belong under `src/views/`.
+The files under `src/shared/` are intended to be shared across all views. Any view-specific customizations belong under `src/views/`. As much as possible the `src/shared/components` are structured to match the Primo component tree.
 
 ```
 src
