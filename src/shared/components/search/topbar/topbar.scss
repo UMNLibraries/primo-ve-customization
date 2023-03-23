@@ -26,3 +26,14 @@ prm-authentication {
     color: $primary;
   }
 }
+
+.prm-user-menu-content {
+  #signOutButton {
+    color: $primary;
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: $primary;
+    }
+  }
+}
