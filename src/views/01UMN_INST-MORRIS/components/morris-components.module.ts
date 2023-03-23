@@ -1,3 +1,5 @@
+import "./style.scss";
+
 import { AskusButtonComponent } from "./askus-button";
 
 export const MorrisComponentsModule = angular
