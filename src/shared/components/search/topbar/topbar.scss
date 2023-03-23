@@ -15,7 +15,14 @@ prm-search-bookmark-filter {
   a {
     &:hover,
     &:focus {
-      box-shadow: none; //the shadow looks goofy with our header color
+      box-shadow: none; // the shadow looks goofy with our header color
     }
+  }
+}
+
+prm-authentication {
+  // sign-in button in the alert bar
+  .bar & .md-button {
+    color: $primary;
   }
 }
