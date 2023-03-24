@@ -4,22 +4,27 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         id: npm-cache
         with:
-          path: node_modules
+          path: |
+            node_modules
+            ~/.npm
+            ~/.cache/puppeteer
+            ~/.cache/Cypress
           key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
       - name: Install dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
