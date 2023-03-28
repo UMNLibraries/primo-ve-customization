@@ -10,8 +10,8 @@ describe("prmRequestAfterComponent", () => {
   let ctrl: PrmRequestAfterController;
   const commentField: FormField = {
     key: "comment",
-    label: "some.label",
     mandatory: false,
+    label: "",
   };
   const parentCtrl: ng.IController = {
     form: [commentField],
@@ -26,6 +26,7 @@ describe("prmRequestAfterComponent", () => {
     ctrl = $componentController("prmRequestAfter", null, {
       parentCtrl: parentCtrl,
     });
+    commentField.label = ctrl.defaultCommentLabel;
   });
 
   it("replaces the parent controller's form change handler", () => {
@@ -49,5 +50,6 @@ describe("prmRequestAfterComponent", () => {
     ctrl.$onInit();
     ctrl.customFormChangeHandler(newFormData, null);
     expect(commentField.mandatory).toBeTrue;
+    expect(commentField.label).toEqual(ctrl.customCommentLabel);
   });
 });
