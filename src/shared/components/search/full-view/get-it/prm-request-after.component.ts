@@ -2,6 +2,7 @@ export interface FormField {
   key: string;
   label: string;
   mandatory: boolean;
+  uiType: "hidden" | "text";
 }
 
 export interface FormData {
@@ -30,9 +31,11 @@ export class PrmRequestAfterController implements ng.IController {
   customFormChangeHandler(newData: FormData, oldData: FormData): void {
     if (this.isHoldRequest(newData)) {
       const comment = this.findCommentField();
+      comment.uiType = "hidden";
       if (this.isHomeDeliverySelected(newData)) {
         comment.label = this.customCommentLabel;
         comment.mandatory = true;
+        comment.uiType = "text";
       } else if (comment?.label === this.customCommentLabel) {
         comment.label = this.defaultCommentLabel;
         comment.mandatory = false;

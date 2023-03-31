@@ -12,6 +12,7 @@ describe("prmRequestAfterComponent", () => {
     key: "comment",
     mandatory: false,
     label: "",
+    uiType: "text",
   };
   const parentCtrl: ng.IController = {
     form: [commentField],
@@ -51,5 +52,14 @@ describe("prmRequestAfterComponent", () => {
     ctrl.customFormChangeHandler(newFormData, null);
     expect(commentField.mandatory).toBeTrue;
     expect(commentField.label).toEqual(ctrl.customCommentLabel);
+  });
+
+  it("hides the comment field by default", () => {
+    const newFormData: FormData = {
+      requestType: "hold",
+    };
+    ctrl.$onInit();
+    ctrl.customFormChangeHandler(newFormData, null);
+    expect(commentField.uiType).toEqual("hidden");
   });
 });
