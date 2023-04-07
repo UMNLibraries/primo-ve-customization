@@ -1,4 +1,5 @@
-import { GoogleAnalyticsService as Analytics } from "./google-analytics";
+//import { GoogleAnalyticsService as Analytics } from "./google-analytics";
+import { Matomo as Analytics } from "./matomo";
 
 run.$inject = ["analytics"];
 function run(analytics: Analytics) {
