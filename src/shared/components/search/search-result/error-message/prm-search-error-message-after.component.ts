@@ -1,4 +1,4 @@
-import { GoogleAnalyticsService } from "@src/shared/services/google-analytics/google-analytics.service";
+import { Analytics } from "@src/shared/services/analytics";
 
 /**
  * log search errors in analytics service
@@ -6,15 +6,15 @@ import { GoogleAnalyticsService } from "@src/shared/services/google-analytics/go
 class PrmSearchErrorMessageAfterController implements ng.IController {
   private parentCtrl: ng.IController;
 
-  static $inject = ["googleAnalytics"];
-  constructor(private googleAnalytics: GoogleAnalyticsService) {}
+  static $inject = ["analytics"];
+  constructor(private analytics: Analytics) {}
 
   $onInit() {
     const label =
       this.parentCtrl.getErrorHeader() +
       ": " +
       this.parentCtrl.getErrorDescription();
-    this.googleAnalytics.trackEvent("Errors", "Search Error Message", label);
+    this.analytics.trackEvent("Errors", "Search Error Message", label);
   }
 }
 

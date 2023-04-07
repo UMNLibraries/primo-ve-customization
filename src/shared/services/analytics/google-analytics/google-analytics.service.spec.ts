@@ -1,23 +1,24 @@
-import { GoogleAnalyticsModule } from "./google-analytics.module";
 import { GoogleAnalyticsService } from "./google-analytics.service";
 
 const view = "TEST";
-angular.module(GoogleAnalyticsModule).constant("view", view);
 
 describe("GoogleAnalytics Service", () => {
   let $rootScope: ng.IRootScopeService,
-    //    $location: ng.ILocationService,
+    $location: ng.ILocationService,
     $window: ng.IWindowService,
     googleAnalyticsService: GoogleAnalyticsService;
-
-  beforeEach(angular.mock.module(GoogleAnalyticsModule));
 
   beforeEach(
     angular.mock.inject(($injector) => {
       $rootScope = $injector.get("$rootScope");
-      //     $location = $injector.get("$location");
+      $location = $injector.get("$location");
       $window = $injector.get("$window");
-      googleAnalyticsService = $injector.get("googleAnalytics");
+      googleAnalyticsService = new GoogleAnalyticsService(
+        $rootScope,
+        $location,
+        $window,
+        view
+      );
     })
   );
 

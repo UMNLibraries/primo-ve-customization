@@ -1,10 +1,11 @@
+import { Analytics } from "../analytics";
 import { loadAnalytics } from "./load-analytics";
 
 const PROD_HOST_PATTERN = /^(primo.lib|umn.primo|umn.alma).*/;
 const PROD_TRACKING_ID = "UA-20973358-32";
 const STAGE_TRACKING_ID = "UA-20973358-29";
 
-export class GoogleAnalyticsService {
+export class GoogleAnalyticsService implements Analytics {
   static $inject = ["$rootScope", "$location", "$window", "view"];
   constructor(
     private $rootScope: ng.IRootScopeService,

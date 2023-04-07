@@ -1,10 +1,10 @@
-import { GoogleAnalyticsService } from "@src/shared/services/google-analytics/google-analytics.service";
+import { Analytics } from "@src/shared/services/analytics";
 import { QpointChatService } from "./qpoint-chat.service";
 
-showChatOnClick.$inject = ["qpointChat", "googleAnalytics"];
+showChatOnClick.$inject = ["qpointChat", "analytics"];
 export function showChatOnClick(
   qpointChat: QpointChatService,
-  googleAnalytics: GoogleAnalyticsService
+  analytics: Analytics
 ): ng.IDirective {
   return {
     restrict: "A",
@@ -14,7 +14,7 @@ export function showChatOnClick(
       _$attrs: ng.IAttributes
     ) {
       $element.on("click", () => {
-        googleAnalytics.trackEvent("Custom Links", "Chat Click");
+        analytics.trackEvent("Custom Links", "Chat Click");
         qpointChat.showChatDialog();
       });
     },
