@@ -28,8 +28,7 @@ describe("Matomo Service", () => {
     const pageViewEvents = $window._paq.filter((e: string[]) =>
       e.includes("trackPageView")
     );
-    // should have initial page view event and location change event
-    expect(pageViewEvents).toHaveSize(2);
+    expect(pageViewEvents).toHaveSize(1);
   });
 
   it("should push event tracking data to global _paq array", () => {

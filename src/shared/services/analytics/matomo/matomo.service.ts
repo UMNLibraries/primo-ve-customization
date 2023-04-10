@@ -36,14 +36,11 @@ export class Matomo implements Analytics {
   }
 
   trackPageviews(): void {
-    this._paq.push(["trackPageView"]);
     this._paq.push(["enableLinkTracking"]);
-    this.$rootScope.$on(
-      "$locationChangeSuccess",
-      (_event, _newUrl, _oldUrl) => {
-        this.$window._paq.push(["trackPageView"]);
-      }
-    );
+    this.$rootScope.$on("$locationChangeSuccess", (_event, newUrl, _oldUrl) => {
+      this._paq.push(["setCustomUrl", newUrl]);
+      this._paq.push(["trackPageView"]);
+    });
   }
 
   trackEvent(category: string, action: string, label?: string): void {
