@@ -1,3 +1,36 @@
+// just a proof of concept...
+#reportProblem {
+  prm-icon-after {
+    display: none;
+  }
+
+  &:hover,
+  &:focus {
+    & prm-icon::before {
+      background-color: $maroon;
+      color: #fff;
+    }
+  }
+
+  prm-icon {
+    &::before {
+      font-weight: bold;
+      color: $maroon;
+      border: 2px solid;
+      padding: 0.5em;
+      border-radius: 0.75em;
+    }
+  }
+
+  &[aria-expanded="false"] prm-icon::before {
+    content: "problem?";
+  }
+
+  &[aria-expanded="true"] prm-icon::before {
+    content: "close";
+  }
+}
+
 prm-report-problem {
   .report-container {
     .md-button.report-problem-btn {
