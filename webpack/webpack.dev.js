@@ -106,6 +106,8 @@ async function injectCustomizations(appConfig, view) {
     appConfig.customization.libraryLogo = `custom/${view}/img/library-logo.png`;
   if (await fileExists(`${outputPath}/${view}/img/home-screen-icon.png`))
     appConfig.customization.homeScreenIcon = `custom/${view}/img/home-screen-icon.png`;
+  if (await fileExists(`${outputPath}/${view}/img/custom-ui.svg`))
+    appConfig.customization.viewSvg = `custom/${view}/img/custom-ui.svg`;
   for (let icon of await glob(`${outputPath}/${view}/img/icon_**.png`)) {
     const [_, resouce] = icon.match(/^.*icon_(.*).png$/);
     appConfig.customization.resourceIcons[resouce] = icon.replace(
