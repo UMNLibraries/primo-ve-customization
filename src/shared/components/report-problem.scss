@@ -2,13 +2,13 @@ prm-report-problem {
   .report-container {
     .md-button.report-problem-btn {
       prm-icon md-icon path {
-        color: $lightMaroon;
+        color: $darkMaroon;
       }
 
       &:focus,
       &:hover {
         prm-icon md-icon path {
-          fill: $maroon;
+          fill: $lightMaroon;
         }
       }
     }
@@ -24,7 +24,7 @@ prm-report-problem {
       &:hover:not([disabled]),
       &:focus:not([disabled]) {
         color: #fff;
-        background-color: $maroon;
+        background-color: $lightMaroon;
       }
     }
   }
