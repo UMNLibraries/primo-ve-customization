@@ -5,6 +5,8 @@ import { QuestionPointModule } from "./qpoint-chat";
 import { ShibAuthModule } from "./shib-auth";
 import { AccountModule } from "./account";
 
+import "./snippet.scss";
+
 export const TwinCitiesComponentsModule = angular
   .module("twincitiesComponents", [
     AccountModule,
