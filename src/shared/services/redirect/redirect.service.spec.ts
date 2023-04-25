@@ -15,7 +15,7 @@ describe("Redirect Service", () => {
 
   it("fixes multiple facet parameters", () => {
     $location.url(
-      "search?facet=rtype,include,books&facet=tlevel,include,online_resources$$ITWINCITIES"
+      "/search?facet=rtype,include,books&facet=tlevel,include,online_resources$$ITWINCITIES"
     );
     redirect.init();
     expect($location.search()["facet"]).toContain(
@@ -24,10 +24,24 @@ describe("Redirect Service", () => {
   });
 
   it("fixes single facet parameters", () => {
-    $location.url("search?facet=tlevel,include,online_resources$$ITWINCITIES");
+    $location.url("/search?facet=tlevel,include,online_resources$$ITWINCITIES");
     redirect.init();
     expect($location.search()["facet"]).toEqual(
       "tlevel,include,online_resources"
     );
+  });
+
+  it("does not modify non-legacy facets", () => {
+    const url = "/search?facet=tlevel,include,online_resources";
+    $location.url(url);
+    redirect.init();
+    expect($location.url()).toEqual(url);
+  });
+
+  it("does nothing when facet parameters are absent", () => {
+    const url = "/search?query=any,contains,foo";
+    $location.url(url);
+    redirect.init();
+    expect($location.url()).toEqual(url);
   });
 });

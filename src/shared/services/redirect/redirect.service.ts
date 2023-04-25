@@ -15,8 +15,10 @@ export class RedirectService {
     this.handleLegacyOnlineFacet();
   }
 
-  private handleLegacyOnlineFacet() {
+  private handleLegacyOnlineFacet(): void {
     const facet = this.$location.search()["facet"];
+    if (facet === undefined) return;
+
     if (Array.isArray(facet) && facet.some(isLegacyOnlineFacet)) {
       this.$location.search("facet", facet.map(fixLegacyOnlineFacet));
     } else if (isLegacyOnlineFacet(facet)) {
