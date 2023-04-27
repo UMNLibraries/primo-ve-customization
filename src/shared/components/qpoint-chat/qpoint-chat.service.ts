@@ -1,22 +1,39 @@
+import { View, ViewCode } from "@src/view-code";
 import template from "./qpoint-chat.html";
 
 export class QpointChatService {
-  static $inject = ["$mdDialog", "$sce"];
+  private url: string;
+  static $inject = ["$mdDialog", "$sce", "view"];
   constructor(
     private $mdDialog: ng.material.IDialogService,
-    private $sce: ng.ISCEService
-  ) {}
+    private $sce: ng.ISCEService,
+    private view: ViewCode
+  ) {
+    switch (this.view) {
+      case View.DULUTH:
+        this.url = this.$sce.trustAsResourceUrl(
+          "https://libanswers.d.umn.edu/chat/widget/5f32aa274dea76fa84de129dc49196b6"
+        );
+        break;
+      case View.TWINCITIES:
+        this.url = this.$sce.trustAsResourceUrl(
+          "https://apps.lib.umn.edu/qwidget/index.html"
+        );
+        break;
+      default:
+        this.url = "";
+    }
+  }
 
-  showChatDialog(url: string) {
+  showChatDialog() {
     this.$mdDialog.show({
       bindToController: true,
       controllerAs: "$ctrl",
       locals: {
         $mdDialog: this.$mdDialog,
-        $sce: this.$sce,
+        url: this.url,
       },
       controller: function () {
-        this.url = this.$sce.trustAsResourceUrl(url);
         this.close = function () {
           this.$mdDialog.hide();
         };
