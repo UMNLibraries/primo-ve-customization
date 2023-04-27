@@ -21,5 +21,8 @@ type ViewCallback = (view: ViewCode) => void;
 export const inView = (view: ViewCode, fn: ViewCallback) =>
   context(`In the ${view} view, `, () => fn(view));
 
+export const inViews = (views: ViewCode[], fn: ViewCallback) =>
+  views.forEach((v: ViewCode) => inView(v, fn));
+
 export const inAllViews = (fn: ViewCallback) =>
-  Object.values(View).forEach((v: ViewCode) => inView(v, fn));
+  inViews(Object.values(View), fn);

@@ -1,12 +1,12 @@
 import { SearchPage } from "../pages";
-import { inView } from "../support/e2e";
+import { inViews } from "../support/e2e";
 
 // TODO: ArchivesSpace availability?
 
 describe("Search Results", () => {
   let page: SearchPage;
 
-  inView("01UMN_INST:TWINCITIES", (view) => {
+  inViews(["01UMN_INST:TWINCITIES", "01UMN_INST:DULUTH"], (view) => {
     before(() => {
       page = new SearchPage(view);
       page.visit();
