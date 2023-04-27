@@ -14,18 +14,27 @@ export class SearchPage extends PrimoPage {
   }
 
   /**
-   * returns the questionpoint chat widget (nested iframe)
+   * returns the questionpoint chat widget
    */
   get chatDialog() {
-    return cy
-      .get(".qpoint-chat iframe")
-      .its("0.contentDocument.body")
-      .should("not.be.empty")
-      .then(cy.wrap)
-      .find("iframe") // the chat widget is in a weird nested iframe
-      .its("0.contentDocument.body")
-      .should("not.be.empty")
-      .then(cy.wrap);
+    if (this.view === "01UMN_INST:TWINCITIES") {
+      return cy
+        .get(".qpoint-chat iframe")
+        .its("0.contentDocument.body")
+        .should("not.be.empty")
+        .then(cy.wrap)
+        .find("iframe") // the chat widget is in a weird nested iframe
+        .its("0.contentDocument.body")
+        .should("not.be.empty")
+        .then(cy.wrap);
+    }
+    if (this.view === "01UMN_INST:DULUTH") {
+      return cy
+        .get(".qpoint-chat iframe")
+        .its("0.contentDocument.body")
+        .should("not.be.empty")
+        .then(cy.wrap);
+    }
   }
 
   get chatCloseButton() {

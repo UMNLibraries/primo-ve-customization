@@ -22,6 +22,22 @@ describe("Search", () => {
     });
   });
 
+  inView("01UMN_INST:DULUTH", (view) => {
+    beforeEach(() => {
+      searchPage = new SearchPage(view);
+      searchPage.visit();
+    });
+
+    describe("QuestionPoint Chat", () => {
+      it("displays a chat dialog when clicked", () => {
+        searchPage.chatLink.click();
+        searchPage.chatDialog.contains("h2", /chat with a librarian/i);
+        searchPage.chatCloseButton.click();
+        searchPage.chatDialog.should("not.exist");
+      });
+    });
+  });
+
   inAllViews((view) => {
     beforeEach(() => {
       searchPage = new SearchPage(view);
