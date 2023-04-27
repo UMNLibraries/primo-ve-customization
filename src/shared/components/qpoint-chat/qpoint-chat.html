@@ -1,10 +1,6 @@
 <md-dialog class="qpoint-chat">
   <md-dialog-content class="qpoint-chat">
-    <iframe
-      src="https://apps.lib.umn.edu/qwidget/index.html"
-      height="100%"
-      width="100%"
-    ></iframe>
+    <iframe src="{{ $ctrl.url }}" height="100%" width="100%"></iframe>
   </md-dialog-content>
   <md-dialog-actions>
     <md-button ng-click="$ctrl.close()">Close</md-button>

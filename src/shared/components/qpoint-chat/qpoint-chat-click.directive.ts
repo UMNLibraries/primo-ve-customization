@@ -11,11 +11,11 @@ export function showChatOnClick(
     link(
       _$scope: ng.IScope,
       $element: ng.IAugmentedJQuery,
-      _$attrs: ng.IAttributes
+      $attrs: ng.IAttributes
     ) {
       $element.on("click", () => {
         analytics.trackEvent("Custom Links", "Chat Click");
-        qpointChat.showChatDialog();
+        qpointChat.showChatDialog($attrs.url);
       });
     },
   };
