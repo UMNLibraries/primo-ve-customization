@@ -6,6 +6,7 @@ import { BrowzineService } from "./search-result-availability";
 import { BrowzineComponent } from "./search-result-availability";
 import { PrmSearchResultAvailabilityLineAfterComponent } from "./search-result-availability";
 import { PrmSearchErrorMessageAfterComponent } from "./error-message";
+import { SearchResultHelpComponent } from "./search-result-help";
 
 export const SearchResultModule = angular
   .module("searchResult", [HathiTrustAvailability])
@@ -15,4 +16,8 @@ export const SearchResultModule = angular
   .component(
     "prmSearchResultAvailabilityLineAfter",
     PrmSearchResultAvailabilityLineAfterComponent
-  ).name;
+  )
+  .component("searchResultHelp", SearchResultHelpComponent)
+  .component("prmSearchResultListAfter", {
+    template: "<search-result-help></search-result-help>",
+  }).name;

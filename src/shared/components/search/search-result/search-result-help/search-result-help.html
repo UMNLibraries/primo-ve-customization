@@ -1,0 +1,96 @@
+<md-card
+  ng-if="$ctrl.view === '01UMN_INST:TWINCITIES' && $ctrl.visible"
+  class="default-card _md md-primoExplore-theme havent-found"
+  prm-text=""
+  dir="auto"
+  role="complementary"
+  aria-labelledby="helpTitle"
+>
+  <md-card-content>
+    <h2 id="helpTitle" class="md-headline">
+      Haven't found what you're looking for?
+    </h2>
+    <ul>
+      <li>
+        <span>
+          <a show-chat-on-click href="">Chat with library staff 24/7</a>
+        </span>
+      </li>
+      <li>
+        <span>
+          Use
+          <a
+            href="https://ezproxy.lib.umn.edu/login?qurl=https%3A//umn.illiad.oclc.org/illiad/ILLiad.dll"
+          >
+            interlibrary loan</a
+          >
+          to request it from another library
+        </span>
+      </li>
+      <li>
+        <span>
+          Try searching
+          <a href="https://scholar.google.com/scholar?q={{$ctrl.searchString}}"
+            >Google Scholar</a
+          >
+          or
+          <a
+            href="https://universityofminnesota-minneapolis.on.worldcat.org/v2/search?queryString={{$ctrl.searchString}}"
+            >WorldCat</a
+          >
+        </span>
+      </li>
+    </ul>
+  </md-card-content>
+</md-card>
+
+<md-card
+  ng-if="$ctrl.view === '01UMN_INST:DULUTH' && $ctrl.visible"
+  class="default-card _md md-primoExplore-theme havent-found"
+  prm-text=""
+  dir="auto"
+  role="complementary"
+  aria-labelledby="helpTitle"
+>
+  <md-card-content>
+    <h2 id="helpTitle" class="md-headline">
+      Haven't found what you're looking for?
+    </h2>
+    <ul>
+      <li>
+        <span>
+          <a show-chat-on-click href="">Chat with library staff 24/7</a>
+        </span>
+      </li>
+      <li>
+        <span
+          >Enable the option to “Include articles available through interlibrary
+          loan” under <em>Filter my results</em> to view materials that may be
+          available from other libraries
+        </span>
+      </li>
+      <li>
+        <span
+          >Use
+          <a href="https://scholar.google.com/scholar?q={{$ctrl.searchString}}">
+            Google Scholar</a
+          >
+          or
+          <a
+            href="https://universityofminnesota-duluth.on.worldcat.org/v2/search?queryString={{$ctrl.searchString}}"
+            >WorldCat</a
+          >
+        </span>
+      </li>
+      <li>
+        <span
+          >Use
+          <a href="https://1552.account.worldcat.org/profile"
+            >interlibrary loan</a
+          >
+          to request items from other libraries</span
+        >
+      </li>
+    </ul>
+  </md-card-content>
+</md-card>

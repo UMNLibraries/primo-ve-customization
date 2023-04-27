@@ -1,11 +1,15 @@
 import "./search-result-help.scss";
 import template from "./search-result-help.html";
+import { ViewCode } from "@src/view-code";
 
 class SearchResultHelpController implements ng.IController {
   private prmSearchResultListCtrl: ng.IController;
 
-  static $inject = ["$location"];
-  constructor(private $location: ng.ILocationService) {}
+  static $inject = ["$location", "view"];
+  constructor(
+    private $location: ng.ILocationService,
+    readonly view: ViewCode
+  ) {}
 
   get visible() {
     return this.onSearchPage && this.hasResults && !this.searchInProgress;
