@@ -23,6 +23,11 @@ prm-personal-info {
   md-card:not(#personalDetails) {
     display: none;
   }
+
+  // don't clip long address lines
+  .input-containers-group {
+    max-width: 100% !important;
+  }
 }
 
 // don't show icons in the empty tiles
