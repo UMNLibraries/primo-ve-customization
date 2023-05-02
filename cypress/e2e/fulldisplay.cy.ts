@@ -1,8 +1,26 @@
 import { FullDisplayPage } from "../pages";
-import { inAllViews } from "../support/e2e";
+import { inAllViews, inView } from "../support/e2e";
 
 describe("Full Display", () => {
   let page: FullDisplayPage;
+
+  inView("01UMN_INST:TWINCITIES", (view) => {
+    describe("Custom availability", () => {
+      const recordId = "alma9980041431301701";
+
+      beforeEach(() => {
+        page = new FullDisplayPage(view, recordId);
+        page.visit();
+      });
+
+      it("displays a custom availability statement for ArchivesSpace", () => {
+        cy.get(".availability-status").should(
+          "have.text",
+          "View collection guide"
+        );
+      });
+    });
+  });
 
   inAllViews((view) => {
     describe("LibKey", () => {
