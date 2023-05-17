@@ -266,21 +266,21 @@
 .request-form md-input-container md-select .md-select-value.md-select-placeholder,
 .request-form md-input-container .md-input-container-dummy > .md-select-dummy .md-select-value.md-select-placeholder,
 .request-form md-input-container md-select ._md-select-value._md-select-placeholder,
-.request-form md-input-container .md-input-container-dummy > .md-select-dummy ._md-select-value._md-select-placeholder, .result-item-actions .more-options-button, prm-add-query-to-saved-searches .custom-button, prm-pre-filters md-input-container.is-active, .md-autocomplete-suggestions .suggestion-scope, md-tab-content .tab-content-header md-input-container md-select-value .md-text {
+.request-form md-input-container .md-input-container-dummy > .md-select-dummy ._md-select-value._md-select-placeholder, .result-item-actions .more-options-button, prm-add-query-to-saved-searches .custom-button, prm-pre-filters md-input-container.is-active, .md-autocomplete-suggestions .suggestion-scope, md-tab-content .tab-content-header md-input-container md-select-value .md-text, prm-resource-type-filter-bar md-input-container.is-active {
   color: #7a0019; }
   .prm-primary-color.prm-hue1, .request-form md-input-container label.prm-hue1,
   .request-form md-input-container label.prm-hue1:not(.md-no-float):not(._md-container-ignore),
   .request-form md-input-container md-select .prm-hue1.md-select-value.md-select-placeholder,
   .request-form md-input-container .md-input-container-dummy > .md-select-dummy .prm-hue1.md-select-value.md-select-placeholder,
   .request-form md-input-container md-select .prm-hue1._md-select-value._md-select-placeholder,
-  .request-form md-input-container .md-input-container-dummy > .md-select-dummy .prm-hue1._md-select-value._md-select-placeholder, .result-item-actions .prm-hue1.more-options-button, prm-add-query-to-saved-searches .prm-hue1.custom-button, prm-pre-filters md-input-container.prm-hue1.is-active, .md-autocomplete-suggestions .prm-hue1.suggestion-scope, md-tabs md-tabs-wrapper md-tabs-canvas md-pagination-wrapper md-tab-item.md-active:not([disabled]), md-tabs md-tabs-wrapper md-tabs-canvas md-pagination-wrapper md-tab-item.md-focused:not([disabled]), md-tab-content .tab-content-header md-input-container md-select-value .prm-hue1.md-text {
+  .request-form md-input-container .md-input-container-dummy > .md-select-dummy .prm-hue1._md-select-value._md-select-placeholder, .result-item-actions .prm-hue1.more-options-button, prm-add-query-to-saved-searches .prm-hue1.custom-button, prm-pre-filters md-input-container.prm-hue1.is-active, .md-autocomplete-suggestions .prm-hue1.suggestion-scope, md-tabs md-tabs-wrapper md-tabs-canvas md-pagination-wrapper md-tab-item.md-active:not([disabled]), md-tabs md-tabs-wrapper md-tabs-canvas md-pagination-wrapper md-tab-item.md-focused:not([disabled]), md-tab-content .tab-content-header md-input-container md-select-value .prm-hue1.md-text, prm-resource-type-filter-bar md-input-container.prm-hue1.is-active {
     color: #6b0016; }
   .prm-primary-color.prm-hue2, .request-form md-input-container label.prm-hue2,
   .request-form md-input-container label.prm-hue2:not(.md-no-float):not(._md-container-ignore),
   .request-form md-input-container md-select .prm-hue2.md-select-value.md-select-placeholder,
   .request-form md-input-container .md-input-container-dummy > .md-select-dummy .prm-hue2.md-select-value.md-select-placeholder,
   .request-form md-input-container md-select .prm-hue2._md-select-value._md-select-placeholder,
-  .request-form md-input-container .md-input-container-dummy > .md-select-dummy .prm-hue2._md-select-value._md-select-placeholder, .result-item-actions .md-icon-button, .result-item-actions .prm-hue2.more-options-button, prm-add-query-to-saved-searches .prm-hue2.custom-button, prm-pre-filters md-input-container.prm-hue2.is-active, .md-autocomplete-suggestions .prm-hue2.suggestion-scope, md-tab-content .tab-content-header md-input-container md-select-value .prm-hue2.md-text {
+  .request-form md-input-container .md-input-container-dummy > .md-select-dummy .prm-hue2._md-select-value._md-select-placeholder, .result-item-actions .md-icon-button, .result-item-actions .prm-hue2.more-options-button, prm-add-query-to-saved-searches .prm-hue2.custom-button, prm-pre-filters md-input-container.prm-hue2.is-active, .md-autocomplete-suggestions .prm-hue2.suggestion-scope, md-tab-content .tab-content-header md-input-container md-select-value .prm-hue2.md-text, prm-resource-type-filter-bar md-input-container.prm-hue2.is-active {
     color: #610014; }
 
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
@@ -810,7 +810,7 @@ md-toolbar.default-toolbar:not(.md-menu-toolbar) {
   .prm-hue1.fulltext_topic,
   .prm-hue1.esploro_status\.not_restricted {
     color: #0e7300; }
-  .prm-positive-bg, .multiselect-submit .multiselect-submit-inner .md-button.md-primary {
+  .prm-positive-bg, .multiselect-submit .multiselect-submit-inner .md-button.md-primary:hover, .multiselect-submit .multiselect-submit-inner .md-button.md-primary:focus {
     background-color: #0f7d00; }
 
 .prm-negative {
