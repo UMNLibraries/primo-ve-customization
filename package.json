@@ -72,5 +72,8 @@
   },
   "dependencies": {
     "primo-explore-hathitrust-availability": "^2.7.2"
+  },
+  "volta": {
+    "node": "18.16.0"
   }
 }
