@@ -6,11 +6,24 @@ import {
 const proxyBaseUrl = "https://ezproxy.lib.umn.edu/login?qurl=";
 
 export class IlliadService {
-  readonly requestsUrl = "/primo_library/libweb/umn/ill-requests.jsp";
-  readonly articlesUrl = "/primo_library/libweb/umn/ill-articles.jsp";
+  readonly baseUrl: string;
+  static $inject = ["$http", "$location"];
+  constructor(private $http: ng.IHttpService, $locaton: ng.ILocationService) {
+    const host = $locaton.host();
+    if (host.startsWith("primo-test") || host.startsWith("umn-psb")) {
+      this.baseUrl = "https://pralma-dev.lib.umn.edu/ill";
+    } else {
+      this.baseUrl = "https://pralma.lib.umn.edu/ill";
+    }
+  }
 
-  static $inject = ["$http"];
-  constructor(private $http: ng.IHttpService) {}
+  get requestsUrl() {
+    return `${this.baseUrl}/requests`;
+  }
+
+  get articlesUrl() {
+    return `${this.baseUrl}/articles`;
+  }
 
   /**
    * Retrieves the current user's open ILL requests from ILLiad.
