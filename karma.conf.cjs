@@ -64,5 +64,7 @@ module.exports = async function (config) {
     // Concurrency level
     // how many browser instances should be started simultaneously
     concurrency: Infinity,
+
+    browserConsoleLogOptions: { level: "info", terminal: false },
   });
 };
