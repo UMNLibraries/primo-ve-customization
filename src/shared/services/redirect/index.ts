@@ -1,1 +1,1 @@
-export * from "./redirect.model";
+export * from "./redirect.module";
