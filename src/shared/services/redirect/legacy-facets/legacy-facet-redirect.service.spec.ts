@@ -1,15 +1,15 @@
-import { RedirectService } from "./redirect.service";
+import { LegacyFacetRedirectService } from "./legacy-facet-redirect.service";
 
-describe("Redirect Service", () => {
+describe("Legacy Facets Redirect Service", () => {
   let $rootScope: ng.IRootScopeService,
     $location: ng.ILocationService,
-    redirect: RedirectService;
+    redirect: LegacyFacetRedirectService;
 
   beforeEach(
     angular.mock.inject(($injector) => {
       $rootScope = $injector.get("$rootScope");
       $location = $injector.get("$location");
-      redirect = new RedirectService($location);
+      redirect = new LegacyFacetRedirectService($location);
     })
   );
 

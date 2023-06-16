@@ -7,7 +7,7 @@ const isLegacyOnlineFacet = (f: string) => f.includes("online_resources$$I");
 const fixLegacyOnlineFacet = (f: string) =>
   f.replace(/online_resources\$\$I.*$/, "online_resources");
 
-export class RedirectService {
+export class LegacyFacetRedirectService {
   static $inject = ["$location"];
   constructor(private $location: ng.ILocationService) {}
 

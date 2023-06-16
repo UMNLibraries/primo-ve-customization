@@ -1,11 +1,11 @@
-import { RedirectService } from "./redirect.service";
+import { LegacyFacetRedirectService } from "./legacy-facets";
 
-run.$inject = ["redirect"];
-function run(redirect: RedirectService) {
+run.$inject = ["legacyFacetRedirect"];
+function run(redirect: LegacyFacetRedirectService) {
   redirect.init();
 }
 
 export const RedirectModule = angular
   .module("redirect", [])
-  .service("redirect", RedirectService)
+  .service("legacyFacetRedirect", LegacyFacetRedirectService)
   .run(run).name;
