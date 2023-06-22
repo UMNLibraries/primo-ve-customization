@@ -1,3 +1,4 @@
+import "./actions/citation.scss";
 import "./brief-result.scss";
 import "./facet.scss";
 
