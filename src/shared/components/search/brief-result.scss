@@ -15,7 +15,9 @@ prm-brief-result-container {
     color: $darkGrey;
   }
 
-  div.course-info-mark {
+  // don't show course indicators
+  div.course-info-mark,
+  div.badge-item.prm-course {
     display: none;
   }
 
