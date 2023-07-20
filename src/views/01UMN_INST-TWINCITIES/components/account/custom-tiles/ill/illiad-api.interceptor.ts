@@ -10,6 +10,7 @@ function illiadApiInterceptor(jwtService: JwtService) {
         const headers = request.headers ?? {};
         headers["Authorization"] = `Bearer ${jwtService.getJwt()}`;
         request.headers = headers;
+        //request.url = request.url.replace(ILLIAD_API_PATTERN, "http://localhost:8002/ill/")
       }
       return request;
     },

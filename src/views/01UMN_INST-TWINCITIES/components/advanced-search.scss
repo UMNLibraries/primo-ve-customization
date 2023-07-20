@@ -1,0 +1,4 @@
+// hide the "online" scope option
+md-option[ng-repeat="scope in $ctrl.scopesOptions"][value="online"] {
+  display: none;
+}

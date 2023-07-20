@@ -4,6 +4,7 @@ import { ShibAuthModule } from "./shib-auth";
 import { AccountModule } from "./account";
 
 import "./snippet.scss";
+import "./advanced-search.scss";
 
 export const TwinCitiesComponentsModule = angular
   .module("twincitiesComponents", [AccountModule, FooterModule, ShibAuthModule])
