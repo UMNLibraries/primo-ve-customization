@@ -1,12 +1,11 @@
 import { SearchPage } from "../pages";
 import { inAllViews, inView } from "../support/e2e";
-
-// TOOD: add topbar tags test?
+import { View } from "@src/view-code";
 
 describe("Search", () => {
   let searchPage: SearchPage;
 
-  inView("01UMN_INST:TWINCITIES", (view) => {
+  inView(View.TWINCITIES, (view) => {
     beforeEach(() => {
       searchPage = new SearchPage(view);
       searchPage.visit();
@@ -22,7 +21,7 @@ describe("Search", () => {
     });
   });
 
-  inView("01UMN_INST:DULUTH", (view) => {
+  inView(View.DULUTH, (view) => {
     beforeEach(() => {
       searchPage = new SearchPage(view);
       searchPage.visit();
