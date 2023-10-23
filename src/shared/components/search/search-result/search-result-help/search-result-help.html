@@ -94,3 +94,37 @@
     </ul>
   </md-card-content>
 </md-card>
+
+<md-card
+  ng-if="$ctrl.view === '01UMN_INST:MORRIS' && $ctrl.visible"
+  class="default-card _md md-primoExplore-theme havent-found"
+  prm-text=""
+  dir="auto"
+  role="complementary"
+  aria-labelledby="helpTitle"
+>
+  <md-card-content>
+    <h2 id="helpTitle" class="md-headline">
+      Haven't found what you're looking for?
+    </h2>
+    <ul>
+      <li>
+        <span>
+          <a
+            href="https://library.morris.umn.edu/services/ask-librarian-and-reference-services"
+            >Ask a librarian</a
+          >
+        </span>
+      </li>
+      <li>
+        <span>
+          Use
+          <a href="https://library.morris.umn.edu/services/interlibrary-loan">
+            interlibrary loan</a
+          >
+          to request it from another library
+        </span>
+      </li>
+    </ul>
+  </md-card-content>
+</md-card>
