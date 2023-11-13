@@ -3,3 +3,12 @@ prm-request {
     display: none;
   }
 }
+
+prm-tabs-and-scopes-selector {
+  md-divider,
+  md-input-container {
+    &[ng-if="$ctrl.showScopesSelect()"] {
+      display: none !important;
+    }
+  }
+}
