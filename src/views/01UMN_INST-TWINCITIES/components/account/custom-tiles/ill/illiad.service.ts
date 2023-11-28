@@ -7,6 +7,7 @@ const proxyBaseUrl = "https://ezproxy.lib.umn.edu/login?qurl=";
 
 export class IlliadService {
   readonly baseUrl: string;
+  private timeout = 10_000; // milliseconds
   static $inject = ["$http", "$location"];
   constructor(private $http: ng.IHttpService, $locaton: ng.ILocationService) {
     const host = $locaton.host();
@@ -33,13 +34,15 @@ export class IlliadService {
    *  - author {string}
    */
   getRequests(): ng.IPromise<NormalizedIllTransaction[]> {
-    return this.$http.get<IlliadApiResponse>(this.requestsUrl).then((resp) => {
-      return resp.data.map((data) => ({
-        txnNum: data.TransactionNumber,
-        title: data.PhotoArticleTitle || data.LoanTitle,
-        author: data.PhotoArticleAuthor || data.LoanAuthor,
-      }));
-    });
+    return this.$http
+      .get<IlliadApiResponse>(this.requestsUrl, { timeout: this.timeout })
+      .then((resp) => {
+        return resp.data.map((data) => ({
+          txnNum: data.TransactionNumber,
+          title: data.PhotoArticleTitle || data.LoanTitle,
+          author: data.PhotoArticleAuthor || data.LoanAuthor,
+        }));
+      });
   }
 
   /**
@@ -50,13 +53,15 @@ export class IlliadService {
    *  - author {string}
    */
   getArticles(): ng.IPromise<NormalizedIllTransaction[]> {
-    return this.$http.get<IlliadApiResponse>(this.articlesUrl).then((resp) => {
-      return resp.data.map((data) => ({
-        txnNum: data.TransactionNumber,
-        title: data.PhotoArticleTitle,
-        author: data.PhotoArticleAuthor,
-      }));
-    });
+    return this.$http
+      .get<IlliadApiResponse>(this.articlesUrl, { timeout: this.timeout })
+      .then((resp) => {
+        return resp.data.map((data) => ({
+          txnNum: data.TransactionNumber,
+          title: data.PhotoArticleTitle,
+          author: data.PhotoArticleAuthor,
+        }));
+      });
   }
 
   /**
