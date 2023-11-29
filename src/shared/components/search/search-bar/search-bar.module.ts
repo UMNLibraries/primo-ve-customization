@@ -1,3 +1,5 @@
+import "./search-bar.scss";
+
 import { PrmSearchBarAfterComponent } from "./prm-search-bar-after.component";
 import { PrmAdvncedSearchAfterComponent } from "./advanced-search";
 import { UncollapseAdvancedSearchComponent } from "./advanced-search";

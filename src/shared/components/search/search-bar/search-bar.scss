@@ -1,0 +1,4 @@
+// hide the "cdi_unfiltered" scope option (for Rapido)
+md-option[value="cdi_unfiltered"] {
+  display: none;
+}

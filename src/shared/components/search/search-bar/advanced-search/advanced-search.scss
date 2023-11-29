@@ -3,8 +3,3 @@ prm-advanced-search {
     display: none;
   }
 }
-
-// hide the "cdi_unfiltered" scope option (for Rapido)
-md-option[ng-repeat="scope in $ctrl.scopesOptions"][value="cdi_unfiltered"] {
-  display: none;
-}
