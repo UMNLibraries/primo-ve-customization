@@ -13,13 +13,16 @@ export interface FormData {
 /**
  * Replaces the parent controller's `onFormInputChange` method with a custom
  * implementation that requires users to provide an address in the comments
- * field when "home delivery" is selected as a pickup location in hold requests
+ * field when home or office is selected as a pickup location in hold requests
  */
 export class PrmRequestAfterController implements ng.IController {
   private parentCtrl: ng.IController;
   private originalFormChangeHandler: Function;
   readonly defaultCommentLabel: string = "almaRequest.comment";
-  readonly customCommentLabel: string = "umn.almaRequest.homeDeliveryAddress";
+  readonly homeAddressCommentLabel: string =
+    "umn.almaRequest.homeDeliveryAddress";
+  readonly workAddressCommentLabel: string =
+    "umn.almaRequest.workDeliveryAddress";
 
   $onInit() {
     this.originalFormChangeHandler = this.parentCtrl.onFormInputChange.bind(
@@ -33,10 +36,14 @@ export class PrmRequestAfterController implements ng.IController {
       const comment = this.findCommentField();
       comment.uiType = "hidden";
       if (this.isHomeDeliverySelected(newData)) {
-        comment.label = this.customCommentLabel;
+        comment.label = this.homeAddressCommentLabel;
         comment.mandatory = true;
         comment.uiType = "text";
-      } else if (comment?.label === this.customCommentLabel) {
+      } else if (this.isWorkDeliverySelected(newData)) {
+        comment.label = this.workAddressCommentLabel;
+        comment.mandatory = false; // office address should be optional
+        comment.uiType = "text";
+      } else if (comment?.label !== this.defaultCommentLabel) {
         comment.label = this.defaultCommentLabel;
         comment.mandatory = false;
       }
@@ -50,6 +57,10 @@ export class PrmRequestAfterController implements ng.IController {
 
   private isHomeDeliverySelected(formData: FormData): boolean {
     return formData?.pickupLocation?.endsWith("USER_HOME_ADDRESS");
+  }
+
+  private isWorkDeliverySelected(formData: FormData): boolean {
+    return formData?.pickupLocation?.endsWith("USER_WORK_ADDRESS");
   }
 
   private findCommentField(): FormField | undefined {
