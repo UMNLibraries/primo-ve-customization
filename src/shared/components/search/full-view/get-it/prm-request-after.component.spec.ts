@@ -50,8 +50,19 @@ describe("prmRequestAfterComponent", () => {
     };
     ctrl.$onInit();
     ctrl.customFormChangeHandler(newFormData, null);
-    expect(commentField.mandatory).toBeTrue;
-    expect(commentField.label).toEqual(ctrl.customCommentLabel);
+    expect(commentField.mandatory).toEqual(true);
+    expect(commentField.label).toEqual(ctrl.homeAddressCommentLabel);
+  });
+
+  it("makes the comment field optional when work delivery is selected", () => {
+    const newFormData: FormData = {
+      requestType: "hold",
+      pickupLocation: "123456789$$USER_WORK_ADDRESS",
+    };
+    ctrl.$onInit();
+    ctrl.customFormChangeHandler(newFormData, null);
+    expect(commentField.mandatory).toEqual(false);
+    expect(commentField.label).toEqual(ctrl.workAddressCommentLabel);
   });
 
   it("hides the comment field by default", () => {
