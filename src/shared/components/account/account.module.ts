@@ -1,5 +1,5 @@
-import { PrmFinesOverviewAfterComponent } from "./fines-overview";
+import { PrmAccountOverviewAfterComponent } from "./overview";
 
 export const AccountModule = angular
   .module("account", [])
-  .component("prmFinesOverviewAfter", PrmFinesOverviewAfterComponent).name;
+  .component("prmAccountOverviewAfter", PrmAccountOverviewAfterComponent).name;
