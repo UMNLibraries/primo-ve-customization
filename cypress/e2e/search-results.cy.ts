@@ -16,7 +16,9 @@ describe("Search Results", () => {
     it("does not display the Rapido 'still not found' link", () => {
       page.searchFor("baseball");
       cy.get("prm-search-result-list").should("be.visible");
-      cy.get("prm-ngrs-results-button").should("not.be.visible");
+      cy.get("prm-ngrs-results-button button#ill-request-link").should(
+        "not.exist"
+      );
     });
   });
 
