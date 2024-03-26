@@ -1,4 +1,5 @@
 declare global {
+  const ng: typeof ng;
   const angular: ng.IAngularStatic;
   const _: _.LoDashStatic;
 }

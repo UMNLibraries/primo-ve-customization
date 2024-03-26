@@ -1,4 +1,4 @@
-import { Analytics } from "../analytics";
+import type { Analytics } from "../analytics";
 
 const PROD_HOST_PATTERN = /^(primo.lib|umn.primo|umn.alma).*/;
 
