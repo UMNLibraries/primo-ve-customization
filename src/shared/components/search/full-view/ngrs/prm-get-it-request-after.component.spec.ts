@@ -16,6 +16,7 @@ describe("prmGetItRequestAfterComponent", () => {
         { label: "Library B", value: "2" },
         { label: "Library C", value: "3" },
         { label: "Home Address", value: "4" },
+        { label: "Work Address", value: "5" },
       ],
     },
   };
@@ -46,7 +47,17 @@ describe("prmGetItRequestAfterComponent", () => {
     );
   });
 
-  it("disables a mandatory address field when Home Address is not selected", () => {
+  it("enables an optional address field when Work Address is selected", () => {
+    ctrl.$onInit();
+    parentCtrl.formData.myLocation = "5";
+    parentCtrl.locationField.events.onChange();
+    expect(parentCtrl.noteField.mandatory).toBeFalse();
+    expect(parentCtrl.noteField.label).toEqual(
+      "umn.almaRequest.workDeliveryAddress"
+    );
+  });
+
+  it("disables a mandatory address field by default", () => {
     ctrl.$onInit();
     parentCtrl.formData.myLocation = "1";
     parentCtrl.locationField.events.onChange();

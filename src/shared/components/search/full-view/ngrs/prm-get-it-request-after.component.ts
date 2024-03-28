@@ -38,6 +38,9 @@ export class PrmGetItRequestAfterController implements ng.IController {
     if (this.isLocationSelected("Home Address")) {
       this.noteField.mandatory = true;
       this.noteField.label = "umn.almaRequest.homeDeliveryAddress";
+    } else if (this.isLocationSelected("Work Address")) {
+      this.noteField.mandatory = false;
+      this.noteField.label = "umn.almaRequest.workDeliveryAddress";
     } else {
       this.noteField.mandatory = false;
       this.noteField.label = "nui.ngrs.request.note";
