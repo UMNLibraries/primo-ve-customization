@@ -1,3 +1,4 @@
+import "./search-result-availability.scss";
 // @ts-ignore
 import HathiTrustAvailability from "primo-explore-hathitrust-availability";
 import { BrowzineService } from "./browzine.service";
