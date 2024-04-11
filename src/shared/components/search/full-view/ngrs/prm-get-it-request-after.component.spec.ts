@@ -64,4 +64,9 @@ describe("prmGetItRequestAfterComponent", () => {
     expect(parentCtrl.noteField.mandatory).toBeFalse();
     expect(parentCtrl.noteField.label).toEqual("nui.ngrs.request.note");
   });
+
+  it("sets the parent controller's default location to null", () => {
+    ctrl.$onInit();
+    expect(parentCtrl.getDefaultValue()).toBeNull();
+  });
 });

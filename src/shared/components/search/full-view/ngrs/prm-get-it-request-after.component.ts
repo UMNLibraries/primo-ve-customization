@@ -29,6 +29,7 @@ export class PrmGetItRequestAfterController implements ng.IController {
   }
 
   $onInit(): void {
+    this.overrideDefaultLocation();
     this.locationField.events = {
       onChange: () => this.setMandatoryFields(),
     };
@@ -57,6 +58,10 @@ export class PrmGetItRequestAfterController implements ng.IController {
     // up the values by label here.
     const option = this.findLocationOption(location);
     return this.parentCtrl.formData.myLocation === option.value;
+  }
+
+  private overrideDefaultLocation(): void {
+    this.parentCtrl.getDefaultValue = (): void => null;
   }
 
   get locationField(): FormField {
