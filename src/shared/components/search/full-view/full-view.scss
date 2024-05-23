@@ -14,6 +14,9 @@ prm-full-view {
 
   .full-view-section-content {
     padding-left: 0 !important;
+    &::after {
+      display: none;
+    }
   }
 
   // force ordering of services in the full-view menu
