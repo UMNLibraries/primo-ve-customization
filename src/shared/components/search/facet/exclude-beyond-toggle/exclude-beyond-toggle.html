@@ -1,0 +1,19 @@
+<div
+  ng-if="$ctrl.enabled"
+  class="switch-results switch-results-sliders-ctm"
+  layout="column"
+  layout-align="center start"
+>
+  <div class="expand-results-ctm">
+    <md-switch
+      class="tiny-switch zero-margin md-primoExplore-theme"
+      ng-model="$ctrl.excludePcAvailability"
+      ng-change="$ctrl.onChange()"
+      ng-class="$ctrl.excludePcAvailability ? 'active' : 'inactive'"
+    >
+      <span class="slider-text-wrap"
+        >Exclude items available through interlibrary loan</span
+      >
+    </md-switch>
+  </div>
+</div>
