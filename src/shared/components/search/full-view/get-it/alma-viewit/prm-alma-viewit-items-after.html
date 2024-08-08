@@ -1,0 +1,19 @@
+<div
+  tabindex="-1"
+  layout="row"
+  layout-align="center center"
+  ng-if="$ctrl.isReportProblem()"
+>
+  <md-button
+    class="button-with-icon report-problem-fullview-mobile"
+    ng-click="$ctrl.openReportFromFullView()"
+    translate-attr="{'aria-label': 'nui.aria.openReportProblem'}"
+    data-qa="open_report_problem_btn_mobile_fullview"
+    ><prm-icon
+      icon-type="svg"
+      svg-icon-set="primo-ui"
+      icon-definition="exclamation-mark"
+    ></prm-icon
+    ><span translate="report.Title"></span
+  ></md-button>
+</div>
