@@ -17,7 +17,7 @@ export class QpointChatService {
         break;
       case View.TWINCITIES:
         this.url = this.$sce.trustAsResourceUrl(
-          "https://apps.lib.umn.edu/qwidget/index.html"
+          "https://askmn.libanswers.com/chat/widget/b676f7763ee8962e9d1c686593b6b5bd614abdc3b3a51c9a4ec39120365a52a6"
         );
         break;
       default:
