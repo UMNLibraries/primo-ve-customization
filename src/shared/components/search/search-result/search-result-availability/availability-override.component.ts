@@ -5,7 +5,7 @@ class AvailabilityOverrideController {
   private parentCtrl: ng.IComponentController;
 
   $onInit() {
-    const dataSource = this.parentCtrl.result.pnx.display.source[0];
+    const dataSource = this.parentCtrl.result.pnx.display.source?.[0];
     if (dataSource === "archivesspace")
       this.availability = this.translate("umn.fulldisplay.linktocollguide");
   }
