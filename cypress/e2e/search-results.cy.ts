@@ -29,10 +29,26 @@ describe("Search Results", () => {
     });
 
     it("displays search suggestions", () => {
-      page.searchFor("test");
+      page.searchFor("foo");
       cy.get("prm-search-result-list-after").contains(
         "Haven't found what you're looking for?"
       );
+    });
+  });
+
+  inViews([View.TWINCITIES, View.DULUTH, View.CROOKSTON], (view) => {
+    before(() => {
+      page = new SearchPage(view);
+      page.visit();
+    });
+
+    describe("Rapido exclude toggle", () => {
+      it("filters out Rapido results", () => {
+        page.searchFor("rna");
+        cy.get("exclude-beyond-toggle").should("be.visible");
+        cy.get("exclude-beyond-toggle md-switch").click();
+        cy.location("search").should("include", "pcAvailability=false");
+      });
     });
   });
 });
