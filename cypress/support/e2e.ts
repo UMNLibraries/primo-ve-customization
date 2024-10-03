@@ -16,6 +16,11 @@
 import "./commands";
 import { View, ViewCode } from "@src/view-code";
 
+Cypress.on("uncaught:exception", (err, _) => {
+  // workaround for a primo error
+  if (err.message.includes("Cannot read properties of null")) return false;
+});
+
 type ViewCallback = (view: ViewCode) => void;
 
 export const inView = (view: ViewCode, fn: ViewCallback) =>

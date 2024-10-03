@@ -5,5 +5,29 @@ umn-footer {
       margin-left: auto;
       margin-right: auto;
     }
+
+    .umn-chat {
+      display: inline-block;
+      transform: rotate(90deg);
+      transform-origin: right top;
+      position: fixed;
+      top: 400px;
+      right: 0px;
+      z-index: 99; //note: primo full-view overlay is 80
+      padding: 0.5em 1em;
+      background-color: $primary;
+      color: $offWhite;
+      font-weight: 400;
+      font-size: 1.2em;
+      border-color: $offWhite;
+      border-style: solid;
+      border-width: 0px 4px 4px;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        box-shadow: none;
+      }
+    }
   }
 }

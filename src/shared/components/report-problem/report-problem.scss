@@ -1,4 +1,9 @@
 prm-report-problem {
+  // don't show that floating problem report button
+  button#reportProblem {
+    display: none;
+  }
+
   .report-container {
     .md-button.report-problem-btn {
       prm-icon md-icon path {
@@ -16,6 +21,10 @@ prm-report-problem {
   .report-problem-content {
     .report-header {
       background-color: $darkGrey;
+
+      .md-button path {
+        fill: $lightMaroon;
+      }
     }
 
     .md-button.button-link {

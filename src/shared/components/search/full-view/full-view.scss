@@ -1,4 +1,9 @@
 prm-full-view {
+  // hide the OTB report a problem button
+  div[ng-if="$ctrl.isReportProblem()"][hide-gt-xs] {
+    display: none !important;
+  }
+
   .report-problem-fullview-mobile {
     color: $maroon;
   }
