@@ -1,0 +1,7 @@
+prm-export-all {
+  // hide the Excel file type option (Excel is the default,
+  // and the CSV format seems to have bad encoding)
+  div:has(> md-input-container > md-select[aria-label="File Type"]) {
+    display: none;
+  }
+}
