@@ -1,7 +1,7 @@
 import { Course, CoursesResponse } from "./courses.model";
 
 export class CoursesService {
-  static URL = "https://stacks.lib.umn.edu/userapi/current-user/courses";
+  static URL = "https://apps.lib.umn.edu/userapi/current-user/courses";
 
   static $inject = ["$http", "$q", "$log"];
   constructor(
