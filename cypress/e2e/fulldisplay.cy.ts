@@ -6,7 +6,7 @@ describe("Full Display", () => {
 
   inView("01UMN_INST:TWINCITIES", (view) => {
     describe("Custom availability", () => {
-      const recordId = "alma9980041431301701";
+      const recordId = "alma9982140111201701";
 
       beforeEach(() => {
         page = new FullDisplayPage(view, recordId);
