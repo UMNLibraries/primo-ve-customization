@@ -10,11 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: npm-cache
         with:
           path: |
@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: customization-packages-${{ github.sha }}
           path: dist/packages/*.zip
@@ -48,7 +48,7 @@ jobs:
           CYPRESS_VERIFY_TIMEOUT: 100000
 
       - name: Archive e2e test videos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-videos-${{ github.sha }}
