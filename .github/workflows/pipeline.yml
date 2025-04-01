@@ -18,7 +18,7 @@ jobs:
       - name: Disable AppArmor's user ns restrictions
         run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v3
         id: npm-cache
         with:
           path: |
