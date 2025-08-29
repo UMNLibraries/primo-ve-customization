@@ -1,26 +1,9 @@
 import { FullDisplayPage } from "../pages";
 import { inAllViews, inView } from "../support/e2e";
+import { View } from "@src/view-code";
 
 describe("Full Display", () => {
   let page: FullDisplayPage;
-
-  inView("01UMN_INST:TWINCITIES", (view) => {
-    describe("Custom availability", () => {
-      const recordId = "alma9982140111201701";
-
-      beforeEach(() => {
-        page = new FullDisplayPage(view, recordId);
-        page.visit();
-      });
-
-      it("displays a custom availability statement for ArchivesSpace", () => {
-        cy.get(".availability-status").should(
-          "have.text",
-          "View collection guide"
-        );
-      });
-    });
-  });
 
   inAllViews((view) => {
     describe("LibKey", () => {

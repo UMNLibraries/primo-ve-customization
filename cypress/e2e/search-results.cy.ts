@@ -1,8 +1,6 @@
 import { SearchPage } from "../pages";
-import { inViews, inAllViews } from "../support/e2e";
+import { inView, inViews, inAllViews } from "../support/e2e";
 import { View } from "@src/view-code";
-
-// TODO: ArchivesSpace availability?
 
 describe("Search Results", () => {
   let page: SearchPage;
@@ -48,6 +46,26 @@ describe("Search Results", () => {
         cy.get("exclude-beyond-toggle").should("be.visible");
         cy.get("exclude-beyond-toggle md-switch").click();
         cy.location("search").should("include", "pcAvailability=false");
+      });
+    });
+  });
+
+  inView(View.TWINCITIES, (view) => {
+    describe("Custom availability", () => {
+      before(() => {
+        cy.visit({
+          url: "/search",
+          qs: {
+            vid: view,
+            query: "prima_facet_source_code,exact,archivesspace",
+          },
+        });
+      });
+
+      it("displays a custom availability statement for ArchivesSpace", () => {
+        cy.get(".availability-status")
+          .first()
+          .should("have.text", "View collection guide");
       });
     });
   });
