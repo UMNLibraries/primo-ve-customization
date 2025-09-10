@@ -3,6 +3,8 @@ import { PrmGetItRequestAfterController } from "./prm-get-it-request-after.compo
 
 describe("prmGetItRequestAfterComponent", () => {
   let $componentController: ng.IComponentControllerService;
+  let $element: ng.IAugmentedJQuery;
+  let parentElement: jasmine.SpyObj<ng.IAugmentedJQuery>;
   let ctrl: PrmGetItRequestAfterController;
   const parentCtrl: ng.IController = {
     formData: {},
@@ -25,10 +27,17 @@ describe("prmGetItRequestAfterComponent", () => {
     angular.mock.module(NgrsModule);
     angular.mock.inject(($injector) => {
       $componentController = $injector.get("$componentController");
+      $element = angular.element("<dummy></dummy>");
+      parentElement = jasmine.createSpyObj(null, ["prepend"]);
+      spyOn($element, "parent").and.returnValue(parentElement);
     });
-    ctrl = $componentController("prmGetItRequestAfter", null, {
-      parentCtrl: parentCtrl,
-    });
+    ctrl = $componentController(
+      "prmGetItRequestAfter",
+      { $element },
+      {
+        parentCtrl: parentCtrl,
+      }
+    );
     parentCtrl.formData.myLocation = "1";
   });
 
@@ -68,5 +77,20 @@ describe("prmGetItRequestAfterComponent", () => {
   it("sets the parent controller's default location to null", () => {
     ctrl.$onInit();
     expect(parentCtrl.getDefaultValue()).toBeNull();
+  });
+
+  it("adds get-it notes to physical requests", () => {
+    parentCtrl.isdigitaloffer = false;
+    ctrl.$onInit();
+    const addedElement: any = parentElement.prepend.calls.first().args[0];
+    expect((addedElement[0] as HTMLElement).tagName.toLowerCase()).toBe(
+      "get-it-note"
+    );
+  });
+
+  it("does not add get-it notes to non-physical requests", () => {
+    parentCtrl.isdigitaloffer = true;
+    ctrl.$onInit();
+    expect(parentElement.prepend).not.toHaveBeenCalled();
   });
 });

@@ -1,3 +1,4 @@
+import "./ngrs.scss";
 import { PrmNgrsResultsButtonAfterComponent } from "./prm-ngrs-results-button-after.component";
 import { PrmGetItRequestAfterComponent } from "./prm-get-it-request-after.component";
 

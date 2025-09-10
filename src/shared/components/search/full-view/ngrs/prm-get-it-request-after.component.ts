@@ -23,12 +23,17 @@ export interface FormField {
  */
 export class PrmGetItRequestAfterController implements ng.IController {
   private parentCtrl: ng.IController;
-
-  constructor() {
+  static $inject = ["$element", "$compile", "$scope"];
+  constructor(
+    private $element: ng.IAugmentedJQuery,
+    private $compile: ng.ICompileService,
+    private $scope: ng.IScope
+  ) {
     this.findLocationOption = _.memoize(this.findLocationOption);
   }
 
   $onInit(): void {
+    this.prependGetItNote();
     this.overrideDefaultLocation();
     this.locationField.events = {
       onChange: () => this.setMandatoryFields(),
@@ -62,6 +67,14 @@ export class PrmGetItRequestAfterController implements ng.IController {
 
   private overrideDefaultLocation(): void {
     this.parentCtrl.getDefaultValue = (): void => null;
+  }
+
+  private prependGetItNote() {
+    if (!this.parentCtrl.isdigitaloffer) {
+      const html = "<get-it-note></get-it-note>";
+      const template = this.$compile(html)(this.$scope);
+      this.$element.parent().prepend(template);
+    }
   }
 
   get locationField(): FormField {
