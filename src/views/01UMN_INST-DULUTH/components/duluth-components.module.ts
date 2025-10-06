@@ -1,3 +1,4 @@
+import "./styles.scss";
 import { AskusButtonComponent } from "./askus-button";
 import { NoResultsComponent } from "./no-results";
 import { FooterModule } from "./footer";

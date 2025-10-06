@@ -1,0 +1,13 @@
+// improve contrast in collection discovery headers with background images
+prm-collection-gallery-header .collection-header-inner.has-backdrop-image {
+  .collection-info {
+    background-color: rgb(0, 0, 0, 0.5);
+    a {
+      color: $lightGold;
+      &:hover,
+      &:focus {
+        box-shadow: $lightGold 0px -2px 0px 0px inset;
+      }
+    }
+  }
+}
