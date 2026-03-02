@@ -20,3 +20,12 @@ prm-request {
     display: none;
   }
 }
+
+// Hide resource sharing libraries from pickup locations menus
+md-option[value^="2307115588020001701"], // TC_RES_SHARE
+md-option[value^="2307115640810001701"], // RES_SHARE3
+md-option[value^="2234939915490001701"], // RES_SHARE2
+md-option[value^="12900830000231"] {
+  // RES_SHARE
+  display: none;
+}
