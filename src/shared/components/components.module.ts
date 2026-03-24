@@ -1,5 +1,6 @@
 import "./primo-explore.scss";
 import "./icon.scss";
+import "./journals.scss";
 
 import { SearchModule } from "./search";
 import { AccountModule } from "./account";

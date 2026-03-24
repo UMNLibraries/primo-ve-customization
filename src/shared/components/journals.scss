@@ -1,0 +1,6 @@
+// temporary workaround to hide borked label
+prm-journals {
+  li[translate="nui.journalsearch.category.option2"] {
+    display: none;
+  }
+}
