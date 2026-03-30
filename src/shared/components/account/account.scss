@@ -39,3 +39,14 @@ prm-account-overview {
     }
   }
 }
+
+prm-account-overview-after {
+  section > a {
+    color: $maroon;
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      text-decoration: underline;
+    }
+  }
+}
