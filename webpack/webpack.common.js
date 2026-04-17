@@ -11,7 +11,7 @@ const sharedDir = path.resolve(__dirname, "..", "src", "shared");
 const views = await readdir(viewsDir);
 const cssLoaders = [
   MiniCssExtractPlugin.loader,
-  "css-loader",
+  { loader: "css-loader", options: { url: false } },
   {
     loader: "postcss-loader",
     options: {

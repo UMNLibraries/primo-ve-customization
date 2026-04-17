@@ -51,3 +51,28 @@ prm-full-view {
     order: -1;
   }
 }
+
+// Replace select related persons images with a generic avatar
+
+@mixin generic-avatar-filter {
+  &:has(
+      [src*="Siyer-i_Nebi_158b.jpg" i],
+      [src*="Mohammed.jpg" i],
+      [src*="Muslim_depiction_of_Muhammad_-_17th_century_Ottoman_copy_from_the_%22Edinburgh_codex%22.jpg" i]
+    )
+    img {
+    content: url(/discovery/img/related_person_image.png) !important;
+  }
+}
+
+.avatar-img {
+  @include generic-avatar-filter;
+
+  & + .question-mark-popup-cont {
+    display: none;
+  }
+}
+
+.person-gallery prm-search-result-thumbnail-container {
+  @include generic-avatar-filter;
+}
