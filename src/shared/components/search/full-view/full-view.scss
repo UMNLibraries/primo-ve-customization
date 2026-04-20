@@ -54,25 +54,35 @@ prm-full-view {
 
 // Replace select related persons images with a generic avatar
 
-@mixin generic-avatar-filter {
+@mixin avatar-filter-match {
   &:has(
       [src*="Siyer-i_Nebi_158b.jpg" i],
       [src*="Mohammed.jpg" i],
       [src*="Muslim_depiction_of_Muhammad_-_17th_century_Ottoman_copy_from_the_%22Edinburgh_codex%22.jpg" i]
-    )
-    img {
-    content: url(/discovery/img/related_person_image.png) !important;
+    ) {
+    @content;
   }
 }
 
-.avatar-img {
-  @include generic-avatar-filter;
+@mixin generic-avatar {
+  content: url(/discovery/img/related_person_image.png) !important;
+}
 
-  & + .question-mark-popup-cont {
-    display: none;
+.avatar-img {
+  @include avatar-filter-match {
+    img {
+      @include generic-avatar;
+    }
+    & + .question-mark-popup-cont {
+      display: none;
+    }
   }
 }
 
 .person-gallery prm-search-result-thumbnail-container {
-  @include generic-avatar-filter;
+  @include avatar-filter-match {
+    img {
+      @include generic-avatar;
+    }
+  }
 }
