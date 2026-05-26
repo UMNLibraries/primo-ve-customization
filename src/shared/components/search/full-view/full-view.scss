@@ -58,7 +58,7 @@ prm-full-view {
   &:has(
       [src*="Siyer-i_Nebi_158b.jpg" i],
       [src*="Mohammed.jpg" i],
-      [src*="Muslim_depiction_of_Muhammad_-_17th_century_Ottoman_copy_from_the_%22Edinburgh_codex%22.jpg" i]
+      [src*="Muslim_depiction_of_Muhammad_-_17th_century_Ottoman_copy_from_the_" i]
     ) {
     @content;
   }
